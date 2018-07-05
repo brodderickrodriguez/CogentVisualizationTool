@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cogentvisualizationtool_2535.iml" filepath="$PROJECT_DIR$/.idea/modules/cogentvisualizationtool_2535.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cogentvisualizationtool_2535-build.iml" filepath="$PROJECT_DIR$/.idea/modules/cogentvisualizationtool_2535-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cogentvisualizationtool.iml" filepath="$PROJECT_DIR$/.idea/modules/cogentvisualizationtool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cogentvisualizationtool-build.iml" filepath="$PROJECT_DIR$/.idea/modules/cogentvisualizationtool-build.iml" />
     </modules>
   </component>
 </project>
