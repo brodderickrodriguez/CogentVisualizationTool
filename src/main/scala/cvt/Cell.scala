@@ -7,8 +7,12 @@ import scala.swing.Dimension
 
 class Cell(grid : context.Grid, dimension : Dimension) {
     
-    var absoluteLocation : Coordinate = _
-    var identity : Coordinate = _
+    var cellCoordinate : Coordinate = _
     var agents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
+    
+    
+    override def toString : String = {
+        ""
+    } // toString()
     
 } // Cell

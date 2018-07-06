@@ -11,9 +11,12 @@ object CogentVisualizationTool {
         println("Hello, CVT!")
     
         
+        val widthCells = 50
+        val heightCells = 30
+        val cellSize = 10
         
-        val dimension = new Dimension(500, 500)
-        val context : Context = new Grid(dimension)
+        val dimension = new Dimension(widthCells, heightCells)
+        val context : Context = new Grid(dimension, cellSize)
         
         
         
