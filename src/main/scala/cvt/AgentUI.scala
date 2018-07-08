@@ -1,17 +1,23 @@
 package cvt
 
-import java.awt.{Color, Graphics2D}
-import scala.swing.Dimension
 import scala.collection.mutable.ArrayBuffer
 
 
-class AgentUI(var dimension: Dimension) extends UIObject(dimension: Dimension) {
-    println("creating AgentUI")
+object AgentUINotification extends Enumeration {
+    val addedAgentToCell : Value = Value
+    val removedAgentFromCell : Value = Value
+    val removingAllAgentsFromCell : Value = Value
+} // Direction
+
+
+class AgentUI(val mockAgent : MockAgent) extends UIObject {
+    //println("[AgentUI] initializing")
     
     //val agent : Unit = _
-    var connections : ArrayBuffer[Connection] = new ArrayBuffer[Connection]()
+    val connections : ArrayBuffer[Connection] = new ArrayBuffer[Connection]()
+    var cell : Cell = _
     
-
+    
     def addConnection(c : Connection): Unit = {
         connections.append(c)
     } // addConnection
@@ -20,6 +26,22 @@ class AgentUI(var dimension: Dimension) extends UIObject(dimension: Dimension) {
     override def toString : String = {
         "AgentUI()"
     } // toString
+    
+    
+    def receiveNotification(notification : AgentUINotification.Value): Unit = {
+        //println("[AgentUI] - receiveNotification: " + notification)
+        notification match {
+            case AgentUINotification.addedAgentToCell =>
+              //  println("got addedAgentToCell notification")
+                mockAgent.receiveNotification(MockAgentNotification.move)
+
+            case AgentUINotification.removedAgentFromCell =>
+               // println("got removedAgentFromCell notification")
+
+            case AgentUINotification.removingAllAgentsFromCell =>
+              //  println("got removingAllAgentsFromCell notification")
+        } // notification match
+    } // receiveNotification()
     
     
 } // Agent

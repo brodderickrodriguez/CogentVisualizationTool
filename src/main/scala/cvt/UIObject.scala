@@ -1,20 +1,17 @@
 package cvt
 
-import java.awt.Color
+import java.awt.{Color, Dimension}
+import scala.swing.Label
 
-import scala.swing.{Dimension, Label}
-
-abstract class UIObject(dimension: Dimension) {
+abstract class UIObject {
     
     var color : Color = Color.gray
     val size : Dimension = new Dimension(0, 0)
     val ID : Integer = -1
-    var description : String = _
-    protected var absoluteLocation : Coordinate = _
+    var description : String = "[UIObject]"
+    var absoluteLocation : Coordinate = new Coordinate(0 ,0)
     val label : Label = new Label(toString)
     
-    override def toString : String = {
-        "UIObject(id: " + ID + ")"
-    } // toString()
+    override def toString : String = { "UIObject(id: " + ID + ")" } // toString()
     
 } // UIObject
