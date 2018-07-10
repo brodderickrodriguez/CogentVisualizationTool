@@ -1,10 +1,10 @@
 package cvt
 
-object MockAgentNotification extends Enumeration {
+object MockCogentNotification extends Enumeration {
     val move : Value = Value
 }
 
-object MockAgentType extends  Enumeration {
+object MockCogentType extends  Enumeration {
     val boring : Value = Value
     val exciting : Value = Value
     val daring : Value = Value
@@ -13,7 +13,7 @@ object MockAgentType extends  Enumeration {
 
 class MockAgent {
     var agentUI : AgentUI = _
-    var agentType : MockAgentType.Value = MockAgentType.boring
+    var agentType : MockCogentType.Value = MockCogentType.boring
     
     
     def randomDirection() : context.Direction.Value = {
@@ -26,11 +26,12 @@ class MockAgent {
     }
     
     
-    def receiveNotification(notification: MockAgentNotification.Value) : Unit = {
+    def receiveNotification(notification: MockCogentNotification.Value) : Unit = {
     
         if (agentUI.cell.agents.length > 5) {
             val r = scala.util.Random
-            val c = new Coordinate(r.nextInt(25), r.nextInt(25))
+            val dim = agentUI.cell.grid.dimension
+            val c = new Coordinate(r.nextInt(dim.width), r.nextInt(dim.height))
     
            // agentUI.cell.grid.move(agentUI, context.Direction.up, 1)
             agentUI.cell.grid.move(agentUI, c)

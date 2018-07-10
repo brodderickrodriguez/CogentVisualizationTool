@@ -5,57 +5,22 @@ package cvt
   * @param x the x coordinate
   * @param y the y coordinate
   */
-class Coordinate(var x : Integer, var y : Integer) {
+class Coordinate(var x : Int, var y : Int) {
     
+    def this(c : Coordinate) = this(c.x + c.y, c.y + c.x)
     
-    /** toString
-      *
-      * @return a string in the format : "Coordinate(x: <X>, y: <Y>)"
-      */
-    override def toString : String = {
-       "Coordinate(x: " + x + ", y: " + y + ")"
-    } // toString()
+    override def toString : String = "Coordinate(x: " + x + ", y: " + y + ")"
     
+    def add(m: Int) : Coordinate = add(new Coordinate(m, m))
+    def add(c : Coordinate) : Coordinate = new Coordinate(x + c.x, y + c.y)
     
-    def add(c : Coordinate) : Unit = {
-        this.x += c.x
-        this.y += c.y
-    } // add()
+    def subtract(m : Int) : Coordinate = subtract(new Coordinate(m , m))
+    def subtract(c : Coordinate) : Coordinate = new Coordinate(x - c.x, y - c.y)
     
-    def add(m : Int) : Unit = {
-        this.x += m
-        this.y += m
-    } // add()
+    def multiply(m : Int) : Coordinate = multiply(new Coordinate(m, m))
+    def multiply(c : Coordinate) : Coordinate = new Coordinate(x * c.x, y * c.y)
     
-    def subtract(c : Coordinate) : Unit = {
-        this.x -= c.x
-        this.y -= c.y
-    } // subtract()
-    
-    def subtract(m : Int) : Unit = {
-        this.x -= m
-        this.y -= m
-    } // subtract()
-    
-    def multiply(c : Coordinate) : Unit = {
-        this.x *= c.x
-        this.y *= c.y
-    } // multiply()
-    
-    def multiply(m : Int) : Unit = {
-        this.x *= m
-        this.y *= m
-    } // multiply()
-    
-    def divide(c : Coordinate) : Unit = {
-        this.x /= c.x
-        this.y /= c.y
-    } // divide()
-    
-    def divide(m : Int) : Unit = {
-        this.x /= m
-        this.y /= m
-    } // divide()
-    
-    
+    def divide(m : Int) : Coordinate = multiply(new Coordinate(m, m))
+    def divide(c : Coordinate) : Coordinate = new Coordinate(x / c.x, y / c.y)
+
 } // Coordinate

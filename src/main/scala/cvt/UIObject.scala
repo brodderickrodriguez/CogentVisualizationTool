@@ -7,7 +7,7 @@ abstract class UIObject {
     
     var color : Color = Color.gray
     val size : Dimension = new Dimension(0, 0)
-    val ID : Integer = -1
+    var ID : Integer = -1
     var description : String = "[UIObject]"
     var absoluteLocation : Coordinate = new Coordinate(0 ,0)
     val label : Label = new Label(toString)

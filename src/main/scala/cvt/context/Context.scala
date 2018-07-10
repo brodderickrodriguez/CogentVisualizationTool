@@ -39,18 +39,15 @@ abstract class Context(dimension: Dimension) extends Component   {
     
     
     def getCellColor(cell : Cell) : Color = {
-        for (c <- colorSchemes if c.use == ColorSchemeUse.cellColorUse)
-            return c.getCellColor(cell)
-        null
+        for (c <- colorSchemes if c.use == ColorSchemeUse.cellColorUse) return c.getCellColor(cell)
+        ColorSchemes.default.getCellColor(cell)
     } // getCellColor
     
     
-    def getAgentsWithTypes(types: ArrayBuffer[MockAgentType.Value]) : ArrayBuffer[AgentUI] = {
-        // allAgents.find(p => types.contains(p.mockAgent.agentType))
-        val result = ArrayBuffer[AgentUI]()
-        for (a <- allAgents if types.indexOf(a.mockAgent.agentType) > 0) result.append(a)
-        result
-    } // getAllAgents()
+    def getAgentsWithType(t :  MockCogentType.Value) : ArrayBuffer[AgentUI] = for (a <- allAgents if t == a.mockAgent.agentType) yield a
+    
+    
+    def getAgentsWithTypes(types: Array[MockCogentType.Value]) : ArrayBuffer[AgentUI] = for (a <- allAgents if types.contains(a.mockAgent.agentType)) yield a
     
     
     def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI]
@@ -59,7 +56,7 @@ abstract class Context(dimension: Dimension) extends Component   {
     
     def addAgent(agent : AgentUI, c : Coordinate) : Unit
     
-    def addAgents(agents: ArrayBuffer[AgentUI]) : Unit
+    def addAgents(agents: Array[AgentUI]) : Unit
     
     def removeAgent(agent : AgentUI) : Boolean
     

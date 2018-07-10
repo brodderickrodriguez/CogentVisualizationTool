@@ -1,6 +1,6 @@
 package cvt.context
 
-import scala.swing.{BorderPanel, Dimension, Label, MainFrame, ScrollPane, Swing}
+import scala.swing.{BorderPanel, Dimension, MainFrame, ScrollPane, Swing}
 import java.awt.Color
 
 /**

@@ -1,11 +1,7 @@
 package cvt.context
-
-import java.awt.Graphics2D
-
-import cvt.{AgentUI, Coordinate}
-
+import cvt.{Cell, Coordinate, AgentUI, AgentUINotification, MockCogentType}
+import java.awt.{Dimension, Graphics2D}
 import scala.collection.mutable.ArrayBuffer
-import scala.swing.Dimension
 
 /**
   *
@@ -32,7 +28,7 @@ class Space(dimension: Dimension) extends Context(dimension: Dimension) {
         allAgents.append(agent)
     } // addAgent()
     
-    def addAgents(agents: ArrayBuffer[AgentUI]) : Unit = {
+    def addAgents(agents: Array[AgentUI]) : Unit = {
         // DO Stuff
         allAgents ++ agents
     } // addAgents()

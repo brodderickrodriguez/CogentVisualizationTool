@@ -1,5 +1,4 @@
 package cvt
-
 import scala.swing.Dimension
 
 
@@ -16,11 +15,7 @@ class Connection(var dimension: Dimension) extends UIObject {
     var weight : Double = 0
     var directed : Boolean = false
     
-    
-    override def toString : String = {
-        "Connection(from: " + agentA + " to: " + agentB + " weight: " + weight + " description: " + description + ")"
-    } // toString()
-    
+    override def toString : String = "Connection(from: " + agentA + " to: " + agentB + " weight: " + weight + " description: " + description + ")"
     
 } // Connection
 

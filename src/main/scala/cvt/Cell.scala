@@ -8,15 +8,8 @@ class Cell(val grid : context.Grid, dimension : Dimension) extends UIObject {
     var cellCoordinate : Coordinate = _
     var agents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
     
+    override def toString : String = ""
     
-    override def toString : String = {
-        ""
-    } // toString()
-    
-    
-    def sendNotificationToAgents(notification : AgentUINotification.Value) : Unit = {
-        for (a <- agents) a.receiveNotification(notification)
-    } // sendNotificationToAgents()
-    
+    def sendNotificationToAgents(notification : AgentUINotification.Value) : Unit = for (a <- agents) a.receiveNotification(notification)
     
 } // Cell
