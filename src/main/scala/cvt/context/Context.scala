@@ -1,70 +1,116 @@
 package cvt.context
 
 import cvt._
-import java.awt.Graphics2D
+import cvt.MockCogentType
 
-import scala.swing._
+import scala.swing.{Component, Dimension}
 import scala.collection.mutable.ArrayBuffer
+import java.awt.Color
 
+import cvt.context.grid.Cell
+import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate}
+
+
+object Direction extends Enumeration {
+    val up: Value = Value
+    val right: Value = Value
+    val down: Value = Value
+    val left: Value  = Value
+} // Direction
 
 /**
   *
-  * @param dimension the dimension of the context
+  * @param _dimension the dimension of the context
   */
-abstract class Context(dimension: Dimension) extends Component   {
-    println("Context Initializing")
-    
-    protected val window = new Window(dimension, this)
-    private val allAgents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
-    private val colorSchemes : ArrayBuffer[ColorScheme] = new ArrayBuffer[ColorScheme]()
-    
-    protected object Direction extends Enumeration {
-        val up: Value = Value(-1)
-        val right: Value = Value(1)
-        val down: Value = Value(1)
-        val left: Value  = Value(-1)
-    } // Direction
-    
-
-    
-    protected override def paintComponent(g : Graphics2D) : Unit = {
-        println("painting context")
-    } // paintComponent()
+abstract class Context(_dimension: Dimension) extends Component   {
+    protected val window = new Window(_dimension, this)
+    protected val allAgents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
+    protected val colorSchemes : ArrayBuffer[ColorScheme] = new ArrayBuffer[ColorScheme]()
     
     
-
-    def getAgentsWithTypes(array: Array[Int]) : ArrayBuffer[cvt.AgentUI] = {
-        allAgents
-    } // getAllAgents()
-    
-
-    def addAgent(agent : AgentUI) : Boolean
-    
-    
-    def addAgents(agents: ArrayBuffer[AgentUI]) : Boolean
-    
-    
-    def removeAgent(agent : AgentUI) : Boolean
-    
-    
-    def removeAllAgents() : Unit
-    
-    
-    def applyColorScheme(c : ColorScheme) : Boolean = {
-        colorSchemes.append(c)
+    def applyColorScheme(c : ColorScheme) : Unit = {
+        colorSchemes += c
         repaint()
-        false
     } // applyColorScheme
     
     
-    def removeColorScheme(c : ColorScheme) : Boolean = {
-        if (colorSchemes.indexOf(c) != -1) {
-            colorSchemes.remove(colorSchemes.indexOf(c))
-            repaint()
-            return true
-        } // if colorScheme is active
-        false
+    def removeColorScheme(c : ColorScheme) : Unit = {
+        colorSchemes -= c
+        repaint()
     } // removeColorScheme
     
+    
+    def getCellColor(cell : Cell) : Color = {
+        for (c <- colorSchemes if c.use == ColorSchemeUse.cellColorUse) return c.getCellColor(cell)
+        ColorSchemes.default.getCellColor(cell)
+    } // getCellColor
+    
+    
+    def paintAgent : Boolean = {
+        for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse && !c.paintAgent) return false
+        true
+    } // paintAgent
+    
+    
+    def getAgentColor(agent : AgentUI) : Color = {
+        for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse) return c.getAgentColor(agent)
+        ColorSchemes.default.getAgentColor(agent)
+    } // getAgentColor
+    
+    
+    def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- allAgents) a.receiveNotification(notification)
+    
+    
+    def getAgentsWithType(t :  MockCogentType.Value) : ArrayBuffer[AgentUI] = for (a <- allAgents if t == a.agentType) yield a
+    
+    
+    def getAgentsWithTypes(types: Array[MockCogentType.Value]) : ArrayBuffer[AgentUI] = for (a <- allAgents if types.contains(a.agentType)) yield a
+    
+    
+    def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI]
+    
+    
+    def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI]
+    
+    
+    /** Adds an AgentUI to the given context at a default coordinate.
+      *
+      * @param agent the AgentUI which we wish to add to the context.
+      * @param c the coordinate which we wish to add the AgentUI to.
+      */
+    def addAgent(agent : AgentUI) : Unit = addAgent(agent, new Coordinate(0, 0))
+    
+    
+    /** Adds an AgentUI to the given context at a designated coordinate.
+      *
+      * @param agent the AgentUI which we wish to add to the context.
+      * @param c the coordinate which we wish to add the AgentUI to.
+      */
+    def addAgent(agent : AgentUI, c : Coordinate) : Unit
+    
+    
+    /** Adds a list of AgentUIs to the given context at a default coordinate.
+      *
+      * @param agents the list of AgentUIs which we wish to add to the context.
+      */
+    def addAgents(agents: Array[AgentUI]) : Unit
+    
+    
+    /** Removes an AgentUI from the context.
+      *
+      * @param agent the AgentUI which we wish to remove.
+      */
+    def removeAgent(agent : AgentUI) : Unit
+    
+    /** Removes all AgentUIs form the context.
+      *
+      */
+    def removeAllAgents() : Unit = {
+        // send a notification to all AgentUIs in the context that we are removing agents
+        sendNotificationToAllAgents(AgentUINotification.removingAllAgentsFromCell)
+        // empty the array
+        allAgents.clear()
+        repaint()
+    } // removeAllAgents()
     
 } // Context
