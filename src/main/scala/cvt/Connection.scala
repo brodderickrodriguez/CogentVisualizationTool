@@ -1,12 +1,10 @@
 package cvt
-import scala.swing.Dimension
 
 
 /**
   *
-  * @param dimension the dimension of the object
   */
-class Connection(var dimension: Dimension) extends UIObject {
+class Connection extends UIObject {
     
     var agentA : AgentUI = _
     var agentB : AgentUI = _

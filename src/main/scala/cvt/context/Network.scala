@@ -1,7 +1,12 @@
 package cvt.context
-import cvt.{Cell, Coordinate, AgentUI, AgentUINotification, MockCogentType}
+import cvt.{AgentUI, AgentUINotification, Cell, Coordinate, MockCogentType}
 import java.awt.{Dimension, Graphics2D}
+
+import cvt.AdjacencyStructure._
+
 import scala.collection.mutable.ArrayBuffer
+
+
 
 /**
   *
@@ -9,6 +14,8 @@ import scala.collection.mutable.ArrayBuffer
   */
 class Network(dimension: Dimension) extends Context(dimension: Dimension) {
     println("[Network] initializing")
+    
+    private var dataStructure : AdjacencyStructure = new AdjacencyMatrix()
     
     
     override def paintComponent(graphics: Graphics2D): Unit = {
@@ -25,14 +32,13 @@ class Network(dimension: Dimension) extends Context(dimension: Dimension) {
         null
     } // getNeighbors()
     
-    def addAgent(agent : AgentUI) : Unit = {
-        // DO Stuff
-        allAgents.append(agent)
-    } // addAgent()
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI] = {
+        null
+    }
+    
     
     def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
         // DO Stuff
-        allAgents.append(agent)
     } // addAgent()
     
     def addAgents(agents: Array[AgentUI]) : Unit = {
@@ -40,17 +46,15 @@ class Network(dimension: Dimension) extends Context(dimension: Dimension) {
         allAgents ++ agents
     } // addAgents()
     
-    def removeAgent(agent : AgentUI) : Boolean = {
+    def removeAgent(agent : AgentUI) : Unit = {
         // DO Stuff
-        allAgents.remove(allAgents.indexOf(agent))
-        false
     } // removeAgent()
     
-    def removeAllAgents() : Unit = {
+    override def removeAllAgents() : Unit = {
         // DO Stuff
-        allAgents.clear()
+        super.removeAllAgents()
     } // removeAllAgents()
-
-
+    
+    
 } // Network
 

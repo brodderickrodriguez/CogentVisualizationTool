@@ -1,6 +1,7 @@
 package cvt
 import scala.collection.mutable.ArrayBuffer
-import java.awt.Color
+import scala.swing.Dimension
+
 
 
 object AgentUINotification extends Enumeration {
@@ -10,13 +11,12 @@ object AgentUINotification extends Enumeration {
 } // Direction
 
 
-class AgentUI(val mockAgent : MockAgent) extends UIObject {
-    //println("[AgentUI] initializing")
-    
-    //val agent : Unit = _
+class AgentUI(mockAgent : MockAgent) extends UIObject {
     val connections : ArrayBuffer[Connection] = new ArrayBuffer[Connection]()
     var cell : Cell = _
-    color = Color.blue
+    dimension = new Dimension(10, 10)
+    
+    def agentType : MockCogentType.Value = mockAgent.agentType
     
     
     def addConnection(c : Connection): Unit = connections.append(c)

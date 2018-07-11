@@ -6,22 +6,21 @@ import scala.collection.mutable.ArrayBuffer
 
 /**
   *
-  * @param dimension the dimension of the grid in cells
+  * @param _dimension the dimension of the grid in cells
   */
-class Grid(val dimension: Dimension, cellSize : Integer = 50, cellGapSize : Integer = 2, circular : Boolean = true) extends Context(dimension: Dimension) {
-    private val grid : Array[Array[Cell]] = Array.ofDim[Cell](dimension.width, dimension.height)
+class Grid(val _dimension: Dimension, cellSize : Integer = 50, cellGapSize : Integer = 2, circular : Boolean = true) extends Context(_dimension: Dimension) {
+    private val grid : Array[Array[Cell]] = Array.ofDim[Cell](_dimension.width, _dimension.height)
     createGrid()
     sizeWindowToGrid()
-    private var populatedGrid = false
-
+    
     
     /** sizeWindowToGrid
       * shape the window to fit all cells
       */
     private def sizeWindowToGrid() : Unit = {
         val borderPixels = new Dimension(2 * window.borderSize, 2 * window.borderSize + 25)
-        val gapPixels = new Dimension((dimension.width - 1) * cellGapSize, (dimension.height - 1) * cellGapSize)
-        val cellPixels = new Dimension(dimension.width * cellSize, dimension.height * cellSize)
+        val gapPixels = new Dimension((_dimension.width - 1) * cellGapSize, (_dimension.height - 1) * cellGapSize)
+        val cellPixels = new Dimension(_dimension.width * cellSize, _dimension.height * cellSize)
         window.size = new Dimension(borderPixels.width + gapPixels.width + cellPixels.width, borderPixels.height + gapPixels.height + cellPixels.height)
     } // sizeWindowToGrid()
     
@@ -29,16 +28,15 @@ class Grid(val dimension: Dimension, cellSize : Integer = 50, cellGapSize : Inte
     /** createGrid
       * adds cells to the grid 2D array
       */
-    def createGrid() : Unit = {
+    private def createGrid() : Unit = {
         val cellDimension = new Dimension(cellSize, cellSize)
-        for (x <- 0 until dimension.width; y <- 0 until dimension.height) {
-            val cell = new Cell(this, cellDimension)
+        for (x <- 0 until _dimension.width; y <- 0 until _dimension.height) {
             val absoluteCoordinate = new Coordinate(x * (cellSize + cellGapSize), y * (cellSize + cellGapSize))
+            val cell = new Cell(this, cellDimension, new Coordinate(x, y))
+            cell.dimension = cellDimension
             cell.absoluteLocation = absoluteCoordinate
-            cell.cellCoordinate = new Coordinate(x, y)
             grid(x)(y) = cell
         } // for x, y
-        populatedGrid = true
     } // initializeGrid
     
     
@@ -47,56 +45,53 @@ class Grid(val dimension: Dimension, cellSize : Integer = 50, cellGapSize : Inte
       * @param graphics the graphics object
       */
     override def paintComponent(graphics: Graphics2D): Unit = {
-        if (!populatedGrid) createGrid()
-        // if the grid is empty, populate it first
-        // for each cell, draw it
         for (x <- grid.indices; y <- grid(0).indices) {
             val cell = grid(x)(y)
             graphics.setColor(getCellColor(cell))
-            graphics.fillRect(cell.absoluteLocation.x, cell.absoluteLocation.y, cellSize, cellSize)
-            for (a <- cell.agents) {
-                graphics.setColor(a.color)
-                graphics.fillOval(cell.absoluteLocation.x + 5, cell.absoluteLocation.y + 5, 10, 10)
-            } // for a
+            graphics.fillRect(cell.absoluteLocation.X, cell.absoluteLocation.Y, cellSize, cellSize)
+            if (paintAgent) {
+                for (a <- cell.agents if a != null) {
+                    graphics.setColor(getAgentColor(a))
+                    graphics.fillOval(cell.absoluteLocation.X + 5, cell.absoluteLocation.Y + 5, a.dimension.width, a.dimension.height)
+                } // for a
+            } // paintAgent
         } // for x, y
     } // paintComponent()
     
     
-    def cellAt(c : Coordinate) : Cell = {
-        if (c == null) return null
+    private def cellAt(c : Coordinate) : Cell = {
+        if (c == null) return grid(0)(0)
         if (circular) {
-            if (c.x < 0) return cellAt(new Coordinate(c.x + dimension.width, c.y))
-            if (c.y < 0) return cellAt(new Coordinate(c.x, c.y + + dimension.height))
-            return grid(c.x % (dimension.width - 0))(c.y % (dimension.height - 0))
+            if (c.X < 0) return cellAt(new Coordinate(c.X + _dimension.width, c.Y))
+            if (c.Y < 0) return cellAt(new Coordinate(c.X, c.Y + + _dimension.height))
+            return grid(c.X % (_dimension.width - 0))(c.Y % (_dimension.height - 0))
         } // if circular
-        if (c.x < 0 || c.y < 0 || c.y > dimension.width || c.y > dimension.height) return null
-        grid(c.x)(c.y)
+        if (c.X < 0 || c.Y < 0 || c.Y >= _dimension.width || c.Y >= _dimension.height) return grid(0)(0)
+        grid(c.X)(c.Y)
     } // cellAt()
     
     
-    def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI] = getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI] = getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
     
     
     /************/
     def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI] = {
-        val start = new Coordinate(agent.cell.cellCoordinate).subtract(radius)
-        val end = new Coordinate(agent.cell.cellCoordinate).add(radius)
+        val start = new Coordinate(agent.cell.coordinate).subtract(radius)
+        val end = new Coordinate(agent.cell.coordinate).add(radius)
         val agents = ArrayBuffer[AgentUI]()
-        for (x <- start.x + 1 until end.x; y <- start.y + 1 until end.y) agents ++= cellAt(new Coordinate(x, y)).agents
+        for (x <- start.X to end.X; y <- start.Y to end.Y if cellAt(new Coordinate(x, y)) != agent.cell) agents ++= cellAt(new Coordinate(x, y)).agents
         agents
     } // getNeighbors()
     
     
-    /******************/
-    def addAgent(agent : AgentUI) : Unit = addAgent(agent, new Coordinate(0, 0))
     
     
     def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
         val cell = cellAt(c)
         agent.cell = cell
         cell.sendNotificationToAgents(AgentUINotification.addedAgentToCell)
-        cell.agents.append(agent)
-        allAgents.append(agent)
+        cell.agents += agent
+        allAgents += agent
         repaint()
     } // addAgent()
     
@@ -105,7 +100,7 @@ class Grid(val dimension: Dimension, cellSize : Integer = 50, cellGapSize : Inte
         val cell = cellAt(new Coordinate(0, 0))
         for (agent <- agents) {
             agent.cell = cell
-            cell.agents.append(agent)
+            cell.agents += agent
         }
         cell.sendNotificationToAgents(AgentUINotification.addedAgentToCell)
         allAgents ++ agents
@@ -113,27 +108,18 @@ class Grid(val dimension: Dimension, cellSize : Integer = 50, cellGapSize : Inte
     } // addAgents()
     
     
-    /************************************/
-    def removeAgent(agent : AgentUI) : Boolean = {
-        if (agent.cell == null) return false
-        val cell = agent.cell
-        //cell.agents.remove(cell.agents.indexOf(agent))
-        // allAgents.remove(allAgents.indexOf(agent))
-        cell.sendNotificationToAgents(AgentUINotification.removedAgentFromCell)
+    def removeAgent(agent : AgentUI) : Unit = {
+        agent.cell.agents -= agent
+        allAgents -= agent
+        agent.cell.sendNotificationToAgents(AgentUINotification.removedAgentFromCell)
         agent.cell = null
         repaint()
-        true
     } // removeAgent
     
     
-    def removeAllAgents() : Unit = {
-        for (x <- grid.indices; y <- grid(0).indices) {
-            val cell = cellAt(new Coordinate(x, y))
-            cell.sendNotificationToAgents(AgentUINotification.removingAllAgentsFromCell)
-            cell.agents.clear()
-        } // for x, y
-        allAgents.clear()
-        repaint()
+    override def removeAllAgents() : Unit = {
+        for (x <- grid.indices; y <- grid(0).indices) cellAt(new Coordinate(x, y)).agents.clear()
+        super.removeAllAgents()
     } // removeAllAgents()
     
 
@@ -149,15 +135,15 @@ class Grid(val dimension: Dimension, cellSize : Integer = 50, cellGapSize : Inte
       * @param direction which we want to move
       * @param magnitude is the amount of cells we wish to move
       */
-    def move(agent : AgentUI, direction : Direction.Value, magnitude : Integer) : Unit = {
-        val newCoordinate = new Coordinate(agent.cell.cellCoordinate)
+    def move(agent : AgentUI, direction : Direction.Value, magnitude : Int) : Unit = {
+        var c = new Coordinate(agent.cell.coordinate)
         direction match {
-            case Direction.up => newCoordinate.y -= magnitude
-            case Direction.right => newCoordinate.x += magnitude
-            case Direction.down => newCoordinate.y += magnitude
-            case Direction.left => newCoordinate.x -= magnitude
+            case Direction.up => c = c.subY(magnitude)
+            case Direction.right => c = c.addX(magnitude)
+            case Direction.down => c = c.addY(magnitude)
+            case Direction.left => c = c.subX(magnitude)
         } // match direction
-        move(agent, newCoordinate)
+        move(agent, c)
     } // move()
     
     

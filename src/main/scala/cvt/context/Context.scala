@@ -1,6 +1,8 @@
 package cvt.context
 
 import cvt._
+import cvt.MockCogentType
+import cvt.AgentUINotification
 import scala.swing.{Dimension, Component}
 import scala.collection.mutable.ArrayBuffer
 import java.awt.Color
@@ -18,22 +20,19 @@ object Direction extends Enumeration {
   * @param dimension the dimension of the context
   */
 abstract class Context(dimension: Dimension) extends Component   {
-    //println("[Context] Initializing")
-    
     protected val window = new Window(dimension, this)
-    val allAgents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
-    val colorSchemes : ArrayBuffer[ColorScheme] = new ArrayBuffer[ColorScheme]()
+    protected val allAgents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
+    protected val colorSchemes : ArrayBuffer[ColorScheme] = new ArrayBuffer[ColorScheme]()
     
     
     def applyColorScheme(c : ColorScheme) : Unit = {
-        colorSchemes.append(c)
+        colorSchemes += c
         repaint()
     } // applyColorScheme
     
     
     def removeColorScheme(c : ColorScheme) : Unit = {
-        if (!colorSchemes.contains(c)) return
-        colorSchemes.remove(colorSchemes.indexOf(c))
+        colorSchemes -= c
         repaint()
     } // removeColorScheme
     
@@ -44,22 +43,43 @@ abstract class Context(dimension: Dimension) extends Component   {
     } // getCellColor
     
     
-    def getAgentsWithType(t :  MockCogentType.Value) : ArrayBuffer[AgentUI] = for (a <- allAgents if t == a.mockAgent.agentType) yield a
+    def paintAgent : Boolean = {
+        for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse && !c.paintAgent) return false
+        true
+    } // paintAgent
     
     
-    def getAgentsWithTypes(types: Array[MockCogentType.Value]) : ArrayBuffer[AgentUI] = for (a <- allAgents if types.contains(a.mockAgent.agentType)) yield a
+    def getAgentColor(agent : AgentUI) : Color = {
+        for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse) return c.getAgentColor(agent)
+        ColorSchemes.default.getAgentColor(agent)
+    } // getAgentColor
+    
+    
+    def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- allAgents) a.receiveNotification(notification)
+    
+    
+    def getAgentsWithType(t :  MockCogentType.Value) : ArrayBuffer[AgentUI] = for (a <- allAgents if t == a.agentType) yield a
+    
+    
+    def getAgentsWithTypes(types: Array[MockCogentType.Value]) : ArrayBuffer[AgentUI] = for (a <- allAgents if types.contains(a.agentType)) yield a
     
     
     def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI]
     
-    def addAgent(agent : AgentUI) : Unit
+    def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI]
+    
+    def addAgent(agent : AgentUI) : Unit = addAgent(agent, new Coordinate(0, 0))
     
     def addAgent(agent : AgentUI, c : Coordinate) : Unit
     
     def addAgents(agents: Array[AgentUI]) : Unit
     
-    def removeAgent(agent : AgentUI) : Boolean
+    def removeAgent(agent : AgentUI) : Unit
     
-    def removeAllAgents() : Unit
+    def removeAllAgents() : Unit = {
+        sendNotificationToAllAgents(AgentUINotification.removingAllAgentsFromCell)
+        allAgents.clear()
+        repaint()
+    } // removeAllAgents()
     
 } // Context

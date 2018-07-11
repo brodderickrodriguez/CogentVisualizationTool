@@ -27,7 +27,6 @@ class Window(val dimension: Dimension, private val context: Context) extends Mai
     // add all contents to the GUI (order matters!)
     contents = new BorderPanel {
         border = Swing.MatteBorder(borderSize, borderSize, borderSize, borderSize, Color.darkGray)
-        
         add(scrollPane, BorderPanel.Position.Center)
     } // contents of the GUI
     

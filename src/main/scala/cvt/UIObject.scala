@@ -5,8 +5,8 @@ import scala.swing.Label
 
 abstract class UIObject {
     
-    var color : Color = Color.gray
-    val size : Dimension = new Dimension(0, 0)
+    var color : Color = _
+    var dimension : Dimension = new Dimension(0, 0)
     var ID : Integer = -1
     var description : String = "[UIObject]"
     var absoluteLocation : Coordinate = new Coordinate(0 ,0)

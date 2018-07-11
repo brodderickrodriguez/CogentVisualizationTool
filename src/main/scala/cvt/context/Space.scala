@@ -18,10 +18,10 @@ class Space(dimension: Dimension) extends Context(dimension: Dimension) {
         null
     } // getNeighbors()
     
-    def addAgent(agent : AgentUI) : Unit = {
-        // DO Stuff
-        allAgents.append(agent)
-    } // addAgent()
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI] = {
+        null
+    }
+    
     
     def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
         // DO Stuff
@@ -33,15 +33,14 @@ class Space(dimension: Dimension) extends Context(dimension: Dimension) {
         allAgents ++ agents
     } // addAgents()
     
-    def removeAgent(agent : AgentUI) : Boolean = {
+    def removeAgent(agent : AgentUI) : Unit = {
         // DO Stuff
         allAgents.remove(allAgents.indexOf(agent))
-        false
     } // removeAgent()
     
-    def removeAllAgents() : Unit = {
+    override def removeAllAgents() : Unit = {
         // DO Stuff
-        allAgents.clear()
+        super.removeAllAgents()
     } // removeAllAgents()
     
 

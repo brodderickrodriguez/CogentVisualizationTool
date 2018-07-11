@@ -1,7 +1,5 @@
 package cvt
-
 import java.awt.Color
-
 import cvt.context.Context
 
 
@@ -11,17 +9,25 @@ object ColorSchemeUse extends Enumeration {
     val agentColorUse : Value = Value
     val cellColorUse : Value = Value
     val connectionColorUse : Value = Value
-}
+} // ColorSchemeUse
 
 
 object ColorSchemes extends Enumeration {
-    val default : ColorScheme = new DefaultColorScheme
-    val cellColorByPopulation : ColorScheme = new CellColorByPopulationColorScheme
-    val agentColorRandom : ColorScheme = new agentColorRandomColorScheme
-}
+    val default : ColorScheme = new Default
+    val cellColorByPopulation : ColorScheme = new CellColorByPopulation
+    val cellColorByAgentType : ColorScheme = new CellColorByAgentType
+    val agentColorRandom : ColorScheme = new AgentColorRandom
+    val doNotPaintAgent : ColorScheme = new DoNotPaintAgent
+} // ColorSchemes
 
 
-private class agentColorRandomColorScheme extends ColorScheme {
+private class DoNotPaintAgent extends ColorScheme {
+    use = ColorSchemeUse.agentColorUse
+    paintAgent = false
+} // DoNotPaintAgent
+
+
+private class AgentColorRandom extends ColorScheme {
     use = ColorSchemeUse.agentColorUse
     
     override def getAgentColor(agentUI: AgentUI): Color = {
@@ -32,7 +38,26 @@ private class agentColorRandomColorScheme extends ColorScheme {
 } // CogentColorRandomColorScheme
 
 
-private class CellColorByPopulationColorScheme extends ColorScheme {
+private class CellColorByAgentType extends ColorScheme {
+    use = ColorSchemeUse.cellColorUse
+    
+    override def getCellColor(cell: Cell) : Color = {
+        var color = Color.gray
+        if (cell.agents.isEmpty) return color
+        
+        cell.agents.head.agentType match {
+            case MockCogentType.exciting  => color = Color.yellow
+            case MockCogentType.boring  => color = Color.white
+            case MockCogentType.daring  => color = Color.green
+            case default => Color.gray
+        } // match
+        color
+    } // getCellColor()
+    
+} // GridCellColorByPopulation()
+
+
+private class CellColorByPopulation extends ColorScheme {
     use = ColorSchemeUse.cellColorUse
     
     override def getCellColor(cell: Cell) : Color = {
@@ -52,7 +77,7 @@ private class CellColorByPopulationColorScheme extends ColorScheme {
 } // GridCellColorByPopulation()
 
 
-private class DefaultColorScheme extends ColorScheme {
+private class Default extends ColorScheme {
     use = ColorSchemeUse.defaultColorUse
 } // Default
 
