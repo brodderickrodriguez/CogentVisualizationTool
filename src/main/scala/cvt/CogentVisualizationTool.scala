@@ -1,47 +1,49 @@
 package cvt
-import cvt.context._
 import java.awt.Dimension
+
+import cvt.context.grid.Grid
+import cvt.uiobject.{AgentUI, Coordinate}
 
 
 object CogentVisualizationTool {
     
-    def main(args: Array[String]) : Unit = {
-        println("Hello, CVT!")
-
-        val widthCells = 5
-        val heightCells = 5
-        val cellSize = 50
+    
+    def createAGridContext() : Unit = {
+        val widthCells = 50
+        val heightCells = 50
+        val cellSize = 15
         val cellGapSize = 2
-        
-        
+    
         val dimension = new Dimension(widthCells, heightCells)
         val grid : Grid = new Grid(dimension, cellSize, cellGapSize,true)
     
         grid.applyColorScheme(ColorSchemes.agentColorRandom)
         grid.applyColorScheme(ColorSchemes.cellColorByPopulation)
         //grid.applyColorScheme(ColorSchemes.cellColorByAgentType)
-        //grid.applyColorScheme(ColorSchemes.doNotPaintAgent)
+        grid.applyColorScheme(ColorSchemes.doNotPaintAgent)
     
     
         // SPAWN
         val types = Array(MockCogentType.daring, MockCogentType.exciting, MockCogentType.boring)
         val r = scala.util.Random
     
-        for (_ <- 1 to 1000) {
+        for (_ <- 1 to 10000) {
             val ma = new MockAgent()
             val a = new AgentUI(ma)
             ma.agentType = types(Math.abs(r.nextInt()) % types.length)
             ma.agentUI = a
             //grid.addAgent(a)
             grid.addAgent(a, new Coordinate(widthCells / 2, heightCells / 2))
-            
-           // println(grid.getNeighbors(a, 1))
-            
-           // println(grid.getNeighborsOfTypes(a, 1, Array(MockCogentType.exciting)))
-        }
         
-        
-        
+            // println(grid.getNeighbors(a, 1))
+            // println(grid.getNeighborsOfTypes(a, 1, Array(MockCogentType.exciting)))
+        } // for
+    } // createAGridContext()
+    
+    
+    def main(args: Array[String]) : Unit = {
+        println("Hello, CVT!")
+        createAGridContext()
     } // main()
     
 } // CogentVisualizationTool

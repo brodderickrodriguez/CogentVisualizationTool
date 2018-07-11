@@ -1,5 +1,6 @@
-package cvt
+package cvt.context.network
 
+import cvt.uiobject.{AgentUI, Coordinate, UIObject}
 
 /**
   *

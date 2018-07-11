@@ -1,9 +1,11 @@
-package cvt
-import cvt.context.Grid
+package cvt.context.grid
+
+import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate, UIObject}
+
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
 
-class Cell(_grid : context.Grid, _dimension : Dimension, _coordinate: Coordinate) extends UIObject {
+class Cell(_grid : Grid, _dimension : Dimension, _coordinate: Coordinate) extends UIObject {
     
     val coordinate : Coordinate = _coordinate
     val agents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()

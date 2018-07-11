@@ -1,8 +1,11 @@
-package cvt.context
-import cvt.{AgentUI, AgentUINotification, Cell, Coordinate, MockCogentType}
+package cvt.context.network
+
 import java.awt.{Dimension, Graphics2D}
 
-import cvt.AdjacencyStructure._
+import AdjacencyStructure._
+import cvt.context.Context
+import cvt.uiobject.{AgentUI, Coordinate}
+import cvt.MockCogentType
 
 import scala.collection.mutable.ArrayBuffer
 

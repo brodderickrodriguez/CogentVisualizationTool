@@ -1,4 +1,9 @@
-package cvt
+package cvt.uiobject
+
+import cvt.context.grid.Cell
+import cvt.context.network.Connection
+import cvt.{MockAgent, MockCogentNotification, MockCogentType}
+
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
 

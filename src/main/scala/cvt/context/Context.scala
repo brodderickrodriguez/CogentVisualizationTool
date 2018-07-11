@@ -2,10 +2,13 @@ package cvt.context
 
 import cvt._
 import cvt.MockCogentType
-import cvt.AgentUINotification
-import scala.swing.{Dimension, Component}
+
+import scala.swing.{Component, Dimension}
 import scala.collection.mutable.ArrayBuffer
 import java.awt.Color
+
+import cvt.context.grid.Cell
+import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate}
 
 
 object Direction extends Enumeration {
@@ -17,10 +20,10 @@ object Direction extends Enumeration {
 
 /**
   *
-  * @param dimension the dimension of the context
+  * @param _dimension the dimension of the context
   */
-abstract class Context(dimension: Dimension) extends Component   {
-    protected val window = new Window(dimension, this)
+abstract class Context(_dimension: Dimension) extends Component   {
+    protected val window = new Window(_dimension, this)
     protected val allAgents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
     protected val colorSchemes : ArrayBuffer[ColorScheme] = new ArrayBuffer[ColorScheme]()
     
@@ -66,18 +69,46 @@ abstract class Context(dimension: Dimension) extends Component   {
     
     def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI]
     
+    
     def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI]
     
+    
+    /** Adds an AgentUI to the given context at a default coordinate.
+      *
+      * @param agent the AgentUI which we wish to add to the context.
+      * @param c the coordinate which we wish to add the AgentUI to.
+      */
     def addAgent(agent : AgentUI) : Unit = addAgent(agent, new Coordinate(0, 0))
     
+    
+    /** Adds an AgentUI to the given context at a designated coordinate.
+      *
+      * @param agent the AgentUI which we wish to add to the context.
+      * @param c the coordinate which we wish to add the AgentUI to.
+      */
     def addAgent(agent : AgentUI, c : Coordinate) : Unit
     
+    
+    /** Adds a list of AgentUIs to the given context at a default coordinate.
+      *
+      * @param agents the list of AgentUIs which we wish to add to the context.
+      */
     def addAgents(agents: Array[AgentUI]) : Unit
     
+    
+    /** Removes an AgentUI from the context.
+      *
+      * @param agent the AgentUI which we wish to remove.
+      */
     def removeAgent(agent : AgentUI) : Unit
     
+    /** Removes all AgentUIs form the context.
+      *
+      */
     def removeAllAgents() : Unit = {
+        // send a notification to all AgentUIs in the context that we are removing agents
         sendNotificationToAllAgents(AgentUINotification.removingAllAgentsFromCell)
+        // empty the array
         allAgents.clear()
         repaint()
     } // removeAllAgents()

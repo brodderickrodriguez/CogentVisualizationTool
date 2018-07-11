@@ -1,6 +1,7 @@
-package cvt
+package cvt.uiobject
 
 import java.awt.{Color, Dimension}
+
 import scala.swing.Label
 
 abstract class UIObject {

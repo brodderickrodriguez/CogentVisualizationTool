@@ -1,6 +1,9 @@
 package cvt
 import java.awt.Color
+
 import cvt.context.Context
+import cvt.context.grid.Cell
+import cvt.uiobject.AgentUI
 
 
 object ColorSchemeUse extends Enumeration {

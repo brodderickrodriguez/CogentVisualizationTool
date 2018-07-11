@@ -1,4 +1,4 @@
-package cvt
+package cvt.context.network
 
 object AdjacencyStructure {
     

@@ -1,5 +1,7 @@
 package cvt
 
+import cvt.uiobject.AgentUI
+
 
 object MockCogentNotification extends Enumeration {
     val move : Value = Value

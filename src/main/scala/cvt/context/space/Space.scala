@@ -1,6 +1,11 @@
-package cvt.context
-import cvt.{Cell, Coordinate, AgentUI, AgentUINotification, MockCogentType}
+package cvt.context.space
+
 import java.awt.{Dimension, Graphics2D}
+
+import cvt.context.Context
+import cvt.uiobject.{AgentUI, Coordinate}
+import cvt.MockCogentType
+
 import scala.collection.mutable.ArrayBuffer
 
 /**
