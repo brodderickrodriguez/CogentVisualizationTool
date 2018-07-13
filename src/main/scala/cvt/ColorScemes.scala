@@ -49,9 +49,9 @@ private class CellColorByAgentType extends ColorScheme {
         if (cell.agents.isEmpty) return color
         
         cell.agents.head.agentType match {
-            case MockCogentType.exciting  => color = Color.yellow
-            case MockCogentType.boring  => color = Color.white
-            case MockCogentType.daring  => color = Color.green
+            case MockAgentType.exciting  => color = Color.yellow
+            case MockAgentType.boring  => color = Color.white
+            case MockAgentType.daring  => color = Color.green
             case default => Color.gray
         } // match
         color

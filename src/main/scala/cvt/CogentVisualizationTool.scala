@@ -1,11 +1,20 @@
 package cvt
 import java.awt.Dimension
-
 import cvt.context.grid.Grid
 import cvt.uiobject.{AgentUI, Coordinate}
+import cvt.context.network._
 
 
 object CogentVisualizationTool {
+    
+    def main(args: Array[String]) : Unit = {
+        println("Hello, CVT!")
+        
+        //createAGridContext()
+        //createTestAdjacencyList()
+        //createTestAdjacencyMatrix()
+        
+    } // main()
     
     
     def createAGridContext() : Unit = {
@@ -21,10 +30,8 @@ object CogentVisualizationTool {
         grid.applyColorScheme(ColorSchemes.cellColorByPopulation)
         //grid.applyColorScheme(ColorSchemes.cellColorByAgentType)
         grid.applyColorScheme(ColorSchemes.doNotPaintAgent)
-    
-    
-        // SPAWN
-        val types = Array(MockCogentType.daring, MockCogentType.exciting, MockCogentType.boring)
+        
+        val types = Array(MockAgentType.daring, MockAgentType.exciting, MockAgentType.boring)
         val r = scala.util.Random
     
         for (_ <- 1 to 10000) {
@@ -41,63 +48,63 @@ object CogentVisualizationTool {
     } // createAGridContext()
     
     
-    def main(args: Array[String]) : Unit = {
-        println("Hello, CVT!")
-        createAGridContext()
-    } // main()
+    def createTestAdjacencyMatrix() : Unit = {
+        val aui1 = new AgentUI(new MockAgent())
+        aui1.ID = 1
+        val aui2 = new AgentUI(new MockAgent())
+        aui2.ID = 2
+        val aui3 = new AgentUI(new MockAgent())
+        aui3.ID = 3
+        val aui4 = new AgentUI(new MockAgent())
+        aui4.ID = 4
+        
+        val am = new AdjacencyMatrix()
+        am.add(aui1)
+        am.add(aui2)
+        am.add(aui3)
+        am.add(aui4)
+        am.addConnection(aui1, aui2, 1.1, false)
+        am.addConnection(aui4, aui3, 69, false)
+        am.removeConnection(aui1, aui2)
+        am.remove(aui1)
+        println(am)
+        
+        for ((a1, a2, weight) <- am.connections) println(a1, a2, weight)
+        
+    } // createTestAdjacencyMatrix()
     
+    
+    def createTestAdjacencyList() : Unit = {
+        
+        val aui1 = new AgentUI(new MockAgent())
+        aui1.ID = 1
+        val aui2 = new AgentUI(new MockAgent())
+        aui2.ID = 2
+        val aui3 = new AgentUI(new MockAgent())
+        aui3.ID = 3
+        val aui4 = new AgentUI(new MockAgent())
+        aui4.ID = 4
+        
+        val al = new AdjacencyList()
+        al.add(aui1)
+        al.add(aui2)
+        al.add(aui3)
+        al.add(aui4)
+        
+        al.addConnection(aui1, aui2, 43.2, false)
+        al.addConnection(aui4, aui3, 69, false)
+        
+        al.removeConnection(aui1, aui2)
+        al.addConnection(aui1, aui2, 1, false)
+        al.remove(aui2)
+        println("\n\n" + al)
+        
+        for ((a1, a2, weight) <- al.connections) println(a1, a2, weight)
+        
+    } // createTestAdjacencyList()
+
 } // CogentVisualizationTool
 
-/*
 
-  
-        // ADDING
-        // A
-        
-        val mock = new MockAgent()
-        val AUI = new AgentUI(mock)
-        mock.agentUI = AUI
-        grid.addAgent(AUI)
-        
-        
-        //
-        val AUI2 = new AgentUI(mock)
-        mock.agentUI = AUI2
-        grid.addAgent(AUI2, new Coordinate(2, 2))
-        
-        
-        
-        // COLOR SCHEME
-        grid.applyColorScheme(ColorSchemes.cellColorByAgentType)
-        grid.applyColorScheme(ColorSchemes.agentColorRandom)
-        
-        
-        // MOVE
-        // A
-        grid.move(AUI, Direction.right, 3)
-        
-        // B
-        grid.move(AUI, new Coordinate(5,5))
-        grid.move(AUI2, new Coordinate(0,10))
-        
-        
-        
-        // NEIGHBORS
-        
-        val types = Array(MockCogentType.daring, MockCogentType.exciting, MockCogentType.boring)
-        val r = scala.util.Random
-        for (i <- 1 to 10) {
-            val ma = new MockAgent()
-            val a = new AgentUI(ma)
-            a.ID = i
-            ma.agentUI = a
-            ma.cogentType = types(Math.abs(r.nextInt()) % types.length)
-            grid.addAgent(a, new Coordinate(i + 1, 10))
-        }
-        
-        println(grid.getNeighbors(AUI2, 2))
-        println(grid.getNeighborsOfTypes(AUI2, 2, Array(MockCogentType.daring)))
-        
-        
-        
- */
+
+

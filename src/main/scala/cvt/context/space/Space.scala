@@ -4,7 +4,7 @@ import java.awt.{Dimension, Graphics2D}
 
 import cvt.context.Context
 import cvt.uiobject.{AgentUI, Coordinate}
-import cvt.MockCogentType
+import cvt.MockAgentType
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -23,7 +23,7 @@ class Space(dimension: Dimension) extends Context(dimension: Dimension) {
         null
     } // getNeighbors()
     
-    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI] = {
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): ArrayBuffer[AgentUI] = {
         null
     }
     

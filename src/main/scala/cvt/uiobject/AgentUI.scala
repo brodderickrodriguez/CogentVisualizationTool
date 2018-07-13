@@ -1,12 +1,9 @@
 package cvt.uiobject
-
 import cvt.context.grid.Cell
-import cvt.context.network.Connection
-import cvt.{MockAgent, MockCogentNotification, MockCogentType}
-
+import cvt.context.network.ConnectionUI
+import cvt.{MockAgent, MockAgentType, MockAgentNotification}
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
-
 
 
 object AgentUINotification extends Enumeration {
@@ -17,15 +14,12 @@ object AgentUINotification extends Enumeration {
 
 
 class AgentUI(mockAgent : MockAgent) extends UIObject {
-    val connections : ArrayBuffer[Connection] = new ArrayBuffer[Connection]()
     var cell : Cell = _
     dimension = new Dimension(10, 10)
     
-    def agentType : MockCogentType.Value = mockAgent.agentType
+    def agentType : MockAgentType.Value = mockAgent.agentType
     
-    
-    def addConnection(c : Connection): Unit = connections.append(c)
-    
+    def center : Coordinate = absoluteLocation.add(new Coordinate(dimension.width / 2, dimension.height / 2))
     
     override def toString : String = "AgentUI(" + ID + " - t:" + mockAgent.agentType + ")"
     
@@ -35,7 +29,7 @@ class AgentUI(mockAgent : MockAgent) extends UIObject {
         notification match {
             case AgentUINotification.addedAgentToCell =>
               //  println("got addedAgentToCell notification")
-                mockAgent.receiveNotification(MockCogentNotification.move)
+                mockAgent.receiveNotification(MockAgentNotification.move)
 
             case AgentUINotification.removedAgentFromCell =>
                // println("got removedAgentFromCell notification")

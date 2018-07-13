@@ -4,7 +4,7 @@
 		module="cogentvisualizationtool$sources"
 		revision="0.1"
 		status="integration"
-		publication="20180705172103"
+		publication="20180713160837"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

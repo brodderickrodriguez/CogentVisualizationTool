@@ -1,11 +1,8 @@
 package cvt.context.grid
-
 import java.awt.{Dimension, Graphics2D}
-
 import cvt.context.{Context, Direction}
-import cvt._
 import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate}
-
+import cvt._
 import scala.collection.mutable.ArrayBuffer
 
 
@@ -118,7 +115,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * @param types is an array of the types of agents we wish to retrieve.
       * @return the list of AgentUIs in the neighborhood
       */
-    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI] = getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): ArrayBuffer[AgentUI] = getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
     
     
     /** Retrieves the all neighbor AgentUIs which are of the specified type.

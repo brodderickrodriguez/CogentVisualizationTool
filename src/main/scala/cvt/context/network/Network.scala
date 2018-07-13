@@ -1,24 +1,25 @@
 package cvt.context.network
 
 import java.awt.{Dimension, Graphics2D}
-
-import AdjacencyStructure._
 import cvt.context.Context
 import cvt.uiobject.{AgentUI, Coordinate}
-import cvt.MockCogentType
-
+import cvt.MockAgentType
 import scala.collection.mutable.ArrayBuffer
 
 
+object AdjacencyStructures extends Enumeration {
+    val matrix : AdjacencyStructure = new AdjacencyMatrix
+    val list : AdjacencyStructure = new AdjacencyList
+} // AdjacencyStructures
 
 /**
   *
-  * @param dimension the dimension of the context
+  * @param _dimension the dimension of the context
   */
-class Network(dimension: Dimension) extends Context(dimension: Dimension) {
+class Network(_dimension: Dimension, dataStructure : AdjacencyStructure) extends Context(_dimension: Dimension) {
     println("[Network] initializing")
     
-    private var dataStructure : AdjacencyStructure = new AdjacencyMatrix()
+  //  private var dataStructure : AdjacencyStructure = chosenStructure
     
     
     override def paintComponent(graphics: Graphics2D): Unit = {
@@ -26,16 +27,13 @@ class Network(dimension: Dimension) extends Context(dimension: Dimension) {
         
     } // paintComponent()
     
-    
-    def refactorLayout() : Unit = {
-    
-    } // refactorLayout()
+
     
     def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI] = {
         null
     } // getNeighbors()
     
-    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI] = {
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): ArrayBuffer[AgentUI] = {
         null
     }
     

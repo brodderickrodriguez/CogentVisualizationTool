@@ -3,12 +3,12 @@ package cvt
 import cvt.uiobject.AgentUI
 
 
-object MockCogentNotification extends Enumeration {
+object MockAgentNotification extends Enumeration {
     val move : Value = Value
 } // MockCogentNotification
 
 
-object MockCogentType extends  Enumeration {
+object MockAgentType extends  Enumeration {
     val boring : Value = Value
     val exciting : Value = Value
     val daring : Value = Value
@@ -17,7 +17,7 @@ object MockCogentType extends  Enumeration {
 
 class MockAgent {
     var agentUI : AgentUI = _
-    var agentType : MockCogentType.Value = MockCogentType.boring
+    var agentType : MockAgentType.Value = MockAgentType.boring
     
     def randomDirection() : context.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
@@ -28,7 +28,7 @@ class MockAgent {
         }
     } // randomDirection()
     
-    def receiveNotification(notification: MockCogentNotification.Value) : Unit = {
+    def receiveNotification(notification: MockAgentNotification.Value) : Unit = {
         val r = scala.util.Random
         val s = agentUI.cell.grid._dimension
         

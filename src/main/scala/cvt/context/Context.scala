@@ -1,7 +1,7 @@
 package cvt.context
 
 import cvt._
-import cvt.MockCogentType
+import cvt.MockAgentType
 
 import scala.swing.{Component, Dimension}
 import scala.collection.mutable.ArrayBuffer
@@ -61,16 +61,16 @@ abstract class Context(_dimension: Dimension) extends Component   {
     def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- allAgents) a.receiveNotification(notification)
     
     
-    def getAgentsWithType(t :  MockCogentType.Value) : ArrayBuffer[AgentUI] = for (a <- allAgents if t == a.agentType) yield a
+    def getAgentsWithType(t : MockAgentType.Value) : ArrayBuffer[AgentUI] = for (a <- allAgents if t == a.agentType) yield a
     
     
-    def getAgentsWithTypes(types: Array[MockCogentType.Value]) : ArrayBuffer[AgentUI] = for (a <- allAgents if types.contains(a.agentType)) yield a
+    def getAgentsWithTypes(types: Array[MockAgentType.Value]) : ArrayBuffer[AgentUI] = for (a <- allAgents if types.contains(a.agentType)) yield a
     
     
     def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI]
     
     
-    def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockCogentType.Value]): ArrayBuffer[AgentUI]
+    def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): ArrayBuffer[AgentUI]
     
     
     /** Adds an AgentUI to the given context at a default coordinate.

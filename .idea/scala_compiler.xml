@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="cogentvisualizationtool_2535,cogentvisualizationtool" />
+    <profile name="sbt 1" modules="cogentvisualizationtool_2535,Scala-cogentvisualizationtool,cogentvisualizationtool" />
   </component>
 </project>
