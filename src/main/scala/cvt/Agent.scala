@@ -1,6 +1,7 @@
 package cvt
 
-import cvt.uiobject.AgentUI
+import cvt.context.ContextController
+import cvt.uiobject.Coordinate
 
 
 object MockAgentNotification extends Enumeration {
@@ -15,9 +16,10 @@ object MockAgentType extends  Enumeration {
 } // MockCogentType
 
 
-class MockAgent {
-    var agentUI : AgentUI = _
+class Agent {
     var agentType : MockAgentType.Value = MockAgentType.boring
+    var contextController : ContextController = _
+    
     
     def randomDirection() : context.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
@@ -30,12 +32,7 @@ class MockAgent {
     
     def receiveNotification(notification: MockAgentNotification.Value) : Unit = {
         val r = scala.util.Random
-        val s = agentUI.cell.grid._dimension
-        
-        if (agentUI.cell.agents.length > 5) {
-            agentUI.cell.grid.move(agentUI, randomDirection(), 1)
-          //  agentUI.cell.grid.move(agentUI, new Coordinate(r.nextInt(s.width), r.nextInt(s.height)))
-        }
+        contextController.move(this, new Coordinate(r.nextInt(500), r.nextInt(500)))
     }
     
 } // MockAgent

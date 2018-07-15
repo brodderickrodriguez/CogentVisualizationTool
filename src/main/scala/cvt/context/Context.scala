@@ -20,11 +20,10 @@ object Direction extends Enumeration {
 
 /**
   *
-  * @param _dimension the dimension of the context
+  * @param controller the ContextController
   */
-abstract class Context(_dimension: Dimension) extends Component   {
-    protected val window = new Window(_dimension, this)
-    protected val allAgents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
+abstract class Context(dimension: Dimension, val controller : ContextController) extends Component {
+    protected val window = new Window(dimension, this)
     protected val colorSchemes : ArrayBuffer[ColorScheme] = new ArrayBuffer[ColorScheme]()
     
     
@@ -58,13 +57,13 @@ abstract class Context(_dimension: Dimension) extends Component   {
     } // getAgentColor
     
     
-    def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- allAgents) a.receiveNotification(notification)
+    def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- controller.agents) a.receiveNotification(notification)
     
     
-    def getAgentsWithType(t : MockAgentType.Value) : ArrayBuffer[AgentUI] = for (a <- allAgents if t == a.agentType) yield a
+    def getAgentsWithType(t : MockAgentType.Value) : Array[AgentUI] = for (a <- controller.agents if t == a.agentType) yield a
     
     
-    def getAgentsWithTypes(types: Array[MockAgentType.Value]) : ArrayBuffer[AgentUI] = for (a <- allAgents if types.contains(a.agentType)) yield a
+    def getAgentsWithTypes(types: Array[MockAgentType.Value]) : Array[AgentUI] = for (a <- controller.agents if types.contains(a.agentType)) yield a
     
     
     def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI]
@@ -76,7 +75,6 @@ abstract class Context(_dimension: Dimension) extends Component   {
     /** Adds an AgentUI to the given context at a default coordinate.
       *
       * @param agent the AgentUI which we wish to add to the context.
-      * @param c the coordinate which we wish to add the AgentUI to.
       */
     def addAgent(agent : AgentUI) : Unit = addAgent(agent, new Coordinate(0, 0))
     
@@ -102,6 +100,7 @@ abstract class Context(_dimension: Dimension) extends Component   {
       */
     def removeAgent(agent : AgentUI) : Unit
     
+    
     /** Removes all AgentUIs form the context.
       *
       */
@@ -109,8 +108,13 @@ abstract class Context(_dimension: Dimension) extends Component   {
         // send a notification to all AgentUIs in the context that we are removing agents
         sendNotificationToAllAgents(AgentUINotification.removingAllAgentsFromCell)
         // empty the array
-        allAgents.clear()
+        controller.agents = Array[AgentUI]()
         repaint()
     } // removeAllAgents()
+    
+    
+    def move(agent : AgentUI, direction : Direction.Value, magnitude : Int) : Unit = { }
+    
+    def move(agent : AgentUI, c : Coordinate) : Unit = { println("context move") }
     
 } // Context

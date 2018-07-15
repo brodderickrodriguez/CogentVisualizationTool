@@ -1,8 +1,9 @@
 package cvt.context.grid
 import java.awt.{Dimension, Graphics2D}
-import cvt.context.{Context, Direction}
+import cvt.context.{Context, ContextController, Direction}
 import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate}
 import cvt._
+
 import scala.collection.mutable.ArrayBuffer
 
 
@@ -15,7 +16,7 @@ import scala.collection.mutable.ArrayBuffer
   * @param _cellGapSize the size of the gap between cells in pixels.
   * @param _circular represents the grid being circular. Meaning, an agent will can traverse off grid and appear on an opposing size.
   */
-class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true) extends Context(new Dimension(0,0)) {
+class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true, controller : ContextController) extends Context(_dimension, controller = controller) {
     // two dimensional representation of grid in cells
     private val grid : Array[Array[Cell]] = Array.ofDim[Cell](_dimension.width, _dimension.height)
     // boolean variable to tack if grid was created. Used at initialization (required for large dimensions)
@@ -24,14 +25,17 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     createGrid()
     sizeWindowToGrid()
     
+    println("start1")
+    
+    
+    
     /** Shapes the window to fit all cells (called at initialization)
       * by the boarder, all cells and all gaps between cells to reshape window.
       */
     private def sizeWindowToGrid() : Unit = {
-        val borderPixels = new Dimension(2 * window.borderSize, 2 * window.borderSize + 25)
         val gapPixels = new Dimension((_dimension.width - 1) * _cellGapSize, (_dimension.height - 1) * _cellGapSize)
         val cellPixels = new Dimension(_dimension.width * _cellSize, _dimension.height * _cellSize)
-        window.size = new Dimension(borderPixels.width + gapPixels.width + cellPixels.width, borderPixels.height + gapPixels.height + cellPixels.height)
+        window.size = new Dimension(gapPixels.width + cellPixels.width, gapPixels.height + cellPixels.height + 25)
     } // sizeWindowToGrid()
     
     
@@ -39,23 +43,45 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * iterates through the 2D grid array and creates a new cell.
       */
     private def createGrid() : Unit = {
+        println("start3")
+    
         // local reference to cell dimension
         val cellDimension = new Dimension(_cellSize, _cellSize)
         // iterate 2D array
         for (x <- 0 until _dimension.width; y <- 0 until _dimension.height) {
+            println("start32")
             // the true coordinates on which we draw on. NOT the cells coordinates
             val absoluteCoordinate = new Coordinate(x * (_cellSize + _cellGapSize), y * (_cellSize + _cellGapSize))
             // create cell and designate its coordinates on the window AND the coordinates of the cell in the grid
-            val cell = new Cell(this, cellDimension, new Coordinate(x, y))
+            
+            val g = this
+            println("start33")
+    
+            val dim = cellDimension
+            println("start34")
+    
+            val c = new Coordinate(x,y)
+            println("start35")
+    
+            val cell = new Cell(g, dim, c)
+    
+            println("start36")
+    
+    
             // set the dimension of the cell
             cell.dimension = cellDimension
             /// set the absolute (respective to only the window origin) coordinates. Used for painting
             cell.absoluteLocation = absoluteCoordinate
             // assign its spot in the grid
             grid(x)(y) = cell
+    
+    
+    
         } // for x, y
         // set to true so we can paint now
         createdGrid = true
+        println("start4")
+    
     } // initializeGrid
     
     
@@ -84,6 +110,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
             } // paintAgent
         } // for x, y
     } // paintComponent()
+    
     
     /** Fetches the cell at the parameter coordinate. Takes care of when _circular is true or false.
       *
@@ -150,7 +177,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
         cell.sendNotificationToAgents(AgentUINotification.addedAgentToCell)
         // append to the list of AgentUIs in the cell
         cell.agents += agent
-        allAgents += agent
         repaint()
     } // addAgent()
     
@@ -172,7 +198,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
         // send a notification to all the AgentUIs in the call that we are adding another AgentUI
         cell.sendNotificationToAgents(AgentUINotification.addedAgentToCell)
         // append parameter agents to the list of all AgentUIs
-        allAgents ++ agents
+      //  allAgents ++ agents
         repaint()
     } // addAgents()
     
@@ -187,7 +213,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
         // remove the AgentUI from the list of AgentUIs within the cell
         agent.cell.agents -= agent
         // remove the AgentUI form the list of all AgentUIs in the grid
-        allAgents -= agent
+       // allAgents -= agent
         // send a notification to all the AgentUIs in the cell that we are removing an AgentUI
         agent.cell.sendNotificationToAgents(AgentUINotification.removedAgentFromCell)
         // set the AgentUIs cell to null
@@ -210,7 +236,9 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * @param agent the AgentUI which we wish to move.
       * @param c the coordinate which we wish to move the AgentUI to.
       */
-    def move(agent : AgentUI, c : Coordinate) : Unit = {
+    override def move(agent : AgentUI, c : Coordinate) : Unit = {
+        if (agent == null) return
+        println("grid move" + agent)
         // call remove to remove the AgentUI from its current cell
         removeAgent(agent)
         // call to add the AgentUI to the cell at the parameter coordinate
@@ -225,7 +253,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * @param direction the direction which we want to move.
       * @param magnitude the amount of cells we wish to move.
       */
-    def move(agent : AgentUI, direction : Direction.Value, magnitude : Int) : Unit = {
+    override def move(agent : AgentUI, direction : Direction.Value, magnitude : Int) : Unit = {
         // create a new coordinate which points to the AgentUIs current cell coordinate
         var c = new Coordinate(agent.cell.coordinate)
         // map the direction parameter to an actual cell

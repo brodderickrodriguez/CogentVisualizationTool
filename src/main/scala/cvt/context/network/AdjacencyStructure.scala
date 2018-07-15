@@ -3,18 +3,63 @@ import cvt.uiobject.AgentUI
 import scala.collection.immutable.{List, Map}
 
 
+/** An abstract class (acts like an interface) for the two Adjacency Structure types. */
 abstract class AdjacencyStructure() {
+    
+    /** Gets all connections in the AdjacencyStructure and returns them in the format of (< AgentUI, AgentUI,
+      *
+      * @return
+      */
     def connections : Array[(AgentUI, AgentUI, Double)]
-    def add(agent : AgentUI ) : Unit
+    
+    def entries : Array[AgentUI]
+    
+    
+    /**
+      *
+      * @param agent
+      */
+    def add(agent : AgentUI) : Unit
+    
+    
+    /**
+      *
+      * @param agent
+      */
     def remove(agent : AgentUI) : Unit
+    
+    
+    /**
+      *
+      * @param a1
+      * @param a2
+      * @param weight
+      * @param directed
+      * @return
+      */
     def addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean = false) : Boolean
+    
+    
+    /**
+      *
+      * @param a1
+      * @param a2
+      * @return
+      */
     def removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean
+    
 } // AdjacencyStructure
 
 
 class AdjacencyList() extends  AdjacencyStructure {
     
     private var map = Map[AgentUI, List[(AgentUI, Double)]]()
+    
+    def entries : Array[AgentUI] = {
+        var results = Array[AgentUI]()
+        for ((a,_) <- map) results = results :+ a
+        results
+    }
     
     
     def connections : Array[(AgentUI, AgentUI, Double)] = {
@@ -70,6 +115,13 @@ class AdjacencyList() extends  AdjacencyStructure {
 class AdjacencyMatrix() extends AdjacencyStructure {
     
     private var map = Map[AgentUI, Array[Double]]()
+    
+    
+    def entries : Array[AgentUI] = {
+        var results = Array[AgentUI]()
+        for ((a,_) <- map) results = results :+ a
+        results
+    }
     
     
     def connections : Array[(AgentUI, AgentUI, Double)] = {

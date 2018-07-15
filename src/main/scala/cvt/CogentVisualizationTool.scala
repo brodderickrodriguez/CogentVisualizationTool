@@ -4,17 +4,51 @@ import cvt.context.grid.Grid
 import cvt.uiobject.{AgentUI, Coordinate}
 import cvt.context.network._
 
+import cvt.context.ContextController
+
 
 object CogentVisualizationTool {
     
     def main(args: Array[String]) : Unit = {
         println("Hello, CVT!")
         
-        //createAGridContext()
+        
+     //   new Grid(new Dimension(5, 50), 15, 2, true, new ContextController())
+        
+        
+      //  createANetworkContext()
+        
+
+       createAGridContext()
+    
         //createTestAdjacencyList()
         //createTestAdjacencyMatrix()
         
     } // main()
+    
+    
+    def createANetworkContext() : Unit = {
+    
+        val controller = new ContextController()
+        controller.createNetworkContext(new Dimension(500,500), AdjacencyStructures.list)
+        controller.createGridContext(new Dimension(25,25), 15, 2, true)
+        
+        controller.applyColorScheme(ColorSchemes.agentColorRandom)
+        controller.applyColorScheme(ColorSchemes.cellColorByPopulation)
+
+        val r = scala.util.Random
+        for (_ <- 1 to 200) controller.addAgent(new Agent())
+        
+        for (a1 <- controller.agents; a2 <- controller.agents if r.nextInt(1000) == 5)
+            controller.addConnection(a1.agent,a2.agent, 1, true)
+        
+        val a1 = new Agent()
+        val a2 = new Agent()
+        controller.addAgent(a1)
+        controller.addAgent(a2)
+        controller.addConnection(a1, a2, 60, true)
+        
+    } // createANetworkContext
     
     
     def createAGridContext() : Unit = {
@@ -24,24 +58,23 @@ object CogentVisualizationTool {
         val cellGapSize = 2
     
         val dimension = new Dimension(widthCells, heightCells)
-        val grid : Grid = new Grid(dimension, cellSize, cellGapSize,true)
-    
+        val grid : Grid = new Grid(dimension, cellSize, cellGapSize,true, new ContextController())
+        
         grid.applyColorScheme(ColorSchemes.agentColorRandom)
         grid.applyColorScheme(ColorSchemes.cellColorByPopulation)
-        //grid.applyColorScheme(ColorSchemes.cellColorByAgentType)
+        grid.applyColorScheme(ColorSchemes.cellColorByAgentType)
         grid.applyColorScheme(ColorSchemes.doNotPaintAgent)
         
         val types = Array(MockAgentType.daring, MockAgentType.exciting, MockAgentType.boring)
         val r = scala.util.Random
     
         for (_ <- 1 to 10000) {
-            val ma = new MockAgent()
+            val ma = new Agent()
             val a = new AgentUI(ma)
             ma.agentType = types(Math.abs(r.nextInt()) % types.length)
-            ma.agentUI = a
-            //grid.addAgent(a)
-            grid.addAgent(a, new Coordinate(widthCells / 2, heightCells / 2))
-        
+          //  ma.agentUI = a
+            grid.addAgent(a)
+         //   grid.addAgent(a, new Coordinate(widthCells / 2, heightCells / 2))
             // println(grid.getNeighbors(a, 1))
             // println(grid.getNeighborsOfTypes(a, 1, Array(MockCogentType.exciting)))
         } // for
@@ -49,13 +82,13 @@ object CogentVisualizationTool {
     
     
     def createTestAdjacencyMatrix() : Unit = {
-        val aui1 = new AgentUI(new MockAgent())
+        val aui1 = new AgentUI(new Agent())
         aui1.ID = 1
-        val aui2 = new AgentUI(new MockAgent())
+        val aui2 = new AgentUI(new Agent())
         aui2.ID = 2
-        val aui3 = new AgentUI(new MockAgent())
+        val aui3 = new AgentUI(new Agent())
         aui3.ID = 3
-        val aui4 = new AgentUI(new MockAgent())
+        val aui4 = new AgentUI(new Agent())
         aui4.ID = 4
         
         val am = new AdjacencyMatrix()
@@ -76,13 +109,13 @@ object CogentVisualizationTool {
     
     def createTestAdjacencyList() : Unit = {
         
-        val aui1 = new AgentUI(new MockAgent())
+        val aui1 = new AgentUI(new Agent())
         aui1.ID = 1
-        val aui2 = new AgentUI(new MockAgent())
+        val aui2 = new AgentUI(new Agent())
         aui2.ID = 2
-        val aui3 = new AgentUI(new MockAgent())
+        val aui3 = new AgentUI(new Agent())
         aui3.ID = 3
-        val aui4 = new AgentUI(new MockAgent())
+        val aui4 = new AgentUI(new Agent())
         aui4.ID = 4
         
         val al = new AdjacencyList()

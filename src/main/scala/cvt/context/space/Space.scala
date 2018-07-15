@@ -10,9 +10,9 @@ import scala.collection.mutable.ArrayBuffer
 
 /**
   *
-  * @param dimension the dimension of the context
+  * @param _dimension the dimension of the context
   */
-class Space(dimension: Dimension) extends Context(dimension: Dimension) {
+class Space(_dimension: Dimension) extends Context(_dimension, controller = null) {
     
     
     override def paintComponent(graphics: Graphics2D): Unit = {
@@ -30,17 +30,17 @@ class Space(dimension: Dimension) extends Context(dimension: Dimension) {
     
     def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
         // DO Stuff
-        allAgents.append(agent)
+      //  allAgents.append(agent)
     } // addAgent()
     
     def addAgents(agents: Array[AgentUI]) : Unit = {
         // DO Stuff
-        allAgents ++ agents
+      //  allAgents ++ agents
     } // addAgents()
     
     def removeAgent(agent : AgentUI) : Unit = {
         // DO Stuff
-        allAgents.remove(allAgents.indexOf(agent))
+     //   allAgents.remove(allAgents.indexOf(agent))
     } // removeAgent()
     
     override def removeAllAgents() : Unit = {
