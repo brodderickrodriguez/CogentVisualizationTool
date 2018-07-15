@@ -16,7 +16,7 @@ import scala.collection.mutable.ArrayBuffer
   * @param _cellGapSize the size of the gap between cells in pixels.
   * @param _circular represents the grid being circular. Meaning, an agent will can traverse off grid and appear on an opposing size.
   */
-class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true, controller : ContextController) extends Context(_dimension, controller = controller) {
+class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true, contextController: ContextController) extends Context(new Dimension(0,0), contextController) {
     // two dimensional representation of grid in cells
     private val grid : Array[Array[Cell]] = Array.ofDim[Cell](_dimension.width, _dimension.height)
     // boolean variable to tack if grid was created. Used at initialization (required for large dimensions)
@@ -24,9 +24,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     // create grid and resize window to fit all cells
     createGrid()
     sizeWindowToGrid()
-    
-    println("start1")
-    
     
     
     /** Shapes the window to fit all cells (called at initialization)
@@ -43,45 +40,23 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * iterates through the 2D grid array and creates a new cell.
       */
     private def createGrid() : Unit = {
-        println("start3")
-    
         // local reference to cell dimension
         val cellDimension = new Dimension(_cellSize, _cellSize)
         // iterate 2D array
         for (x <- 0 until _dimension.width; y <- 0 until _dimension.height) {
-            println("start32")
             // the true coordinates on which we draw on. NOT the cells coordinates
             val absoluteCoordinate = new Coordinate(x * (_cellSize + _cellGapSize), y * (_cellSize + _cellGapSize))
             // create cell and designate its coordinates on the window AND the coordinates of the cell in the grid
-            
-            val g = this
-            println("start33")
-    
-            val dim = cellDimension
-            println("start34")
-    
-            val c = new Coordinate(x,y)
-            println("start35")
-    
-            val cell = new Cell(g, dim, c)
-    
-            println("start36")
-    
-    
+            val cell = new Cell(this, cellDimension, new Coordinate(x, y))
             // set the dimension of the cell
             cell.dimension = cellDimension
             /// set the absolute (respective to only the window origin) coordinates. Used for painting
             cell.absoluteLocation = absoluteCoordinate
             // assign its spot in the grid
             grid(x)(y) = cell
-    
-    
-    
         } // for x, y
         // set to true so we can paint now
         createdGrid = true
-        println("start4")
-    
     } // initializeGrid
     
     

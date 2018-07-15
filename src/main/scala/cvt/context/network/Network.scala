@@ -27,11 +27,12 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, control
     
         for ((a1, a2, _) <- dataStructure.connections) graphics.drawLine(a1.center.X, a1.center.Y, a2.center.X, a2.center.Y)
     
-    
-        for (a <- dataStructure.entries) {
-            graphics.setColor(getAgentColor(a))
-            graphics.fillOval(a.absoluteLocation.X, a.absoluteLocation.Y, a.dimension.width, a.dimension.height)
-        }
+        if (paintAgent) {
+            for (a <- dataStructure.entries) {
+                graphics.setColor(getAgentColor(a))
+                graphics.fillOval(a.absoluteLocation.X, a.absoluteLocation.Y, a.dimension.width, a.dimension.height)
+            }
+        } // paintAgent
         
     } // paintComponent()
     

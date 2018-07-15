@@ -32,7 +32,8 @@ class Agent {
     
     def receiveNotification(notification: MockAgentNotification.Value) : Unit = {
         val r = scala.util.Random
-        contextController.move(this, new Coordinate(r.nextInt(500), r.nextInt(500)))
+   //     contextController.move(this, new Coordinate(r.nextInt(500), r.nextInt(500)))
+        contextController.move(this, randomDirection(), 1)
     }
     
 } // MockAgent
