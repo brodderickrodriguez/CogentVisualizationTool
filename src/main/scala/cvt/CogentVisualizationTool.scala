@@ -12,15 +12,8 @@ object CogentVisualizationTool {
     def main(args: Array[String]) : Unit = {
         println("Hello, CVT!")
         
-        
-     //   new Grid(new Dimension(5, 50), 15, 2, true, new ContextController())
-        
-        
         createANetworkContext()
-        
-
     //   createAGridContext()
-    
         //createTestAdjacencyList()
         //createTestAdjacencyMatrix()
         
@@ -30,18 +23,23 @@ object CogentVisualizationTool {
     def createANetworkContext() : Unit = {
     
         val controller = new ContextController()
-        controller.createNetworkContext(new Dimension(500,500), AdjacencyStructures.list)
-        controller.createGridContext(new Dimension(40,40), 15, 2, true)
+        controller.createNetworkContext(new Dimension(1000,800), AdjacencyStructures.list)
         
-      //  controller.applyColorScheme(ColorSchemes.agentColorRandom)
+        controller.createGridContext(new Dimension(30,30), 20, 2, true)
+       // controller.createGridContext(new Dimension(30,30), 20, 2, false)
+    
+    
+        controller.applyColorScheme(ColorSchemes.agentColorRandom)
         controller.applyColorScheme(ColorSchemes.cellColorByPopulation)
         controller.applyColorScheme(ColorSchemes.doNotPaintAgent)
-        
         controller.network.removeColorScheme(ColorSchemes.doNotPaintAgent)
         controller.network.applyColorScheme(ColorSchemes.agentColorRandom)
 
         val r = scala.util.Random
-        for (_ <- 1 to 1000) controller.addAgent(new Agent())
+        for (i <- 1 to 1000) {
+            controller.addAgent(new Agent())
+        }
+        
         
         for (a1 <- controller.agents; a2 <- controller.agents if r.nextInt(10000) == 5)
             controller.addConnection(a1.agent,a2.agent, 1, true)

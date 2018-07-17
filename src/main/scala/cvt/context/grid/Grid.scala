@@ -1,7 +1,7 @@
 package cvt.context.grid
 import java.awt.{Dimension, Graphics2D}
 import cvt.context.{Context, ContextController, Direction}
-import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate}
+import cvt.uiobject.{AgentUI, Coordinate}
 import cvt._
 
 import scala.collection.mutable.ArrayBuffer
@@ -47,7 +47,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
             // the true coordinates on which we draw on. NOT the cells coordinates
             val absoluteCoordinate = new Coordinate(x * (_cellSize + _cellGapSize), y * (_cellSize + _cellGapSize))
             // create cell and designate its coordinates on the window AND the coordinates of the cell in the grid
-            val cell = new Cell(this, cellDimension, new Coordinate(x, y))
+            val cell = new Cell(cellDimension, new Coordinate(x, y))
             // set the dimension of the cell
             cell.dimension = cellDimension
             /// set the absolute (respective to only the window origin) coordinates. Used for painting
@@ -94,7 +94,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       */
     private def cellAt(c : Coordinate) : Cell = {
         // if coordinate is null, return a default cell
-        if (c == null) return grid(0)(0)
+        if (c == null) return null
         if (_circular) {
             // if _circular and coordinate is negative, recursively add the dimension of the grid
             if (c.X < 0) return cellAt(new Coordinate(c.X + _dimension.width, c.Y))
@@ -103,7 +103,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
             return grid(c.X % (_dimension.width - 0))(c.Y % (_dimension.height - 0))
         } // if circular
         // if _circular is false and c is outside of the grid then return a default cell
-        if (c.X < 0 || c.Y < 0 || c.Y >= _dimension.width || c.Y >= _dimension.height) return grid(0)(0)
+        if (c.X < 0 || c.Y < 0 || c.Y >= _dimension.width || c.Y >= _dimension.height) return null
         // otherwise return the cell at the parameter coordinate
         grid(c.X)(c.Y)
     } // cellAt()
@@ -117,7 +117,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * @param types is an array of the types of agents we wish to retrieve.
       * @return the list of AgentUIs in the neighborhood
       */
-    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): ArrayBuffer[AgentUI] = getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): Array[AgentUI] = getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
     
     
     /** Retrieves the all neighbor AgentUIs which are of the specified type.
@@ -126,7 +126,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * @param radius is the distance in the neighborhood in which we want to get the AgentUIs of.
       * @return the list of AgentUIs in the neighborhood
       */
-    def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI] = {
+    override def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
         // designate where to start the iteration
         val start = new Coordinate(agent.cell.coordinate).subtract(radius)
         // designate where to end the iteration
@@ -134,7 +134,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
         // iterate over the cells and add all AgentUIs in the cells
         val agents = ArrayBuffer[AgentUI]()
         for (x <- start.X to end.X; y <- start.Y to end.Y if cellAt(new Coordinate(x, y)) != agent.cell) agents ++= cellAt(new Coordinate(x, y)).agents
-        agents
+        agents.toArray
     } // getNeighbors()
     
     
@@ -143,15 +143,12 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       * @param agent the AgentUI which we wish to add to the context.
       * @param c the coordinate which we wish to add the AgentUI to.
       */
-    def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
+    override def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
         // local reference to the cell at coordinate c
         val cell = cellAt(c)
-        // set the agents cell to the coordinate c
-        agent.cell = cell
-        // send a notification to all AgentUIs in the cell that there has been another AgentUI added
-        cell.sendNotificationToAgents(AgentUINotification.addedAgentToCell)
-        // append to the list of AgentUIs in the cell
-        cell.agents += agent
+        if (cell == null) return
+        // add AgentUI to cell
+        cell.add(agent)
         repaint()
     } // addAgent()
     
@@ -160,20 +157,9 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       *
       * @param agents the list of AgentUIs which we wish to add to the context.
       */
-    def addAgents(agents : Array[AgentUI]) : Unit = {
-        // create a local reference to a default cell
-        val cell = cellAt(new Coordinate(0, 0))
+    override def addAgents(agents : Array[AgentUI]) : Unit = {
         // iterate over the list of AgentUIs in the parameter array
-        for (agent <- agents) {
-            // set the AgentUIs cell to the default cell
-            agent.cell = cell
-            // append AgentUI to the list of AgentUIs in the cell
-            cell.agents += agent
-        }
-        // send a notification to all the AgentUIs in the call that we are adding another AgentUI
-        cell.sendNotificationToAgents(AgentUINotification.addedAgentToCell)
-        // append parameter agents to the list of all AgentUIs
-      //  allAgents ++ agents
+        for (agent <- agents) addAgent(agent, new Coordinate(0, 0))
         repaint()
     } // addAgents()
     
@@ -182,17 +168,10 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       *
       * @param agent the AgentUI which we wish to remove.
       */
-    def removeAgent(agent : AgentUI) : Unit = {
+    override def removeAgent(agent : AgentUI) : Unit = {
         // if the AgentUI has not been assigned a cell, no need to remove it.
         if (agent.cell == null) return
-        // remove the AgentUI from the list of AgentUIs within the cell
-        agent.cell.agents -= agent
-        // remove the AgentUI form the list of all AgentUIs in the grid
-       // allAgents -= agent
-        // send a notification to all the AgentUIs in the cell that we are removing an AgentUI
-        agent.cell.sendNotificationToAgents(AgentUINotification.removedAgentFromCell)
-        // set the AgentUIs cell to null
-        agent.cell = null
+        agent.cell.remove(agent)
         repaint()
     } // removeAgent
     
@@ -200,7 +179,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     /** Removes all AgentUIs form the Grid. */
     override def removeAllAgents() : Unit = {
         // iterate over the grid and remove all AgentUIs from the cells
-        for (x <- grid.indices; y <- grid(0).indices) cellAt(new Coordinate(x, y)).agents.clear()
+        for (x <- grid.indices; y <- grid(0).indices) cellAt(new Coordinate(x, y)).removeAllAgents()
         // call super to empty allAgents and repaint
         super.removeAllAgents()
     } // removeAllAgents()
@@ -213,7 +192,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
       */
     override def move(agent : AgentUI, c : Coordinate) : Unit = {
         if (agent == null) return
-        println("grid move" + agent)
         // call remove to remove the AgentUI from its current cell
         removeAgent(agent)
         // call to add the AgentUI to the cell at the parameter coordinate

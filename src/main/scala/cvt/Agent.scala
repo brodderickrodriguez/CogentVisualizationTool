@@ -20,7 +20,6 @@ class Agent {
     var agentType : MockAgentType.Value = MockAgentType.boring
     var contextController : ContextController = _
     
-    
     def randomDirection() : context.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
             case 0 => context.Direction.up
@@ -33,7 +32,9 @@ class Agent {
     def receiveNotification(notification: MockAgentNotification.Value) : Unit = {
         val r = scala.util.Random
    //     contextController.move(this, new Coordinate(r.nextInt(500), r.nextInt(500)))
-        contextController.move(this, randomDirection(), 1)
-    }
+        
+        if (r.nextInt(10) == 1)
+            contextController.move(this, randomDirection(), 1)
+    } // receiveNotification()
     
 } // MockAgent

@@ -4,22 +4,37 @@ import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
 
 /** @constructor A cell User Interface Object. This is used in the Grid context.
-  * @param _grid is the container for Cell. Grid contains many Cells.
   * @param _dimension the dimension of the cell in pixels.
   * @param _coordinate the x,y coordinate of where the Cell is on the Grid.
   */
-class Cell(_grid : Grid, _dimension : Dimension, _coordinate: Coordinate) extends UIObject {
-    
-    println("c1")
-    
-    /** A getter for the containing Grid. */
-    val grid : Grid = _grid
+class Cell(_dimension : Dimension, _coordinate: Coordinate) extends UIObject {
     /** A getter for the Cell's coordinates. */
     val coordinate : Coordinate = _coordinate
     /** an ArrayBuffer containing pointers to all the AgentUI's in the cell. */
     val agents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
     
-    println("c2")
+    
+    def add(agent : AgentUI) : Unit = {
+        // set the agents cell to the coordinate c
+        agent.cell = this
+        // send a notification to all AgentUIs in the cell that there has been another AgentUI added
+        sendNotificationToAgents(AgentUINotification.addedAgentToCell)
+        // append to the list of AgentUIs in the cell
+        agents += agent
+    } // add()
+    
+    
+    def remove(agent : AgentUI) : Unit = {
+        // remove from the list of agents
+        agents -= agent
+        // send a notification to all the AgentUIs in the cell that we are removing an AgentUI
+        sendNotificationToAgents(AgentUINotification.removedAgentFromCell)
+        // set the AgentUIs cell to null
+        agent.cell = null
+    } // remove()
+    
+    
+    def removeAllAgents() : Unit = agents.clear()
     
     
     /** Builds and returns a string representation of the Cell.

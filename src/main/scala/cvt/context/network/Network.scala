@@ -6,9 +6,6 @@ import cvt.context.{Context, ContextController}
 import cvt.uiobject.{AgentUI, Coordinate}
 import cvt.MockAgentType
 
-import scala.collection.mutable.ArrayBuffer
-
-
 
 object AdjacencyStructures extends Enumeration {
     val matrix : AdjacencyStructure = new AdjacencyMatrix
@@ -31,7 +28,7 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, control
             for (a <- dataStructure.entries) {
                 graphics.setColor(getAgentColor(a))
                 graphics.fillOval(a.absoluteLocation.X, a.absoluteLocation.Y, a.dimension.width, a.dimension.height)
-            }
+            } // for agent in dataStructure
         } // paintAgent
         
     } // paintComponent()
@@ -42,30 +39,35 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, control
         repaint()
     } // addConnection()
     
+    
+    def removeConnection(aui1 : AgentUI, aui2 : AgentUI) : Unit = {
+        dataStructure.removeConnection(aui1, aui2)
+        repaint()
+    } // addConnection()
 
     
-    def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI] = {
+    def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
         null
     } // getNeighbors()
     
     
-    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): ArrayBuffer[AgentUI] = {
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): Array[AgentUI] = {
         null
     }
     
     
-    def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
+    override def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
         val r = scala.util.Random
-        agent.absoluteLocation = new Coordinate(r.nextInt(_dimension.width - 25), r.nextInt(_dimension.height - 25))
+        agent.absoluteLocation = new Coordinate(r.nextInt(_dimension.width - agent.dimension.width - 20), r.nextInt(_dimension.height - agent.dimension.height - 30))
         dataStructure.add(agent)
         repaint()
     } // addAgent()
     
     
-    def addAgents(agents: Array[AgentUI]) : Unit = for (a <- agents) addAgent(a)
+    override def addAgents(agents: Array[AgentUI]) : Unit = for (a <- agents) addAgent(a)
     
     
-    def removeAgent(agent : AgentUI) : Unit = dataStructure.remove(agent)
+    override def removeAgent(agent : AgentUI) : Unit = dataStructure.remove(agent)
     
     
     override def removeAllAgents() : Unit = {

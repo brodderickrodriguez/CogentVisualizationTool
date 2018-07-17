@@ -1,10 +1,6 @@
 package cvt.context
-
-import cvt._
-import cvt.MockAgentType
-
+import cvt.{ColorScheme, ColorSchemes, ColorSchemeUse, MockAgentType}
 import scala.swing.{Component, Dimension}
-import scala.collection.mutable.ArrayBuffer
 import java.awt.Color
 
 import cvt.context.grid.Cell
@@ -24,17 +20,17 @@ object Direction extends Enumeration {
   */
 abstract class Context(dimension: Dimension, val controller : ContextController) extends Component {
     protected val window = new Window(dimension, this)
-    protected val colorSchemes : ArrayBuffer[ColorScheme] = new ArrayBuffer[ColorScheme]()
+    protected var colorSchemes : Array[ColorScheme] = new Array[ColorScheme](0)
     
     
     def applyColorScheme(c : ColorScheme) : Unit = {
-        colorSchemes += c
+        colorSchemes = colorSchemes :+ c
         repaint()
     } // applyColorScheme
     
     
     def removeColorScheme(c : ColorScheme) : Unit = {
-        colorSchemes -= c
+        colorSchemes = colorSchemes.drop(colorSchemes.indexOf(c) + 1)
         repaint()
     } // removeColorScheme
     
@@ -52,9 +48,12 @@ abstract class Context(dimension: Dimension, val controller : ContextController)
     
     
     def getAgentColor(agent : AgentUI) : Color = {
+        if (agent.color != null) return agent.color
         for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse) return c.getAgentColor(agent)
         ColorSchemes.default.getAgentColor(agent)
     } // getAgentColor
+    
+  //  def getConnectionColor(connection : Co)
     
     
     def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- controller.agents) a.receiveNotification(notification)
@@ -66,10 +65,10 @@ abstract class Context(dimension: Dimension, val controller : ContextController)
     def getAgentsWithTypes(types: Array[MockAgentType.Value]) : Array[AgentUI] = for (a <- controller.agents if types.contains(a.agentType)) yield a
     
     
-    def getNeighbors(agent : AgentUI, radius : Integer) : ArrayBuffer[AgentUI]
+    def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI]
     
     
-    def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): ArrayBuffer[AgentUI]
+    def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): Array[AgentUI]
     
     
     /** Adds an AgentUI to the given context at a default coordinate.

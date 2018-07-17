@@ -1,12 +1,10 @@
 package cvt.context
-
 import java.awt.Dimension
-
 import cvt.{Agent, ColorScheme}
+import cvt.uiobject.{AgentUI, Coordinate}
 import cvt.context.grid.Grid
 import cvt.context.space.Space
 import cvt.context.network.{AdjacencyStructure, Network}
-import cvt.uiobject.{AgentUI, Coordinate}
 
 class ContextController {
     
@@ -20,10 +18,6 @@ class ContextController {
     def applyColorScheme(c : ColorScheme) : Unit = for (context <- contexts) context.applyColorScheme(c)
     def removeColorScheme(c : ColorScheme) : Unit = for (context <- contexts) context.removeColorScheme(c)
     
-    
-    def repaintContexts() : Unit = for (c <- contexts) c.repaint()
-    
-    
     def addAgents(agents : Array[Agent]) : Unit = for (a <- agents) addAgent(a)
     def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
     def addAgent(agent : Agent, c : Coordinate) : Unit = {
@@ -35,7 +29,7 @@ class ContextController {
     
     
     
-    def agentUIFor(agent : Agent) : AgentUI = {
+    private def agentUIFor(agent : Agent) : AgentUI = {
         if (agent == null) return null
         for (aui <- agents if aui.agent == agent) return aui
         null
@@ -43,7 +37,6 @@ class ContextController {
     
     
     def move(agent : Agent, c : Coordinate) : Unit = {
-        println("asked to move")
         val a = agentUIFor(agent)
         if (a == null) return
         for (context <- contexts) context.move(a, c)
@@ -58,7 +51,7 @@ class ContextController {
     
     
     def createGridContext(dimension: Dimension, cellSize : Int, cellGapSize : Int, circular : Boolean) : Unit = {
-        if (grid != null) return
+     //   if (grid != null) return
         val g = new Grid(dimension, cellSize, cellGapSize, circular, this)
         g.addAgents(agents)
         contexts = contexts :+ g
@@ -78,6 +71,14 @@ class ContextController {
         val aui2 = agentUIFor(a2)
         if (aui1 == null || aui2 == null) return
         if (network != null) network.addConnection(aui1, aui2, weight, directed)
+    } // addConnection()
+    
+    
+    def removeConnection(a1 : Agent, a2 : Agent) : Unit = {
+        val aui1 = agentUIFor(a1)
+        val aui2 = agentUIFor(a2)
+        if (aui1 == null || aui2 == null) return
+        if (network != null) network.removeConnection(aui1, aui2)
     } // addConnection()
     
     

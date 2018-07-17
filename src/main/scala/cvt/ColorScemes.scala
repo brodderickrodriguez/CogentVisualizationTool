@@ -1,6 +1,5 @@
 package cvt
 import java.awt.Color
-
 import cvt.context.Context
 import cvt.context.grid.Cell
 import cvt.uiobject.AgentUI
@@ -35,7 +34,8 @@ private class AgentColorRandom extends ColorScheme {
     
     override def getAgentColor(agentUI: AgentUI): Color = {
         val r = scala.util.Random
-        new Color(r.nextFloat(), r.nextFloat(), r.nextFloat())
+        agentUI.color = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat())
+        agentUI.color
     } // getAgentColor()
     
 } // CogentColorRandomColorScheme
