@@ -46,7 +46,7 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, control
     } // addConnection()
 
     
-    def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
+    override def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
         null
     } // getNeighbors()
     

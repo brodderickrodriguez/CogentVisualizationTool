@@ -7,4 +7,5 @@ abstract class UIObject {
     var ID : Integer = -1
     var description : String = "[UIObject]"
     var absoluteLocation : Coordinate = new Coordinate(0 ,0)
+    def center : Coordinate = absoluteLocation.add(new Coordinate(dimension.width / 2, dimension.height / 2))
 } // UIObject

@@ -18,7 +18,6 @@ class AgentUI(val agent : Agent) extends UIObject {
     
     def agentType : MockAgentType.Value = agent.agentType
     
-    def center : Coordinate = absoluteLocation.add(new Coordinate(dimension.width / 2, dimension.height / 2))
     
     override def toString : String = "AgentUI(" + ID + " - t:" + agent.agentType + ")"
     

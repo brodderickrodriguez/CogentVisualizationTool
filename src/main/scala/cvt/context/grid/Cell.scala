@@ -4,10 +4,10 @@ import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
 
 /** @constructor A cell User Interface Object. This is used in the Grid context.
-  * @param _dimension the dimension of the cell in pixels.
+  * @param dimension the dimension of the cell in pixels.
   * @param _coordinate the x,y coordinate of where the Cell is on the Grid.
   */
-class Cell(_dimension : Dimension, _coordinate: Coordinate) extends UIObject {
+class Cell(dimension : Dimension, _coordinate: Coordinate) extends UIObject {
     /** A getter for the Cell's coordinates. */
     val coordinate : Coordinate = _coordinate
     /** an ArrayBuffer containing pointers to all the AgentUI's in the cell. */
