@@ -1,4 +1,4 @@
-package cvt.context.grid
+package cvt.projection.grid
 import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate, UIObject}
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension

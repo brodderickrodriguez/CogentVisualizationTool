@@ -1,6 +1,6 @@
 package cvt
 
-import cvt.context.ContextController
+import cvt.projection.Context
 import cvt.uiobject.Coordinate
 
 
@@ -17,15 +17,15 @@ object MockAgentType extends  Enumeration {
 
 
 class Agent {
-    var agentType : MockAgentType.Value = MockAgentType.boring
-    var contextController : ContextController = _
+    var agentType : MockAgentType.Value = MockAgentType.daring
+    var contextController : Context = _
     
-    def randomDirection() : context.Direction.Value = {
+    def randomDirection() : projection.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
-            case 0 => context.Direction.up
-            case 1 => context.Direction.right
-            case 2 => context.Direction.left
-            case 3 => context.Direction.down
+            case 0 => projection.Direction.up
+            case 1 => projection.Direction.right
+            case 2 => projection.Direction.left
+            case 3 => projection.Direction.down
         }
     } // randomDirection()
     

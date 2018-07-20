@@ -1,10 +1,10 @@
 package cvt
 import java.awt.Dimension
-import cvt.context.grid.Grid
+import cvt.projection.grid.Grid
 import cvt.uiobject.{AgentUI, Coordinate}
-import cvt.context.network._
+import cvt.projection.network._
 
-import cvt.context.ContextController
+import cvt.projection.Context
 
 
 object CogentVisualizationTool {
@@ -12,17 +12,16 @@ object CogentVisualizationTool {
     def main(args: Array[String]) : Unit = {
         println("Hello, CVT!")
         
-        createANetworkContext()
-    //   createAGridContext()
-        //createTestAdjacencyList()
-        //createTestAdjacencyMatrix()
+        createContext()
+     //   createTestAdjacencyList()
+     //   createTestAdjacencyMatrix()
         
     } // main()
     
     
-    def createANetworkContext() : Unit = {
+    def createContext() : Unit = {
     
-        val controller = new ContextController()
+        val controller = new Context()
         controller.createNetworkContext(new Dimension(1000,800), AdjacencyStructures.list)
         
         controller.createGridContext(new Dimension(30,30), 20, 2, true)
@@ -53,34 +52,6 @@ object CogentVisualizationTool {
     } // createANetworkContext
     
     
-    def createAGridContext() : Unit = {
-        val widthCells = 50
-        val heightCells = 50
-        val cellSize = 15
-        val cellGapSize = 2
-    
-        val dimension = new Dimension(widthCells, heightCells)
-        val grid : Grid = new Grid(dimension, cellSize, cellGapSize,true, new ContextController())
-        
-        grid.applyColorScheme(ColorSchemes.agentColorRandom)
-        grid.applyColorScheme(ColorSchemes.cellColorByPopulation)
-        grid.applyColorScheme(ColorSchemes.cellColorByAgentType)
-        grid.applyColorScheme(ColorSchemes.doNotPaintAgent)
-        
-        val types = Array(MockAgentType.daring, MockAgentType.exciting, MockAgentType.boring)
-        val r = scala.util.Random
-    
-        for (_ <- 1 to 10000) {
-            val ma = new Agent()
-            val a = new AgentUI(ma)
-            ma.agentType = types(Math.abs(r.nextInt()) % types.length)
-          //  ma.agentUI = a
-            grid.addAgent(a)
-         //   grid.addAgent(a, new Coordinate(widthCells / 2, heightCells / 2))
-            // println(grid.getNeighbors(a, 1))
-            // println(grid.getNeighborsOfTypes(a, 1, Array(MockCogentType.exciting)))
-        } // for
-    } // createAGridContext()
     
     
     def createTestAdjacencyMatrix() : Unit = {
@@ -98,6 +69,7 @@ object CogentVisualizationTool {
         am.add(aui2)
         am.add(aui3)
         am.add(aui4)
+        
         am.addConnection(aui1, aui2, 1.1, false)
         am.addConnection(aui4, aui3, 69, false)
         am.removeConnection(aui1, aui2)
@@ -134,7 +106,7 @@ object CogentVisualizationTool {
         al.remove(aui2)
         println("\n\n" + al)
         
-        for ((a1, a2, weight) <- al.connections) println(a1, a2, weight)
+      //  for ((a1, a2, weight) <- al.connections) println(a1, a2, weight)
         
     } // createTestAdjacencyList()
 

@@ -1,8 +1,8 @@
-package cvt.context.space
+package cvt.projection.space
 
 import java.awt.{Dimension, Graphics2D}
 
-import cvt.context.Context
+import cvt.projection.Projection
 import cvt.uiobject.{AgentUI, Coordinate}
 import cvt.MockAgentType
 
@@ -11,7 +11,7 @@ import cvt.MockAgentType
   *
   * @param _dimension the dimension of the context
   */
-class Space(_dimension: Dimension) extends Context(_dimension, controller = null) {
+class Space(_dimension: Dimension) extends Projection(_dimension, context = null) {
     
     
     override def paintComponent(graphics: Graphics2D): Unit = {

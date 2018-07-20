@@ -1,9 +1,9 @@
-package cvt.context
+package cvt.projection
 import cvt.{ColorScheme, ColorSchemes, ColorSchemeUse, MockAgentType}
 import scala.swing.{Component, Dimension}
 import java.awt.Color
 
-import cvt.context.grid.Cell
+import cvt.projection.grid.Cell
 import cvt.uiobject.{AgentUI, AgentUINotification, Coordinate}
 
 
@@ -16,9 +16,9 @@ object Direction extends Enumeration {
 
 /**
   *
-  * @param controller the ContextController
+  * @param context the ContextController
   */
-abstract class Context(dimension: Dimension, val controller : ContextController) extends Component {
+abstract class Projection(dimension: Dimension, val context : Context) extends Component {
     protected val window = new Window(dimension, this)
     protected var colorSchemes : Array[ColorScheme] = new Array[ColorScheme](0)
     
@@ -56,13 +56,13 @@ abstract class Context(dimension: Dimension, val controller : ContextController)
   //  def getConnectionColor(connection : Co)
     
     
-    def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- controller.agents) a.receiveNotification(notification)
+    def sendNotificationToAllAgents(notification : AgentUINotification.Value): Unit = for (a <- context.agents) a.receiveNotification(notification)
     
     
-    def getAgentsWithType(t : MockAgentType.Value) : Array[AgentUI] = for (a <- controller.agents if t == a.agentType) yield a
+    def getAgentsWithType(t : MockAgentType.Value) : Array[AgentUI] = for (a <- context.agents if t == a.agentType) yield a
     
     
-    def getAgentsWithTypes(types: Array[MockAgentType.Value]) : Array[AgentUI] = for (a <- controller.agents if types.contains(a.agentType)) yield a
+    def getAgentsWithTypes(types: Array[MockAgentType.Value]) : Array[AgentUI] = for (a <- context.agents if types.contains(a.agentType)) yield a
     
     
     def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI]
@@ -107,7 +107,7 @@ abstract class Context(dimension: Dimension, val controller : ContextController)
         // send a notification to all AgentUIs in the context that we are removing agents
         sendNotificationToAllAgents(AgentUINotification.removingAllAgentsFromCell)
         // empty the array
-        controller.agents = Array[AgentUI]()
+        context.agents = Array[AgentUI]()
         repaint()
     } // removeAllAgents()
     

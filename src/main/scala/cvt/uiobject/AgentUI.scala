@@ -1,5 +1,5 @@
 package cvt.uiobject
-import cvt.context.grid.Cell
+import cvt.projection.grid.Cell
 import cvt.{Agent, MockAgentNotification, MockAgentType}
 
 import scala.swing.Dimension

@@ -1,8 +1,8 @@
-package cvt.context.network
+package cvt.projection.network
 
 import java.awt.{Dimension, Graphics2D}
 
-import cvt.context.{Context, ContextController}
+import cvt.projection.{Projection, Context}
 import cvt.uiobject.{AgentUI, Coordinate}
 import cvt.MockAgentType
 
@@ -16,7 +16,7 @@ object AdjacencyStructures extends Enumeration {
   *
   * @param _dimension the dimension of the context
   */
-class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, controller : ContextController) extends Context(_dimension, controller = controller) {
+class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, context : Context) extends Projection(_dimension, context) {
     println("[Network] initializing")
     
     

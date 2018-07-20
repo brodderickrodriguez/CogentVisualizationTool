@@ -1,6 +1,6 @@
-package cvt.context.grid
+package cvt.projection.grid
 import java.awt.{Dimension, Graphics2D}
-import cvt.context.{Context, ContextController, Direction}
+import cvt.projection.{Projection, Context, Direction}
 import cvt.uiobject.{AgentUI, Coordinate}
 import cvt._
 
@@ -16,7 +16,7 @@ import scala.collection.mutable.ArrayBuffer
   * @param _cellGapSize the size of the gap between cells in pixels.
   * @param _circular represents the grid being circular. Meaning, an agent will can traverse off grid and appear on an opposing size.
   */
-class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true, contextController: ContextController) extends Context(new Dimension(0,0), contextController) {
+class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true, context: Context) extends Projection(new Dimension(0,0), context) {
     // two dimensional representation of grid in cells
     private val grid : Array[Array[Cell]] = Array.ofDim[Cell](_dimension.width, _dimension.height)
     // boolean variable to tack if grid was created. Used at initialization (required for large dimensions)

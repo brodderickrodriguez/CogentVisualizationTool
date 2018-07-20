@@ -1,7 +1,6 @@
 package cvt
 import java.awt.Color
-import cvt.context.Context
-import cvt.context.grid.Cell
+import cvt.projection.grid.Cell
 import cvt.uiobject.AgentUI
 
 
@@ -90,7 +89,6 @@ abstract class ColorScheme {
     var use : ColorSchemeUse.Value = _
     def getAgentColor(agentUI: AgentUI) : Color = { Color.blue } // getAgentColor()
     def getCellColor(cell: Cell) : Color = { Color.gray } // getCellColor()
-    def getBackgroundColor(context : Context) : Color = { Color.white } // getBackgroundColor()
 } // ColorScheme
 
 

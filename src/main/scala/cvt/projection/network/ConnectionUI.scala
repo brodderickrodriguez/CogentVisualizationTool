@@ -1,4 +1,4 @@
-package cvt.context.network
+package cvt.projection.network
 
 import cvt.uiobject.{AgentUI, Coordinate, UIObject}
 
