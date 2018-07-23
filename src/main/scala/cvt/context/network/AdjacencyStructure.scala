@@ -11,7 +11,14 @@ abstract class AdjacencyStructure() {
       * @return
       */
     def connections : Array[(AgentUI, AgentUI, Double)]
-    
+
+
+
+    def connectionsOf(agent: AgentUI): Array[(AgentUI, AgentUI, Double)] = {
+        var results = Array[(AgentUI, AgentUI, Double)]()
+        for ((a1, a2, weight) <- connections if a1 == agent) results = results :+ (a1, a2, weight)
+        results
+    } // connectionsOf()
     
     /**
       *
@@ -65,8 +72,8 @@ class AdjacencyList() extends  AdjacencyStructure {
         for ((a,_) <- map) results = results :+ a
         results
     }
-    
-    
+
+
     override def connections : Array[(AgentUI, AgentUI, Double)] = {
         var results = Array[(AgentUI, AgentUI, Double)]()
         for ((a1, list) <- map) for ((a2, weight) <- list) results = results :+ (a1, a2, weight)
@@ -135,6 +142,9 @@ class AdjacencyMatrix() extends AdjacencyStructure {
         for ((a1, array) <- map) for (i <- array.indices if array(i) > 0) results = results :+ (a1, agentAtIndex(i) , array(i))
         results
     } // connections
+
+
+
     
     
     override def toString : String = {

@@ -19,7 +19,13 @@ object MockAgentType extends  Enumeration {
 class Agent {
     var agentType : MockAgentType.Value = MockAgentType.boring
     var contextController : ContextController = _
-    
+
+    def this (mock : MockAgentType.Value) {
+        this
+        this.agentType = mock
+    }
+
+
     def randomDirection() : context.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
             case 0 => context.Direction.up

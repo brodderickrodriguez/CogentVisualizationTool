@@ -45,16 +45,30 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, control
         repaint()
     } // addConnection()
 
+
+    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): Array[AgentUI] = {
+        for (a2 <-  getNeighbors(agent, radius) if types.contains(a2.agentType)) yield a2
+    } // getNeighborsOfTypes()
+
     
     override def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
-        null
+        val results = recursivelyGetNeighbors(agent, radius)
+        results.drop(results.indexOf(agent))
     } // getNeighbors()
-    
-    
-    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): Array[AgentUI] = {
-        null
-    }
-    
+
+
+    private def recursivelyGetNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
+        var results = Array[AgentUI]()
+        if (radius == 0) return results
+
+        for ((_, a2, _) <- dataStructure.connectionsOf(agent)) {
+            for (a3 <- getNeighbors(a2, radius - 1)) results = results :+ a3
+            results = results :+ a2
+        } // for each connection in connections of agent
+
+        results.distinct
+    } // recursivelyGetNeighbors()
+
     
     override def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
         val r = scala.util.Random

@@ -24,31 +24,57 @@ object CogentVisualizationTool {
     
         val controller = new ContextController()
         controller.createNetworkContext(new Dimension(1000,800), AdjacencyStructures.list)
+        val network = controller.network
         
-        controller.createGridContext(new Dimension(30,30), 20, 2, true)
+       // controller.createGridContext(new Dimension(30,30), 20, 2, true)
        // controller.createGridContext(new Dimension(30,30), 20, 2, false)
     
     
-        controller.applyColorScheme(ColorSchemes.agentColorRandom)
-        controller.applyColorScheme(ColorSchemes.cellColorByPopulation)
-        controller.applyColorScheme(ColorSchemes.doNotPaintAgent)
-        controller.network.removeColorScheme(ColorSchemes.doNotPaintAgent)
-        controller.network.applyColorScheme(ColorSchemes.agentColorRandom)
+       // controller.applyColorScheme(ColorSchemes.agentColorRandom)
+       // controller.applyColorScheme(ColorSchemes.cellColorByPopulation)
+       // controller.applyColorScheme(ColorSchemes.doNotPaintAgent)
+       // controller.network.removeColorScheme(ColorSchemes.doNotPaintAgent)
+       // controller.network.applyColorScheme(ColorSchemes.agentColorRandom)
 
-        val r = scala.util.Random
-        for (i <- 1 to 1000) {
-            controller.addAgent(new Agent())
-        }
+       // val r = scala.util.Random
+       // for (i <- 1 to 1000) {
+       //     controller.addAgent(new Agent())
+       // }
         
         
-        for (a1 <- controller.agents; a2 <- controller.agents if r.nextInt(10000) == 5)
-            controller.addConnection(a1.agent,a2.agent, 1, true)
+       // for (a1 <- controller.agents; a2 <- controller.agents if r.nextInt(10000) == 5)
+       //     controller.addConnection(a1.agent,a2.agent, 1, true)
         
         val a1 = new Agent()
         val a2 = new Agent()
+        val a3 = new Agent()
+        val a4 = new Agent(MockAgentType.daring)
+
         controller.addAgent(a1)
         controller.addAgent(a2)
-        controller.addConnection(a1, a2, 60, true)
+        controller.addAgent(a3)
+        controller.addAgent(a4)
+
+        controller.agentUIFor(a1).ID = 1
+        controller.agentUIFor(a2).ID = 2
+        controller.agentUIFor(a3).ID = 3
+        controller.agentUIFor(a4).ID = 4
+
+
+        controller.addConnection(a2, a1, 60, false)
+        controller.addConnection(a2, a3, 10, false)
+        controller.addConnection(a2, a4, 10, false)
+        controller.addConnection(a3, a4, 10, false)
+        controller.addConnection(a1, a4, 10, false)
+
+
+        val neighbors = controller.getNeighborsOfTypes(a2, 9, Array(MockAgentType.daring))
+
+        println("got results")
+
+        for (a <- neighbors) {
+            println(a.toString())
+        }
         
     } // createANetworkContext
     

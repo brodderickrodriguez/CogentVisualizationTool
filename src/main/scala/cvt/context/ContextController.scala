@@ -1,6 +1,7 @@
 package cvt.context
 import java.awt.Dimension
-import cvt.{Agent, ColorScheme}
+
+import cvt.{Agent, ColorScheme, MockAgentType}
 import cvt.uiobject.{AgentUI, Coordinate}
 import cvt.context.grid.Grid
 import cvt.context.space.Space
@@ -26,10 +27,24 @@ class ContextController {
         agents = agents :+ aui
         for (context <- contexts) context.addAgent(aui, c)
     } // addAgent()
-    
-    
-    
-    private def agentUIFor(agent : Agent) : AgentUI = {
+
+
+
+    def getNeighbors(agent : Agent, radius : Integer) : Array[AgentUI] = {
+        var results = Array[AgentUI]()
+        for (c <- contexts) results = results ++ c.getNeighbors(agentUIFor(agent), radius)
+        results
+    } // getNeighbors()
+
+
+    def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[MockAgentType.Value]): Array[AgentUI] = {
+        for (a <- getNeighbors(agent, radius) if types.contains(a.agentType)) yield a
+    } // getNeighborsOfTypes()
+
+
+
+
+    def agentUIFor(agent : Agent) : AgentUI = {
         if (agent == null) return null
         for (aui <- agents if aui.agent == agent) return aui
         null
