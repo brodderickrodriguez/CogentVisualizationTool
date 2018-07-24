@@ -1,7 +1,8 @@
 package cvt
 
-import cvt.context.ContextController
-import cvt.uiobject.Coordinate
+import cvt.context.Context
+import cvt.context.projection.uiobject.Coordinate
+import cvt.context.projection
 
 
 object MockAgentNotification extends Enumeration {
@@ -18,7 +19,7 @@ object MockAgentType extends  Enumeration {
 
 class Agent {
     var agentType : MockAgentType.Value = MockAgentType.boring
-    var contextController : ContextController = _
+    var context : Context = _
 
     def this (mock : MockAgentType.Value) {
         this
@@ -26,12 +27,12 @@ class Agent {
     }
 
 
-    def randomDirection() : context.Direction.Value = {
+    def randomDirection() : cvt.context.projection.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
-            case 0 => context.Direction.up
-            case 1 => context.Direction.right
-            case 2 => context.Direction.left
-            case 3 => context.Direction.down
+            case 0 => projection.Direction.up
+            case 1 => projection.Direction.right
+            case 2 => projection.Direction.left
+            case 3 => projection.Direction.down
         }
     } // randomDirection()
     
@@ -40,7 +41,7 @@ class Agent {
    //     contextController.move(this, new Coordinate(r.nextInt(500), r.nextInt(500)))
         
         if (r.nextInt(10) == 1)
-            contextController.move(this, randomDirection(), 1)
+            context.move(this, randomDirection(), 1)
     } // receiveNotification()
     
 } // MockAgent
