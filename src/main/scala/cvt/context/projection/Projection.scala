@@ -6,6 +6,7 @@ import java.awt.Color
 import cvt.context.Context
 import cvt.context.projection.uiobject.{AgentUI, AgentUINotification, Cell, Coordinate}
 import cvt.MockAgentType
+import cvt.Agent
 
 
 object Direction extends Enumeration {
@@ -22,6 +23,7 @@ object Direction extends Enumeration {
 abstract class Projection(dimension: Dimension, val context : Context) extends Component {
     protected val window = new Window(dimension, this)
     protected var colorSchemes : Array[ColorScheme] = new Array[ColorScheme](0)
+    protected val agentMap : Map[Agent, AgentUI] = Map[Agent, AgentUI]()
     
     
     def applyColorScheme(c : ColorScheme) : Unit = {

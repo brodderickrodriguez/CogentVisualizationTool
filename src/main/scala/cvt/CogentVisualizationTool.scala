@@ -14,8 +14,8 @@ object CogentVisualizationTool {
     def main(args: Array[String]) : Unit = {
         println("Hello, CVT!")
 
-      //  createContextWithSpace()
-        createContext()
+        createContextWithSpace()
+     //   createContext()
       //  createTestAdjacencyList()
       //  createTestAdjacencyMatrix()
         

@@ -1,7 +1,7 @@
 package cvt.context.projection.AdjacencyStructure
 
 import cvt.context.projection.uiobject.AgentUI
-import scala.collection.immutable.{List, Map}
+import scala.collection.immutable.{List, Map, Vector}
 
 
 /** An abstract class (acts like an interface) for the two Adjacency Structure types. */
@@ -58,7 +58,6 @@ class AdjacencyList() extends  AdjacencyStructure {
         s
     } // toString
 
-    
     
     override def add(agent : AgentUI) : Unit = map += (agent -> List[AdjacencyStructureEdge]())
 
@@ -147,41 +146,6 @@ class AdjacencyMatrix() extends AdjacencyStructure {
         true
     } // addConnection
     
-
-    /*
-    def printg(a : Array[AdjacencyStructureEdge]) = {
-        for (aa <- a) {
-            println(aa)
-        }
-    }
-
-
-    //        map = map.updated(a1, map(a2).filter(_.toAgent!= a1))
-    override def removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean = {
-        if (!map.contains(a1) || !map.contains(a2)) return false
-
-
-        var a1Entry = map(a1)
-        printg(a1Entry)
-
-
-        a1Entry = a1Entry.map(e => if (e != null) new DefaultEdge(null, 90)).asInstanceOf[Array[AdjacencyStructureEdge]]
-
-        println("the entry for" + a1 + " is now ")
-
-        printg(a1Entry)
-
-
-        map = map.updated(a1, a1Entry)
-   //     map = map.updated(a2, map(a1).filter(e => e != null && e.toAgent != a1))
-
-
-        //map(a1) = t
-      //  map(a2)(indexOf(a1)) = null
-        true
-    } // removeConnection()
-    */
-
 
     override def removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean = {
         if (!map.contains(a1) || !map.contains(a2)) return false
