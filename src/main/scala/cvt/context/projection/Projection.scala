@@ -1,9 +1,7 @@
 package cvt.context.projection
 
 import scala.swing.{Component, Dimension}
-
 import java.awt.Color
-
 import cvt.context.Context
 import cvt.context.projection.uiobject.{AgentUI, Cell, Coordinate}
 import cvt.{Agent, AgentType}
@@ -75,14 +73,22 @@ abstract class Projection(dimension: Dimension) extends Component {
     } // getAgentColor
 
 
-    def getAgentsWithTypes(types: Array[AgentType.Value]) : Array[Agent] = for (a <- context.agents if types.contains(a.agentType)) yield a
+    def getAgentsWithTypes(types: Array[AgentType.Value]) : Array[Agent] = context.agents.filter(a => types.contains(a.agentType))
     
-    
+
     def getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
-    
-    
-    def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]) : Array[Agent]
-    
+
+
+    /** Retrieves the neighbor AgentUIs which are of the specified types.
+      * Uses the intersection of getNeighbors() and getAgentsWithTypes().
+      * @param agent the agentUI which we wish to retrieve the neighbors of.
+      * @param radius is the distance in the neighborhood in which we want to get the AgentUIs of.
+      * @param types is an array of the types of agents we wish to retrieve.
+      * @return the list of AgentUIs in the neighborhood
+      */
+    def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]) : Array[Agent] =
+        getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
+
 
     def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
     

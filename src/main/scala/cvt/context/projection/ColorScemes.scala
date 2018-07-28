@@ -49,7 +49,7 @@ private class CellColorByAgentType extends ColorScheme {
         var color = Color.gray
         if (cell.agents.isEmpty) return color
         
-        cell.agents.head.agentType match {
+        cell.agents.head.agent.agentType match {
             case AgentType.exciting  => color = Color.yellow
             case AgentType.boring  => color = Color.white
             case AgentType.daring  => color = Color.green

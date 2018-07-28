@@ -24,6 +24,9 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     createGrid()
     sizeWindowToGrid()
 
+    private var cellMap = Map[AgentUI, Cell]()
+
+
     
     /** Shapes the window to fit all cells (called at initialization)
       * by the boarder, all cells and all gaps between cells to reshape window.
@@ -60,7 +63,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     
     
     /** Inherited from Component. Paints the window, grid, cells and all agents within the cells.
-      *
       * @param graphics the graphics object.
       */
     override def paintComponent(graphics: Graphics2D): Unit = {
@@ -88,7 +90,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     
     
     /** Fetches the cell at the parameter coordinate. Takes care of when _circular is true or false.
-      *
       * @param c is the coordinate which we wish to fetch the cell of.
       * @return the cell at coordinate c.
       */
@@ -108,21 +109,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
         grid(c.X)(c.Y)
     } // cellAt()
     
-    
-    /** Retrieves the neighbor AgentUIs which are of the specified types.
-      * Uses the intersection of getNeighbors() and getAgentsWithTypes().
-      *
-      * @param agent the agentUI which we wish to retrieve the neighbors of.
-      * @param radius is the distance in the neighborhood in which we want to get the AgentUIs of.
-      * @param types is an array of the types of agents we wish to retrieve.
-      * @return the list of AgentUIs in the neighborhood
-      */
-    override def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]): Array[Agent] =
-        getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
 
-    
     /** Retrieves the all neighbor AgentUIs which are of the specified type.
-      *
       * @param agent the agentUI which we wish to retrieve the neighbors of.
       * @param radius is the distance in the neighborhood in which we want to get the AgentUIs of.
       * @return the list of AgentUIs in the neighborhood
@@ -131,12 +119,12 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
         if (!agentMap.contains(agent)) return null
         val aui = agentMap(agent)
         // designate where to start the iteration
-        val start = new Coordinate(aui.cell.coordinate).subtract(radius)
+        val start = new Coordinate(cellMap(aui).coordinate).subtract(radius)
         // designate where to end the iteration
-        val end = new Coordinate(aui.cell.coordinate).add(radius)
+        val end = new Coordinate(cellMap(aui).coordinate).add(radius)
         // iterate over the cells and add all AgentUIs in the cells
         var agents = Array[AgentUI]()
-        for (x <- start.X to end.X; y <- start.Y to end.Y if cellAt(new Coordinate(x, y)) != aui.cell) {
+        for (x <- start.X to end.X; y <- start.Y to end.Y if cellAt(new Coordinate(x, y)) != cellMap(aui)) {
             val AUIs = cellAt(new Coordinate(x, y)).agents.toArray
             agents = agents ++ AUIs
         } // for x,y
@@ -145,16 +133,15 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     
     
     /** Adds an AgentUI to the given projection at a designated coordinate.
-      *
       * @param agent the AgentUI which we wish to add to the projection.
       * @param c the coordinate which we wish to add the AgentUI to.
       */
     override def addAgent(agent : Agent, c : Coordinate) : Unit = {
-
         // local reference to the cell at coordinate c
         val cell = cellAt(c)
         if (cell == null) return
         val aui = if (agentMap.contains(agent)) agentMap(agent) else new AgentUI(agent)
+        cellMap = cellMap + (aui -> cell)
         agentMap = agentMap + (agent -> aui)
         // add AgentUI to cell
         cell.add(aui)
@@ -163,7 +150,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     
 
     /** Adds a list of AgentUIs to the given projection at a default coordinate.
-      *
       * @param agents the list of AgentUIs which we wish to add to the projection.
       */
     override def addAgents(agents : Array[Agent]) : Unit = {
@@ -174,15 +160,14 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     
     
     /** Removes an AgentUI from the projection.
-      *
       * @param agent the AgentUI which we wish to remove.
       */
     override def removeAgent(agent : Agent) : Unit = {
         if (!agentMap.contains(agent)) return
         val aui = agentMap(agent)
         // if the AgentUI has not been assigned a cell, no need to remove it.
-        if (aui.cell == null) return
-        aui.cell.remove(aui)
+        cellMap(aui).remove(aui)
+        cellMap -= aui
         repaint()
     } // removeAgent
     
@@ -197,7 +182,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     
     
     /** Moves an AgentUI from its current cell to one designated by the parameter coordinate.
-      *
       * @param agent the AgentUI which we wish to move.
       * @param c the coordinate which we wish to move the AgentUI to.
       */
@@ -212,7 +196,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     
     /** Moves an AgentUI from its current cell to one in near proximity using directions
       * Left, Right, Up, Down and a magnitude.
-      *
       * @param agent the agent to move.
       * @param direction the direction which we want to move.
       * @param magnitude the amount of cells we wish to move.
@@ -222,7 +205,7 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
         val aui = agentMap(agent)
         // map the direction parameter to an actual cell
         // this is done by adding/subtracting magnitude
-        val newCoordinate = aui.cell.coordinate.add(Direction.toCoordinate(direction).multiply(magnitude))
+        val newCoordinate = cellMap(aui).coordinate.add(Direction.toCoordinate(direction).multiply(magnitude))
         // move the AgentUI to the new cell
         move(agent, newCoordinate)
     } // move()

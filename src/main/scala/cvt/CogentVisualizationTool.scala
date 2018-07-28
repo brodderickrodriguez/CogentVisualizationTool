@@ -15,15 +15,35 @@ object CogentVisualizationTool {
         println("Hello, CVT!")
 
      //   createContextWithNetwork()
-
-
-        createContextWithGrid()
-
+     //   createContextWithGrid()
+        createContextWithSpace()
 
       //  createTestAdjacencyList()
       //  createTestAdjacencyMatrix()
         
     } // main()
+
+
+    def createContextWithSpace() : Unit = {
+
+        val context = new Context()
+        val space = new Space(new Dimension(500, 500))
+        context.addProjection(space)
+
+        val a1 = new Agent()
+        val a2 = new Agent()
+
+        context.addAgent(a1)
+        context.addAgent(a2)
+
+        space.move(a1, new Coordinate(50, 50))
+        space.move(a2, new Coordinate(50, 100))
+
+        val neighbors = space.getNeighbors(a1, 50)
+        for (a <- neighbors) println(a)
+
+    } // createContextWithSpace
+
 
     def createContextWithGrid() : Unit = {
         val context = new Context()
@@ -72,21 +92,9 @@ object CogentVisualizationTool {
 
     def createContextWithNetwork() : Unit = {
         val context = new Context()
-    //    controller.createSpaceContext(new Dimension(1000, 1000))
-    //    controller.createGridContext(new Dimension(10, 10), 20, 2, true)
-//        controller.createNetworkContext(new Dimension(1000,800), AdjacencyStructures.list)
-
-     //   val g = new Grid(new Dimension(10, 10), 20, 2, true, controller)
-
-//        controller.addProjection(g)
-
-
-        val n = new Network(new Dimension(500, 500), AdjacencyStructures.matrix)
-        context.addProjection(n)
-
+        val network = new Network(new Dimension(500, 500), AdjacencyStructures.matrix)
+        context.addProjection(network)
         context.applyColorScheme(ColorSchemes.agentColorRandom)
-
-      //  controller.addAgent(new Agent())
 
         val a1 = new Agent()
         val a2 = new Agent()
@@ -94,18 +102,19 @@ object CogentVisualizationTool {
         context.addAgent(a1)
         context.addAgent(a2)
 
-        n.addConnection(a1, a2, 1, true)
+        network.addConnection(a1, a2, 1, true)
 
-        for (i <- 1 to 100) {
+        for (_ <- 1 to 100)
             context.addAgent(new Agent())
-        }
-
 
         for (a1 <- context.agents; a2 <- context.agents if scala.util.Random.nextInt(1000) == 5)
-            n.addConnection(a1,a2, 1, true)
+            network.addConnection(a1,a2, 1, true)
+
+    } // createContextWithNetwork()
 
 
-    }
+
+
 
 
     /*

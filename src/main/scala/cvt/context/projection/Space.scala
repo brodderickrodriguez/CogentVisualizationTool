@@ -1,9 +1,8 @@
 package cvt.context.projection
 
 import java.awt.{Dimension, Graphics2D}
-
 import cvt.context.projection.uiobject.{AgentUI, Coordinate}
-import cvt.{Agent, AgentType}
+import cvt.Agent
 
 
 /**
@@ -15,8 +14,7 @@ class Space(_dimension: Dimension) extends Projection(_dimension) {
     private var tree = Array[AgentUI]()
 
     override def paintComponent(graphics: Graphics2D): Unit = {
-        if (!visible) return
-        if (!paintAgent) return
+        if (!visible || !paintAgent) return
 
         for (a <- tree) {
             graphics.setColor(getAgentColor(a))
@@ -26,13 +24,26 @@ class Space(_dimension: Dimension) extends Projection(_dimension) {
     } // paintComponent()
     
     
-    def getNeighbors(agent : Agent, radius : Integer) : Array[Agent] = { null }
-    
-    
-    override def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]): Array[Agent] = { null }
+    def getNeighbors(agent : Agent, radius : Integer) : Array[Agent] = {
+        val aui = agentMap(agent)
+        if (aui == null) return null
 
+        def withinBounds(a : AgentUI) : Boolean = {
+            val x = Math.abs(aui.absoluteLocation.X - a.absoluteLocation.X) <= radius
+            val y = Math.abs(aui.absoluteLocation.Y - a.absoluteLocation.Y) <= radius
+            x && y
+        } // withinBounds()
 
-    override def addAgent(agent : Agent, c : Coordinate) : Unit = move(agent, c)
+        for (a <- tree if a != aui && withinBounds(a)) yield agentUIMap(a)
+    } // getNeighbors()
+    
+
+    override def addAgent(agent : Agent, c : Coordinate) : Unit = {
+        val aui = new AgentUI(agent)
+        agentMap = agentMap + (agent -> aui)
+        tree = tree :+ aui
+        move(agent, c)
+    } // addAgent()
 
 
     override def addAgents(agents: Array[Agent]) : Unit = for (a <- agents) move(a, new Coordinate(0, 0))
@@ -54,7 +65,8 @@ class Space(_dimension: Dimension) extends Projection(_dimension) {
 
     override def removeAllAgents(): Unit = {
         tree =  Array[AgentUI]()
-    }
+        repaint()
+    } // removeAllAgents()
 
 } // Space
 

@@ -61,11 +61,6 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure) extends
         repaint()
     } // addConnection()
 
-
-    override def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]): Array[Agent] = {
-        for (a2 <-  getNeighbors(agent, radius) if types.contains(a2.agentType)) yield a2
-    } // getNeighborsOfTypes()
-
     
     override def getNeighbors(agent : Agent, radius : Integer) : Array[Agent] = {
         val aui = agentMap(agent)

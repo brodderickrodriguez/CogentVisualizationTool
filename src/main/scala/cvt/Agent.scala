@@ -27,6 +27,8 @@ class Agent {
     }
 
 
+    override def toString : String = "Agent()"
+
     def randomDirection : cvt.context.projection.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
             case 0 => projection.Direction.up

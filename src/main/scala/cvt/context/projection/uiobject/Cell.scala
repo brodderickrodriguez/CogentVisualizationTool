@@ -17,8 +17,6 @@ class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends 
     
     
     def add(agent : AgentUI) : Unit = {
-        // set the agents cell to the coordinate c
-        agent.cell = this
         // send a notification to all AgentUIs in the cell that there has been another AgentUI added
         sendNotificationToAgents(AgentUINotification.addedAgentToCell)
         // append to the list of AgentUIs in the cell
@@ -32,7 +30,6 @@ class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends 
         // send a notification to all the AgentUIs in the cell that we are removing an AgentUI
         sendNotificationToAgents(AgentUINotification.removedAgentFromCell)
         // set the AgentUIs cell to null
-        agent.cell = null
     } // remove()
     
     

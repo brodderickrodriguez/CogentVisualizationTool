@@ -1,6 +1,7 @@
 package cvt.context.projection.uiobject
+
 import cvt.context.projection.Projection
-import cvt.{Agent, AgentNotification, AgentType}
+import cvt.{Agent, AgentNotification}
 
 import scala.swing.Dimension
 
@@ -13,11 +14,8 @@ object AgentUINotification extends Enumeration {
 
 
 class AgentUI(val agent : Agent) extends UIObject {
-    var cell : Cell = _
     dimension = new Dimension(10, 10)
 
-    def agentType : AgentType.Value = agent.agentType
-    
     
     override def toString : String = "AgentUI(" + ID + " - t:" + agent.agentType + ")"
     
