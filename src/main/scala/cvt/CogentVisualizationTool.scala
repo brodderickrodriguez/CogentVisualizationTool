@@ -14,34 +14,101 @@ object CogentVisualizationTool {
     def main(args: Array[String]) : Unit = {
         println("Hello, CVT!")
 
-        createContextWithSpace()
-     //   createContext()
+     //   createContextWithNetwork()
+
+
+        createContextWithGrid()
+
+
       //  createTestAdjacencyList()
       //  createTestAdjacencyMatrix()
         
     } // main()
 
-    def createContextWithSpace() : Unit = {
-        val controller = new Context(true)
-        controller.createSpaceContext(new Dimension(1000, 1000))
-        controller.createGridContext(new Dimension(10, 10), 20, 2, true)
-        controller.createNetworkContext(new Dimension(1000,800), AdjacencyStructures.list)
+    def createContextWithGrid() : Unit = {
+        val context = new Context()
+
+        val g1 = new Grid(new Dimension(10, 10), 20, 2, true)
+        val g2 = new Grid(new Dimension(20, 20), 20, 2, true)
 
 
-        controller.applyColorScheme(ColorSchemes.agentColorRandom)
+        context.addProjection(g1)
+        context.addProjection(g2)
 
-        val a = new Agent()
+      //  context.projectionsVisible(false)
+        g1.setVisible(true)
 
-        controller.addAgent(a)
-    //    controller.removeAgent(a)
-     //   controller.move(a, Direction.right, 100)
+        context.applyColorScheme(ColorSchemes.agentColorRandom)
+
+        g1.applyColorScheme(ColorSchemes.cellColorByPopulation)
+
+
+        //     g.applyColorScheme(ColorSchemes.cellColorByPopulation)
+    //    g.applyColorScheme(ColorSchemes.doNotPaintAgent)
+        //  context.applyColorScheme(ColorSchemes.agentColorRandom)
+
+
+
+
+        val a1 = new Agent()
+        val a2 = new Agent()
+
+        context.addAgent(a1)
+        context.addAgent(a2)
+
+        g2.move(a1, Direction.down, 1)
+        g1.move(a1, Direction.right, 2)
+
+
+
+        for (i <- 1 to 1000000) {
+            context.addAgent(new Agent())
+        }
+
+    } // createContextWithGrid()
+
+
+
+
+    def createContextWithNetwork() : Unit = {
+        val context = new Context()
+    //    controller.createSpaceContext(new Dimension(1000, 1000))
+    //    controller.createGridContext(new Dimension(10, 10), 20, 2, true)
+//        controller.createNetworkContext(new Dimension(1000,800), AdjacencyStructures.list)
+
+     //   val g = new Grid(new Dimension(10, 10), 20, 2, true, controller)
+
+//        controller.addProjection(g)
+
+
+        val n = new Network(new Dimension(500, 500), AdjacencyStructures.matrix)
+        context.addProjection(n)
+
+        context.applyColorScheme(ColorSchemes.agentColorRandom)
+
+      //  controller.addAgent(new Agent())
+
+        val a1 = new Agent()
+        val a2 = new Agent()
+
+        context.addAgent(a1)
+        context.addAgent(a2)
+
+        n.addConnection(a1, a2, 1, true)
+
         for (i <- 1 to 100) {
-            controller.addAgent(new Agent())
+            context.addAgent(new Agent())
         }
 
 
+        for (a1 <- context.agents; a2 <- context.agents if scala.util.Random.nextInt(1000) == 5)
+            n.addConnection(a1,a2, 1, true)
+
+
     }
-    
+
+
+    /*
     
     def createContext() : Unit = {
     
@@ -77,16 +144,16 @@ object CogentVisualizationTool {
         controller.addAgent(a3)
         controller.addAgent(a4)
 
-        controller.agentUIFor(a1).ID = 1
-        controller.agentUIFor(a2).ID = 2
-        controller.agentUIFor(a3).ID = 3
-        controller.agentUIFor(a4).ID = 4
+     //   controller.agentUIFor(a1).ID = 1
+     //   controller.agentUIFor(a2).ID = 2
+     //   controller.agentUIFor(a3).ID = 3
+     //   controller.agentUIFor(a4).ID = 4
 
 
-        controller.addConnection(a2, a1, 60, false)
-        controller.addConnection(a2, a3, 10, false)
-        controller.addConnection(a2, a4, 10, false)
-        controller.addConnection(a3, a4, 10, false)
+     //   controller.addConnection(a2, a1, 60, false)
+     //   controller.addConnection(a2, a3, 10, false)
+     //   controller.addConnection(a2, a4, 10, false)
+     //   controller.addConnection(a3, a4, 10, false)
 
 
       //  val neighbors = controller.getNeighbors(a1, 2)
@@ -153,7 +220,7 @@ object CogentVisualizationTool {
         for ((a1, a2, weight) <- al.connections) println(a1, a2, weight)
         
     } // createTestAdjacencyList()
-
+*/
 } // CogentVisualizationTool
 
 

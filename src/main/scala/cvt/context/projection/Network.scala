@@ -2,10 +2,9 @@ package cvt.context.projection
 
 import java.awt.{Dimension, Graphics2D}
 
-import cvt.MockAgentType
-import cvt.context.Context
-import cvt.context.projection.AdjacencyStructure.{AdjacencyList, AdjacencyMatrix, AdjacencyStructure}
+import cvt.context.projection.AdjacencyStructure._
 import cvt.context.projection.uiobject.{AgentUI, Coordinate}
+import cvt.{Agent, AgentType}
 
 
 /**
@@ -23,7 +22,7 @@ object AdjacencyStructures extends Enumeration {
   *
   * @param _dimension the dimension of the context
   */
-class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, context : Context) extends Projection(_dimension, context) {
+class Network(_dimension: Dimension, dataStructure : AdjacencyStructure) extends Projection(_dimension) {
 
 
     /** Inherited from Component. Paints the window, grid, cells and all agents within the cells.
@@ -31,7 +30,7 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, context
       * @param graphics the graphics object.
       */
     override def paintComponent(graphics: Graphics2D): Unit = {
-        if (!context.visualizationVisible) return
+        if (!visible) return
     
         for ((a1, a2, _) <- dataStructure.connections) graphics.drawLine(a1.center.X, a1.center.Y, a2.center.X, a2.center.Y)
     
@@ -45,7 +44,13 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, context
     } // paintComponent()
     
     
-    def addConnection(aui1 : AgentUI, aui2 : AgentUI, weight : Double, directed : Boolean) : Unit = {
+    def addConnection(agent1 : Agent, agent2 : Agent, weight : Double, directed : Boolean) : Unit = {
+        if (!agentMap.contains(agent1) || !agentMap.contains(agent2)) {
+            println(agentMap.contains(agent1) + ", " + agentMap.contains(agent2))
+            return
+        }
+        val aui1 = agentMap(agent1)
+        val aui2 = agentMap(agent2)
         dataStructure.addConnection(aui1, aui2, weight, directed)
         repaint()
     } // addConnection()
@@ -57,48 +62,60 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure, context
     } // addConnection()
 
 
-    override def getNeighborsOfTypes(agent : AgentUI, radius : Integer, types : Array[MockAgentType.Value]): Array[AgentUI] = {
+    override def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]): Array[Agent] = {
         for (a2 <-  getNeighbors(agent, radius) if types.contains(a2.agentType)) yield a2
     } // getNeighborsOfTypes()
 
     
-    override def getNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
-        val results = recursivelyGetNeighbors(agent, radius)
+    override def getNeighbors(agent : Agent, radius : Integer) : Array[Agent] = {
+        val aui = agentMap(agent)
+        val results = recursivelyGetNeighbors(aui, radius)
         results.drop(results.indexOf(agent) + 1)
     } // getNeighbors()
 
 
-    private def recursivelyGetNeighbors(agent : AgentUI, radius : Integer) : Array[AgentUI] = {
-        var results = Array[AgentUI]()
+    private def recursivelyGetNeighbors(agent : AgentUI, radius : Integer) : Array[Agent] = {
+        var results = Array[Agent]()
         if (radius == 0) return results
 
         for ((_, a2, _) <- dataStructure.connectionsOf(agent)) {
-            for (a3 <- getNeighbors(a2, radius - 1)) results = results :+ a3
-            results = results :+ a2
+            for (a3 <- getNeighbors(agentUIMap(a2), radius - 1)) results = results :+ a3
+            results = results :+ agentUIMap(a2)
         } // for each connection in connections of agent
 
         results.distinct
     } // recursivelyGetNeighbors()
 
     
-    override def addAgent(agent : AgentUI, c : Coordinate) : Unit = {
+    override def addAgent(agent : Agent, c : Coordinate) : Unit = {
+        val aui = new AgentUI(agent)
+        agentMap = agentMap + (agent -> aui)
+        dataStructure.add(aui)
+
         val r = scala.util.Random
-        agent.absoluteLocation = new Coordinate(r.nextInt(_dimension.width - agent.dimension.width - 20), r.nextInt(_dimension.height - agent.dimension.height - 30))
-        dataStructure.add(agent)
+        aui.absoluteLocation = new Coordinate(r.nextInt(_dimension.width - aui.dimension.width - 20), r.nextInt(_dimension.height - aui.dimension.height - 30))
         repaint()
     } // addAgent()
     
     
-    override def addAgents(agents: Array[AgentUI]) : Unit = for (a <- agents) addAgent(a)
+    override def addAgents(agents: Array[Agent]) : Unit = for (a <- agents) addAgent(a)
     
     
-    override def removeAgent(agent : AgentUI) : Unit = dataStructure.remove(agent)
+    override def removeAgent(agent : Agent) : Unit = dataStructure.remove(agentMap(agent))
     
     
     override def removeAllAgents() : Unit = {
         for ((a1, _, _) <- dataStructure.connections) dataStructure.remove(a1)
-        super.removeAllAgents()
+        repaint()
     } // removeAllAgents()
+
+
+
+
+    override def move(agent : Agent, direction : Direction.Value, magnitude : Int) : Unit = {  }
+
+
+    override def move(agent : Agent, c : Coordinate) : Unit = { }
     
     
 } // Network

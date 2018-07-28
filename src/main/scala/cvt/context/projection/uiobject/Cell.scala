@@ -2,12 +2,14 @@ package cvt.context.projection.uiobject
 
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
+import cvt.context.projection.Grid
+
 
 /** @constructor A cell User Interface Object. This is used in the Grid Projection.
   * @param dimension the dimension of the cell in pixels.
   * @param _coordinate the x,y coordinate of where the Cell is on the Grid.
   */
-class Cell(dimension : Dimension, _coordinate: Coordinate) extends UIObject {
+class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends UIObject {
     /** A getter for the Cell's coordinates. */
     val coordinate : Coordinate = _coordinate
     /** an ArrayBuffer containing pointers to all the AgentUI's in the cell. */
@@ -46,7 +48,10 @@ class Cell(dimension : Dimension, _coordinate: Coordinate) extends UIObject {
     /** Loops through all the AgentUI's in the cells and sends them a notification.
       * @param notification is the notification we wish to send to all the AgentUI's in the Cell.
       */
-    def sendNotificationToAgents(notification : AgentUINotification.Value) : Unit = for (a <- agents if a != null) a.receiveNotification(notification)
+    def sendNotificationToAgents(notification : AgentUINotification.Value) : Unit = {
+        for (a <- agents if a != null)
+            a.receiveNotification(notification, grid)
+    } // sendNotificationToAgents()
     
     
 } // Cell

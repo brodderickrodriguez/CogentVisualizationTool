@@ -1,5 +1,6 @@
 package cvt.context.projection.uiobject
-import cvt.{Agent, MockAgentNotification, MockAgentType}
+import cvt.context.projection.Projection
+import cvt.{Agent, AgentNotification, AgentType}
 
 import scala.swing.Dimension
 
@@ -15,18 +16,17 @@ class AgentUI(val agent : Agent) extends UIObject {
     var cell : Cell = _
     dimension = new Dimension(10, 10)
 
-    def agentType : MockAgentType.Value = agent.agentType
+    def agentType : AgentType.Value = agent.agentType
     
     
     override def toString : String = "AgentUI(" + ID + " - t:" + agent.agentType + ")"
     
     
-    def receiveNotification(notification : AgentUINotification.Value): Unit = {
-        //println("[AgentUI] - receiveNotification: " + notification)
+    def receiveNotification(notification : AgentUINotification.Value, fromProjection : Projection): Unit = {
         notification match {
             case AgentUINotification.addedAgentToCell =>
               //  println("got addedAgentToCell notification")
-                agent.receiveNotification(MockAgentNotification.move)
+                agent.receiveNotification(AgentNotification.move, fromProjection)
 
             case AgentUINotification.removedAgentFromCell =>
                // println("got removedAgentFromCell notification")

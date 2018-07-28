@@ -3,7 +3,7 @@ package cvt.context.projection
 import java.awt.Color
 
 import cvt.context.projection.uiobject.{AgentUI, Cell}
-import cvt.MockAgentType
+import cvt.AgentType
 
 
 object ColorSchemeUse extends Enumeration {
@@ -50,9 +50,9 @@ private class CellColorByAgentType extends ColorScheme {
         if (cell.agents.isEmpty) return color
         
         cell.agents.head.agentType match {
-            case MockAgentType.exciting  => color = Color.yellow
-            case MockAgentType.boring  => color = Color.white
-            case MockAgentType.daring  => color = Color.green
+            case AgentType.exciting  => color = Color.yellow
+            case AgentType.boring  => color = Color.white
+            case AgentType.daring  => color = Color.green
             case default => Color.gray
         } // match
         color

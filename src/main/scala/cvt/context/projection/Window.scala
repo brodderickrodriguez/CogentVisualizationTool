@@ -10,7 +10,7 @@ import scala.swing.{BorderPanel, Dimension, MainFrame}
 class Window(val dimension: Dimension, private val projection: Projection) extends MainFrame {
     //println("[Window] initializing")
     
-    visible = projection.context.visualizationVisible
+    visible = true // default value
     resizable = false
     preferredSize = dimension
 

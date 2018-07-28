@@ -1,16 +1,16 @@
 package cvt
 
 import cvt.context.Context
-import cvt.context.projection.uiobject.Coordinate
 import cvt.context.projection
+import cvt.context.projection.Projection
 
 
-object MockAgentNotification extends Enumeration {
+object AgentNotification extends Enumeration {
     val move : Value = Value
 } // MockCogentNotification
 
 
-object MockAgentType extends  Enumeration {
+object AgentType extends  Enumeration {
     val boring : Value = Value
     val exciting : Value = Value
     val daring : Value = Value
@@ -18,16 +18,16 @@ object MockAgentType extends  Enumeration {
 
 
 class Agent {
-    var agentType : MockAgentType.Value = MockAgentType.boring
+    var agentType : AgentType.Value = AgentType.boring
     var context : Context = _
 
-    def this (mock : MockAgentType.Value) {
+    def this (mock : AgentType.Value) {
         this
         this.agentType = mock
     }
 
 
-    def randomDirection() : cvt.context.projection.Direction.Value = {
+    def randomDirection : cvt.context.projection.Direction.Value = {
         scala.util.Random.nextInt(4) match  {
             case 0 => projection.Direction.up
             case 1 => projection.Direction.right
@@ -36,12 +36,10 @@ class Agent {
         }
     } // randomDirection()
     
-    def receiveNotification(notification: MockAgentNotification.Value) : Unit = {
-        val r = scala.util.Random
-   //     contextController.move(this, new Coordinate(r.nextInt(500), r.nextInt(500)))
-        
-        if (r.nextInt(10) == 1)
-            context.move(this, randomDirection(), 1)
+    def receiveNotification(notification: AgentNotification.Value, fromProjection : Projection) : Unit = {
+        // randomly move the agentUI on the projection 'fromProjection'. Used for testing.
+        if (scala.util.Random.nextInt(10) == 1)
+            fromProjection.move(this, randomDirection, 1)
     } // receiveNotification()
     
 } // MockAgent

@@ -25,5 +25,8 @@ class Coordinate(x : Int, y : Int) {
     def subtract(c : Coordinate) : Coordinate = new Coordinate(x - c.X, y - c.Y)
     def subX(m : Int) = new Coordinate(x - m, y)
     def subY(m : Int) = new Coordinate(x, y - m)
+
+    def multiply(m : Int) : Coordinate = new Coordinate(x * m, y * m)
+
     
 } // Coordinate
