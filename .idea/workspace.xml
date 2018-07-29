@@ -58,11 +58,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Coordinate.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Coordinate.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            <state relative-caret-position="112">
+              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Grid.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="135" column="20" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
+              <folding>
+                <element signature="e#31#70#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Projection.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+              <folding>
+                <element signature="e#31#72#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,18 +96,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-751">
               <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIObject.scala" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="e#40#74#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -169,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Coordinate.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/Agent.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala" />
@@ -181,6 +192,7 @@
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" />
       </list>
     </option>
   </component>
@@ -414,19 +426,19 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.47708333" weight="0.278826" />
+      <window_info active="true" anchor="bottom" id="Messages" order="14" sideWeight="0.47708333" visible="true" weight="0.278826" />
       <window_info anchor="right" id="sbt" order="9" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.15595238" side_tool="true" weight="0.2914046" />
       <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8440476" visible="true" weight="0.2914046" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8440476" weight="0.2914046" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19285715" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19285715" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" />
       <window_info anchor="bottom" id="Build" order="13" sideWeight="0.6020833" weight="0.32809225" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -768,30 +780,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2445">
-          <caret line="163" column="47" lean-forward="true" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
-          <folding>
-            <element signature="e#31#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1366">
           <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
-          <folding>
-            <element signature="e#31#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding>
             <element signature="e#31#70#0" expanded="true" />
           </folding>
@@ -805,20 +797,6 @@
           <folding>
             <element signature="e#41#84#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-751">
-          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -846,6 +824,40 @@
           <folding>
             <element signature="e#40#74#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-751">
+          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding>
+            <element signature="e#31#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="135" column="20" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
+          <folding>
+            <element signature="e#31#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
         </state>
       </provider>
     </entry>
