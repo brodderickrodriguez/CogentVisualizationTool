@@ -8,7 +8,8 @@ import cvt.context.projection.{ColorScheme, Coordinate, Projection}
   *              Simultaneously.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
-  * {{{
+  *
+  *     {{{
   * val context = new Context()
   * val graph1 = new Grid(new Dimension(10, 10), 20, 2, true)
   * val graph2 = new Grid(new Dimension(20, 20), 20, 2, true)
@@ -39,7 +40,7 @@ import cvt.context.projection.{ColorScheme, Coordinate, Projection}
   *     space2.move(a1, Direction.right, 50)
   *     space2.move(a2, Direction.down, 30)
   * }
-  * }}}
+  *     }}}
   */
 class Context {
 
@@ -50,25 +51,29 @@ class Context {
     var agents : Array[Agent] = Array[Agent]()
 
 
-    /** Set all Projections hidden or visible.
+    /**
+      * Set all Projections hidden or visible.
       * @param visible Boolean variable to set the Projections hidden or visible.
       */
     def projectionsVisible(visible : Boolean) : Unit = for (p <- projections) p.setVisible(visible)
 
 
-    /** Adds a ColorScheme to all Projections.
+    /**
+      * Adds a ColorScheme to all Projections.
       * @param c The ColorScheme we wish to add.
       */
     def applyColorScheme(c : ColorScheme) : Unit = for (p <- projections) p.applyColorScheme(c)
 
 
-    /** Removes a ColorScheme from all Projections.
+    /**
+      * Removes a ColorScheme from all Projections.
       * @param c The ColorScheme we wish to remove.
       */
     def removeColorScheme(c : ColorScheme) : Unit = for (p <- projections) p.removeColorScheme(c)
 
 
-    /** Adds multiple Agents to all Projections at a default Coordinate.
+    /**
+      * Adds multiple Agents to all Projections at a default Coordinate.
       * Network overrides the default location by placing Agents in
       * random locations on the Projection.
       * @param agents The Array of Agents we are adding to the Context.
@@ -76,7 +81,8 @@ class Context {
     def addAgents(agents : Array[Agent]) : Unit = for (a <- agents) addAgent(a)
 
 
-    /** Adds an Agent to all Projections at a default Coordinate.
+    /**
+      * Adds an Agent to all Projections at a default Coordinate.
       * Network overrides the default location by placing Agents in
       * random locations on the Projection.
       * @param agent The Agent we are adding to all Projections.
@@ -84,7 +90,8 @@ class Context {
     def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
 
 
-    /** Adds an Agent to all Projections at a specific Coordinate.
+    /**
+      * Adds an Agent to all Projections at a specific Coordinate.
       * 'addAgent(Agent)' is dependent on this function.
       * @param agent The Agent we are adding to all Projections.
       * @param c
@@ -96,7 +103,8 @@ class Context {
     } // addAgent()
 
 
-    /** Removes a single Agent from the Context.
+    /**
+      * Removes a single Agent from the Context.
       * @param agent The Agent which we wish to remove.
       */
     def removeAgent(agent : Agent) : Unit = {
@@ -107,7 +115,8 @@ class Context {
     } // removeAgent()
 
 
-    /** Removes all Agents from the Context. I.E. Removes all Agents
+    /**
+      *  Removes all Agents from the Context. I.E. Removes all Agents
       * From all Projections in this Context.
       */
     def removeAllAgents() : Unit = {
@@ -116,7 +125,8 @@ class Context {
     } // removeAllAgents()
 
 
-    /** Add a Projection to this Context.
+    /**
+      * Add a Projection to this Context.
       * @param projection The Projection we are adding to the Context.
       */
     def addProjection(projection : Projection) : Unit = {

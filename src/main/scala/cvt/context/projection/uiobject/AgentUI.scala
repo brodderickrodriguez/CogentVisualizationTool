@@ -16,7 +16,8 @@ object AgentUINotification extends Enumeration {
 } // Direction
 
 
-/** @constructor Creates an AgentUI from an Agent object.
+/**
+  *  @constructor Creates an AgentUI from an Agent object.
   *              AgentUI's are used to represent an Agent on a specific Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
@@ -27,13 +28,15 @@ class AgentUI(val agent : Agent) extends UIObject {
     dimension = new Dimension(10, 10)
 
 
-    /** Creates a String representation of the AgentUI.
+    /**
+      * Creates a String representation of the AgentUI.
       * @return A String in the format of: "AgentUI(<ID> - t:  <AGENT_TYPE>)"
       */
     override def toString : String = "AgentUI(" + ID + " - t:" + agent.agentType + ")"
 
 
-    /** Notifies an AgentUI of a change on a specific Projection.
+    /**
+      * Notifies an AgentUI of a change on a specific Projection.
       * @param notification - the notification (or change) that has occurred.
       * @param fromProjection - The projection in which the event has occurred.
       */

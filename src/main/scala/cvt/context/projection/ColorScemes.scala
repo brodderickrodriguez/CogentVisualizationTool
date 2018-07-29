@@ -3,7 +3,8 @@ import java.awt.Color
 import cvt.context.projection.uiobject.{AgentUI, Cell}
 import cvt.AgentType
 
-/** An Object which allows for user-friendly creation and use of ColorSchemes.
+/**
+  * An Object which allows for user-friendly creation and use of ColorSchemes.
   * A ColorSchemeUse determines what the purpose of a ColorScheme is.
   */
 object ColorSchemeUse extends Enumeration {
@@ -23,7 +24,8 @@ object ColorSchemeUse extends Enumeration {
 } // ColorSchemeUse
 
 
-/** An Object which allows for user-friendly creation and use of ColorSchemes.
+/**
+  * An Object which allows for user-friendly creation and use of ColorSchemes.
   * A ColorSchemeUse ter
   *
   */
@@ -47,7 +49,8 @@ object ColorSchemes extends Enumeration {
 } // ColorSchemes
 
 
-/** @constructor A ColorScheme which disables painting AgentUIs. When applied, AgentUIs will not appear on screen.
+/**
+  *  @constructor A ColorScheme which disables painting AgentUIs. When applied, AgentUIs will not appear on screen.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
@@ -62,7 +65,8 @@ private class DoNotPaintAgent extends ColorScheme {
 } // DoNotPaintAgent
 
 
-/** @constructor A ColorScheme which assigns a random color to an AgentUI.
+/**
+  * @constructor A ColorScheme which assigns a random color to an AgentUI.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
@@ -71,7 +75,8 @@ private class AgentColorRandom extends ColorScheme {
     /** Determines what the ColorScheme is used for. See the Enumeration for [[ColorSchemeUse]] for details. */
     use = ColorSchemeUse.agentColorUse
 
-    /** Generates a random color for the AgentUI.
+    /**
+      * Generates a random color for the AgentUI.
       * @param agentUI the AgentUI which we want to get the color of.
       * @return the color of the AgentUI.
       */
@@ -84,7 +89,8 @@ private class AgentColorRandom extends ColorScheme {
 } // CogentColorRandomColorScheme
 
 
-/** @constructor A ColorScheme which determines Cell colors based the type of Agents within the Cell.
+/**
+  * @constructor A ColorScheme which determines Cell colors based the type of Agents within the Cell.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
@@ -93,7 +99,8 @@ private class CellColorByAgentType extends ColorScheme {
     /** Determines what the ColorScheme is used for. See the Enumeration for [[ColorSchemeUse]] for details. */
     use = ColorSchemeUse.cellColorUse
 
-    /** Retrieves the color for a Grid Cell based on the type of Agents in the Cell.
+    /**
+      *  Retrieves the color for a Grid Cell based on the type of Agents in the Cell.
       * @param cell the Cell we wish to get the color of.
       * @return the color for the Cell.
       */
@@ -113,7 +120,8 @@ private class CellColorByAgentType extends ColorScheme {
 } // GridCellColorByPopulation()
 
 
-/** @constructor A ColorScheme which determines Cell colors based on how many Agents are in the Cell.
+/**
+  *  @constructor A ColorScheme which determines Cell colors based on how many Agents are in the Cell.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
@@ -123,7 +131,8 @@ private class CellColorByPopulation extends ColorScheme {
     use = ColorSchemeUse.cellColorUse
 
 
-    /** Retrieves the color for a Grid Cell based on the population.
+    /**
+      *  Retrieves the color for a Grid Cell based on the population.
       * @param cell the Cell we wish to get the color of.
       * @return the color for the Cell.
       */
@@ -144,7 +153,8 @@ private class CellColorByPopulation extends ColorScheme {
 } // GridCellColorByPopulation()
 
 
-/** @constructor A default ColorScheme.
+/**
+  * @constructor A default ColorScheme.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
@@ -156,13 +166,15 @@ private class Default extends ColorScheme {
 } // Default
 
 
-/** @constructor An abstract class for ColorSchemes.
+/**
+  * @constructor An abstract class for ColorSchemes.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
 abstract class ColorScheme {
 
-    /** A boolean variable which inheriting ColorSchemes can choose to set.
+    /**
+      * A boolean variable which inheriting ColorSchemes can choose to set.
       * If true, the AgentUIs in a Projection are not drawn.
       * */
     var paintAgent : Boolean = true
@@ -172,14 +184,16 @@ abstract class ColorScheme {
     var use : ColorSchemeUse.Value = _
 
 
-    /** Retrieves the color for an AgentUI.
+    /**
+      * Retrieves the color for an AgentUI.
       * @param agentUI the AgentUI which we want to get the color of.
       * @return the color of the AgentUI.
       */
     def getAgentColor(agentUI: AgentUI) : Color = { Color.blue } // getAgentColor()
 
 
-    /** Retrieves the color for a Grid Cell.
+    /**
+      * Retrieves the color for a Grid Cell.
       * @param cell the Cell we wish to get the color of.
       * @return the color for the Cell.
       */

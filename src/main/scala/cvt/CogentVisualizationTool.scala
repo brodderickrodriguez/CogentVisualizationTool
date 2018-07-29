@@ -9,8 +9,8 @@ object CogentVisualizationTool {
     def main(args: Array[String]) : Unit = {
         println("Hello, CVT!")
 
-        //createContextWithMultipleProjections()
-        createContextWithNetwork()
+        createContextWithMultipleProjections()
+        //createContextWithNetwork()
         //createContextWithGrid()
         //createContextWithSpace()
     } // main()

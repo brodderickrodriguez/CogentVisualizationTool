@@ -5,7 +5,8 @@ import cvt.context.projection.uiobject.AgentUI
 import cvt.Agent
 
 
-/** @constructor A Network Projection. Inherits from Projection.
+/**
+  * @constructor A Network Projection. Inherits from Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   * @param _dimension     the dimension of the Network. Unit is in points.
@@ -31,7 +32,8 @@ class Network(_dimension: Dimension, _dataStructure : AdjacencyStructure) extend
     window.title = "Network Projection"
 
 
-    /** Inherited from Component. Paints the window, Agents and connections.
+    /**
+      * Inherited from Component. Paints the window, Agents and connections.
       * @param graphics the graphics component.
       */
     override def paintComponent(graphics: Graphics2D): Unit = {
@@ -49,7 +51,8 @@ class Network(_dimension: Dimension, _dataStructure : AdjacencyStructure) extend
     } // paintComponent()
 
 
-    /** Adds a connection between two Agents in the Network.
+    /**
+      * Adds a connection between two Agents in the Network.
       * @param agent1 The Agent from which the connection begins. Connection from agent1 to agent2.
       * @param agent2 The Agent from which the connection ends. Connection from agent1 to agent2.
       * @param weight The Weight of the connection.
@@ -64,7 +67,8 @@ class Network(_dimension: Dimension, _dataStructure : AdjacencyStructure) extend
     } // addConnection()
 
 
-    /** Removes a connection between two Agents in the Network. A connection to and from Agents must be known.
+    /**
+      * Removes a connection between two Agents in the Network. A connection to and from Agents must be known.
       * Meaning, a connection (A, B) is not the same as (B, A).
       * @param agent1 The From Agent. Connection from agent1 to agent2.
       * @param agent2 The To Agent. Connection from agent1 to agent2.
@@ -78,7 +82,8 @@ class Network(_dimension: Dimension, _dataStructure : AdjacencyStructure) extend
     } // addConnection()
 
 
-    /** Recursively gets the neighbors of an Agent using connections between Agents.
+    /**
+      * Recursively gets the neighbors of an Agent using connections between Agents.
       * @param agent the agent which we wish to retrieve the neighbors of.
       * @param radius is the distance in the neighborhood in which we want to get the Agents of. Unit is in connections
       *               between Agents.
@@ -86,7 +91,8 @@ class Network(_dimension: Dimension, _dataStructure : AdjacencyStructure) extend
       */
     override def getNeighbors(agent : Agent, radius : Integer) : Array[Agent] = {
 
-        /** Traverses the Network in all directions to find all Agents within the radius.
+        /**
+          * Traverses the Network in all directions to find all Agents within the radius.
           * @param agent The Agent which we are currently operating on.
           * @param radius The current radius. I.E. the number of remaining connections to traverse.
           * @return An array of Agents within a radius.
@@ -109,7 +115,8 @@ class Network(_dimension: Dimension, _dataStructure : AdjacencyStructure) extend
     } // getNeighbors()
 
 
-    /** Adds an Agent to a random Coordinate on the Projection.
+    /**
+      * Adds an Agent to a random Coordinate on the Projection.
       * @param agent the Agent which we wish to add to the projection.
       * @param c the coordinate which we wish to add the Agent to.
       */
@@ -123,13 +130,15 @@ class Network(_dimension: Dimension, _dataStructure : AdjacencyStructure) extend
     } // addAgent()
 
 
-    /** Adds an Array of Agents to the Network Projection.
+    /**
+      * Adds an Array of Agents to the Network Projection.
       * @param agents the list of Agents which we wish to add to the projection.
       */
     override def addAgents(agents: Array[Agent]) : Unit = for (a <- agents) addAgent(a)
 
 
-    /** Removes An Agent from the Network Projection.
+    /**
+      * Removes An Agent from the Network Projection.
       * @param agent the Agent which we wish to remove.
       */
     override def removeAgent(agent : Agent) : Unit = _dataStructure.remove(agentMap(agent))

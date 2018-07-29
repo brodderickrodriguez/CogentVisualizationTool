@@ -2,7 +2,8 @@ package cvt.context.projection.AdjacencyStructure
 import cvt.context.projection.uiobject.AgentUI
 
 
-/** @constructor An abstract edge class used for both the AdjacencyMatrix and AdjacencyList.
+/**
+  * @constructor An abstract edge class used for both the AdjacencyMatrix and AdjacencyList.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   * @param _toAgent the AgentUI which this edge points to.
@@ -22,7 +23,8 @@ abstract class AdjacencyStructureEdge(_toAgent : AgentUI = null, private var _we
   def weight_  (value : Double) : Unit = _weight = value
 
 
-  /** Creates a string representation of this edge. Simply uses the weight.
+  /**
+    * Creates a string representation of this edge. Simply uses the weight.
     * @return a string representation.
     */
   override def toString : String = weight.toString
@@ -30,7 +32,8 @@ abstract class AdjacencyStructureEdge(_toAgent : AgentUI = null, private var _we
 } // AdjacencyStructureEdge()
 
 
-/** @constructor A default edge.
+/**
+  * @constructor A default edge.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   * @param _toAgent the AgentUI which this edge points to.

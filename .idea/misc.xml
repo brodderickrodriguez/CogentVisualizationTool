@@ -3,4 +3,12 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_10" project-jdk-name="10" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
+  <component name="ScaladocSettings">
+    <option name="outputDir" value="$USER_HOME$/Desktop/CVT_doc" />
+    <option name="additionalFlags" value="" />
+    <option name="maxHeapSize" value="" />
+    <option name="docTitle" value="CogentVisualizationTool documentation" />
+    <option name="verbose" value="false" />
+    <option name="openInBrowser" value="false" />
+  </component>
 </project>

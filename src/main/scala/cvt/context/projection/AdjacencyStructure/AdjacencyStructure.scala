@@ -3,7 +3,8 @@ import cvt.context.projection.uiobject.AgentUI
 import scala.collection.immutable.{List, Map}
 
 
-/** An abstract class (acts like an interface) for the two Adjacency Structure types.
+/**
+  * An abstract class (acts like an interface) for the two Adjacency Structure types.
   * Used by Network Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 july 2018
@@ -20,7 +21,8 @@ abstract class AdjacencyStructure {
     def connections : Array[(AgentUI, AgentUI, Double)]
 
 
-    /** Gets the connections of an AgentUI.
+    /**
+      * Gets the connections of an AgentUI.
       * @param agent the AgentUI we wish to get the connections of
       * @return an Array of connections from the parameter AgentUI.
       *         In the format of a tuple: "(<From_AgentUI>, <To_AgentUI>, Weight)".
@@ -32,7 +34,8 @@ abstract class AdjacencyStructure {
     } // connectionsOf()
 
 
-    /** Adds an AgentUI to the AdjacencyStructure.
+    /**
+      * Adds an AgentUI to the AdjacencyStructure.
       * @param agent The AgentUI we are adding.
       */
     def add(agent : AgentUI) : Unit
@@ -44,7 +47,8 @@ abstract class AdjacencyStructure {
     def remove(agent : AgentUI) : Unit
 
 
-    /** Adds a connection between two AgentUIs already in the AdjacencyStructure.
+    /**
+      * Adds a connection between two AgentUIs already in the AdjacencyStructure.
       * @param a1 the AgentUI which the connection is from.
       * @param a2 the AgentUI which the connection is to.
       * @param weight the weight of the connection.
@@ -55,7 +59,8 @@ abstract class AdjacencyStructure {
     def addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean = false) : Boolean
 
 
-    /** Removes a connection between two AgentUIs in the AdjacencyStructure.
+    /**
+      * Removes a connection between two AgentUIs in the AdjacencyStructure.
       * Notice: the order of a1 and a2 is important when the conneciton is directed.
       * @param a1 the AgentUI where the connection begins.
       * @param a2 the AgentUI where the connection ends.
@@ -66,7 +71,8 @@ abstract class AdjacencyStructure {
 } // AdjacencyStructure
 
 
-/** A [[scala.collection.immutable.List]] representation of an Adjacency List.
+/**
+  * A [[scala.collection.immutable.List]] representation of an Adjacency List.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
@@ -84,7 +90,8 @@ class AdjacencyList() extends  AdjacencyStructure {
     } // entries
 
 
-    /** @return an Array of all connections in the AdjacencyStructure.
+    /**
+      *  @return an Array of all connections in the AdjacencyStructure.
       *         In the format of a tuple: "(<From_AgentUI>, <To_AgentUI>, Weight)".
       */
     override def connections : Array[(AgentUI, AgentUI, Double)] = {
@@ -94,7 +101,8 @@ class AdjacencyList() extends  AdjacencyStructure {
     } // getConnections
 
 
-    /** Creates a String representation of the AdjacencyList.
+    /**
+      * Creates a String representation of the AdjacencyList.
       * @return a String representation.
       */
     override def toString : String = {
@@ -108,13 +116,15 @@ class AdjacencyList() extends  AdjacencyStructure {
     } // toString
 
 
-    /** Adds an AgentUI to the AdjacencyStructure.
+    /**
+      * Adds an AgentUI to the AdjacencyStructure.
       * @param agent The AgentUI we are adding.
       */
     override def add(agent : AgentUI) : Unit = map += (agent -> List[AdjacencyStructureEdge]())
 
 
-    /** Removes an AgentUI from the AdjacencyStructure.
+    /**
+      *  Removes an AgentUI from the AdjacencyStructure.
       * @param agent The AgentUi we are removing.
       */
     override def remove(agent : AgentUI) : Unit = {
@@ -124,7 +134,8 @@ class AdjacencyList() extends  AdjacencyStructure {
     } // remove()
 
 
-    /** Adds a connection between two AgentUIs already in the AdjacencyStructure.
+    /**
+      * Adds a connection between two AgentUIs already in the AdjacencyStructure.
       * @param a1 the AgentUI which the connection is from.
       * @param a2 the AgentUI which the connection is to.
       * @param weight the weight of the connection.
@@ -142,7 +153,8 @@ class AdjacencyList() extends  AdjacencyStructure {
     } // addConnection()
 
 
-    /** Removes a connection between two AgentUIs in the AdjacencyStructure.
+    /**
+      *  Removes a connection between two AgentUIs in the AdjacencyStructure.
       * Notice: the order of a1 and a2 is important when the conneciton is directed.
       * @param a1 the AgentUI where the connection begins.
       * @param a2 the AgentUI where the connection ends.
@@ -185,7 +197,8 @@ class AdjacencyMatrix() extends AdjacencyStructure {
     } // connections
 
 
-    /** Creates a String representation of the AdjacencyList.
+    /**
+      * Creates a String representation of the AdjacencyList.
       * @return a String representation.
       */
     override def toString : String = {
@@ -195,7 +208,8 @@ class AdjacencyMatrix() extends AdjacencyStructure {
     } // toString()
 
 
-    /** Finds the index of the AgentUI inside the map
+    /**
+      * Finds the index of the AgentUI inside the map
       * @param agent the AgentUI which we wish to find the index of.
       * @return the index of the AgentUI if found. -1 if not found.
       */
@@ -205,7 +219,8 @@ class AdjacencyMatrix() extends AdjacencyStructure {
     } // indexOf()
 
 
-    /** Adds an AgentUI to the AdjacencyStructure.
+    /**
+      *  Adds an AgentUI to the AdjacencyStructure.
       * @param agent The AgentUI we are adding.
       */
     override def add(agent : AgentUI ) : Unit = {
@@ -214,7 +229,8 @@ class AdjacencyMatrix() extends AdjacencyStructure {
     } // add()
 
 
-    /** Removes an AgentUI from the AdjacencyStructure.
+    /**
+      * Removes an AgentUI from the AdjacencyStructure.
       * @param agent The AgentUi we are removing.
       */
     override def remove(agent : AgentUI) : Unit = {
@@ -225,7 +241,8 @@ class AdjacencyMatrix() extends AdjacencyStructure {
     } // remove()
 
 
-    /** Adds a connection between two AgentUIs already in the AdjacencyStructure.
+    /**
+      * Adds a connection between two AgentUIs already in the AdjacencyStructure.
       * @param a1 the AgentUI which the connection is from.
       * @param a2 the AgentUI which the connection is to.
       * @param weight the weight of the connection.
@@ -241,7 +258,8 @@ class AdjacencyMatrix() extends AdjacencyStructure {
     } // addConnection
 
 
-    /** Removes a connection between two AgentUIs in the AdjacencyStructure.
+    /**
+      * Removes a connection between two AgentUIs in the AdjacencyStructure.
       * Notice: the order of a1 and a2 is important when the conneciton is directed.
       * @param a1 the AgentUI where the connection begins.
       * @param a2 the AgentUI where the connection ends.

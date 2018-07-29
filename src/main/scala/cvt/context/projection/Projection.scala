@@ -6,7 +6,8 @@ import cvt.context.projection.uiobject.{AgentUI, Cell}
 import cvt.{Agent, AgentType}
 
 
-/** An Object which makes it user-friendly to move AgentUIs within a projection.
+/**
+  * An Object which makes it user-friendly to move AgentUIs within a projection.
   * Directions translate to Coordinates: Up: (0, -1), Right: (1, 0),
   * * Down: (0, 1), Left: (-1, 0)
   */
@@ -16,7 +17,8 @@ object Direction extends Enumeration {
     val down: Value = Value
     val left: Value  = Value
 
-    /** Converts a Direction to a Coordinate. The translation is as follows: Up: (0, -1), Right: (1, 0),
+    /**
+      * Converts a Direction to a Coordinate. The translation is as follows: Up: (0, -1), Right: (1, 0),
       * Down: (0, 1), Left: (-1, 0)
       * @param direction The Direction which we are translating.
       * @return Returns the translated Coordinate
@@ -35,7 +37,8 @@ object Direction extends Enumeration {
 } // Direction
 
 
-/** @constructor An abstract class which is inherited by Grid, Network and 2D Space. Projection is used by the Context.
+/**
+  *  @constructor An abstract class which is inherited by Grid, Network and 2D Space. Projection is used by the Context.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 28 July 2018
   * @param _dimension the dimension of the Projection.
@@ -50,18 +53,21 @@ abstract class Projection(_dimension: Dimension) extends Component {
     /** The Context which this projection is part of. Context can have multiple Projections. */
     var context : Context = _
 
-    /** Maps Agents to AgentUIs. Used for the Context to easily command projections. Projections are
+    /**
+      * Maps Agents to AgentUIs. Used for the Context to easily command projections. Projections are
       * responsible for creating and maintaining the AgentUIs. */
     protected var agentMap : Map[Agent, AgentUI] = Map[Agent, AgentUI]()
 
 
-    /** An inverse of the 'agentMap'. Allows for mapping from AgentUI to Agent.
+    /**
+      * An inverse of the 'agentMap'. Allows for mapping from AgentUI to Agent.
       * @return Returns the inverted Map.
       */
     protected def agentUIMap : Map[AgentUI, Agent] = agentMap.map(_.swap)
 
 
-    /** Sets the Projection visible or hidden.
+    /**
+      * Sets the Projection visible or hidden.
       * @param visible If true, the Projection will be visible, if false it will be hidden.
       */
     final def setVisible(visible : Boolean) : Unit = {
@@ -70,7 +76,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
     } // setVisible()
 
 
-    /** Adds a ColorScheme to the Projection.
+    /**
+      * Adds a ColorScheme to the Projection.
       * @param c The ColorScheme we wish to add.
       */
     final def applyColorScheme(c : ColorScheme) : Unit = {
@@ -79,7 +86,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
     } // applyColorScheme
 
 
-    /** Removes an active ColorScheme
+    /**
+      * Removes an active ColorScheme
       * @param c The ColorScheme which we want to remove
       */
     final def removeColorScheme(c : ColorScheme) : Unit = {
@@ -88,7 +96,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
     } // removeColorScheme
 
 
-    /** Searches the active ColorSchemes for a ColorScheme which chooses the Cell color.
+    /**
+      * Searches the active ColorSchemes for a ColorScheme which chooses the Cell color.
       * @param cell The Cell which we wish to retrieve the color of.
       * @return The color for the Cell.
       */
@@ -98,7 +107,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
     } // getCellColor
 
 
-    /** Searches the active ColorSchemes for a ColorScheme which chooses to not draw the AgentUI.
+    /**
+      * Searches the active ColorSchemes for a ColorScheme which chooses to not draw the AgentUI.
       * @return Returns a boolean if we should paint the AgentUI.
       */
     final def paintAgent : Boolean = {
@@ -107,7 +117,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
     } // paintAgent
 
 
-    /** Gets the color for the agent. Called when we repaint the Projection
+    /**
+      * Gets the color for the agent. Called when we repaint the Projection
       * @param agent The AgentUI which we are retrieving the color of.
       * @return Color to represent the AgentUI. Color is decided based on which ColorSchemes are active.
       */
@@ -118,14 +129,16 @@ abstract class Projection(_dimension: Dimension) extends Component {
     } // getAgentColor
 
 
-    /** Retrieves all Agents which are of the specified types.
+    /**
+      *  Retrieves all Agents which are of the specified types.
       * @param types is an array of the types of agents we wish to retrieve.
       * @return the list of Agents which are of the specified types.
       */
     final def getAgentsWithTypes(types: Array[AgentType.Value]) : Array[Agent] = context.agents.filter(a => types.contains(a.agentType))
 
 
-    /** Retrieves the neighbor Agents which are of the specified types.
+    /**
+      * Retrieves the neighbor Agents which are of the specified types.
       * Uses the intersection of getNeighbors() and getAgentsWithTypes().
       * @param agent the Agent which we wish to retrieve the neighbors of.
       * @param radius is the distance in the neighborhood in which we want to get the Agents of.
@@ -136,7 +149,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
         getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
 
 
-    /** Retrieves the all neighbor Agents which are of the specified type.
+    /**
+      * Retrieves the all neighbor Agents which are of the specified type.
       * @param agent the agent which we wish to retrieve the neighbors of.
       * @param radius is the distance in the neighborhood in which we want to get the Agents of.
       * @return the list of Agents in the neighborhood
@@ -144,27 +158,31 @@ abstract class Projection(_dimension: Dimension) extends Component {
     def getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
 
 
-    /** Adds an Agent to the projection to the default location of (0, 0).
+    /**
+      *  Adds an Agent to the projection to the default location of (0, 0).
       * Network projection overrides the default location by assigning a random location.
       * @param agent the agent to ass to all projections
       */
     def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
 
 
-    /** Adds an Agent to the given projection at a designated coordinate.
+    /**
+      *  Adds an Agent to the given projection at a designated coordinate.
       * @param agent the Agent which we wish to add to the projection.
       * @param c the coordinate which we wish to add the Agent to.
       */
     def addAgent(agent : Agent, c : Coordinate) : Unit
 
 
-    /** Adds a list of Agent to the given projection at a default coordinate.
+    /**
+      *  Adds a list of Agent to the given projection at a default coordinate.
       * @param agents the list of Agents which we wish to add to the projection.
       */
     def addAgents(agents : Array[Agent]) : Unit
 
 
-    /** Removes an Agent from the projection.
+    /**
+      * Removes an Agent from the projection.
       * @param agent the Agent which we wish to remove.
       */
     def removeAgent(agent : Agent) : Unit
@@ -174,7 +192,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
     def removeAllAgents() : Unit
 
 
-    /** Moves an Agent from its current cell to one in near proximity using directions
+    /**
+      * Moves an Agent from its current cell to one in near proximity using directions
       * Left, Right, Up, Down and a magnitude.
       * Projection implements move but does not use it. This is so classes which inherit
       * from projection do not have to support a move operation.
@@ -185,7 +204,8 @@ abstract class Projection(_dimension: Dimension) extends Component {
     def move(agent : Agent, direction : Direction.Value, magnitude : Int) : Unit = { }
 
 
-    /** Moves an Agent from its current cell to one designated by the parameter coordinate.
+    /**
+      * Moves an Agent from its current cell to one designated by the parameter coordinate.
       * Projection implements move but does not use it. This is so classes which inherit
       * from projection do not have to support a move operation.
       * @param agent the Agent which we wish to move.

@@ -5,7 +5,8 @@ import scala.swing.Dimension
 import cvt.context.projection.{Coordinate, Grid}
 
 
-/** @constructor A cell User Interface Object. This is used in the Grid Projection.
+/**
+  * @constructor A cell User Interface Object. This is used in the Grid Projection.
   * @param dimension the dimension of the cell in pixels.
   * @param _coordinate the x,y coordinate of where the Cell is on the Grid.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
@@ -18,7 +19,8 @@ class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends 
     val agents : ArrayBuffer[AgentUI] = new ArrayBuffer[AgentUI]()
 
 
-    /** Adds an AgentUI to this Cell.
+    /**
+      * Adds an AgentUI to this Cell.
       * @param agent The Agent we wish to add to the Cell.
       */
     def add(agent : AgentUI) : Unit = {
@@ -29,7 +31,8 @@ class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends 
     } // add()
 
 
-    /** Removes an Agent from this Cell.
+    /**
+      * Removes an Agent from this Cell.
       * @param agent The Agent we wish to remove.
       */
     def remove(agent : AgentUI) : Unit = {
@@ -45,13 +48,15 @@ class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends 
     def removeAllAgents() : Unit = agents.clear()
     
     
-    /** Builds and returns a string representation of the Cell.
+    /**
+      * Builds and returns a string representation of the Cell.
       * @return A string in the format: "Cell(coordinates:<Coordinate>)"
       */
     override def toString : String = "Cell(coordinates:" + _coordinate + ")"
     
     
-    /** Loops through all the AgentUI's in the cells and sends them a notification.
+    /**
+      * Loops through all the AgentUI's in the cells and sends them a notification.
       * @param notification is the notification we wish to send to all the AgentUI's in the Cell.
       */
     def sendNotificationToAgents(notification : AgentUINotification.Value) : Unit = {

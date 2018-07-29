@@ -4,7 +4,8 @@ import cvt.context.projection.uiobject.{AgentUI, Cell}
 import cvt.Agent
 
 
-/** @constructor Extends Projection. A two dimensional grid Projection.
+/**
+  * @constructor Extends Projection. A two dimensional grid Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 28 July 2018
   * @param _dimension   the dimension in cells.
@@ -42,7 +43,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     sizeWindowToGrid()
 
 
-    /** Shapes the window to fit all cells (called at initialization)
+    /**
+      * Shapes the window to fit all cells (called at initialization)
       * by the boarder, all cells and all gaps between cells to reshape window.
       */
     private def sizeWindowToGrid() : Unit = {
@@ -52,7 +54,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // sizeWindowToGrid()
     
     
-    /** Adds cells to the grid 2D array (called at initialization).
+    /**
+      *  Adds cells to the grid 2D array (called at initialization).
       * iterates through the 2D grid array and creates a new cell.
       */
     private def createGrid() : Unit = {
@@ -76,7 +79,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // initializeGrid
     
     
-    /** Inherited from Component. Paints the window, grid, cells and all agents within the cells.
+    /**
+      * Inherited from Component. Paints the window, grid, cells and all agents within the cells.
       * @param graphics the graphics object.
       */
     override def paintComponent(graphics: Graphics2D): Unit = {
@@ -103,7 +107,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // paintComponent()
     
     
-    /** Fetches the cell at the parameter coordinate. Takes care of when _circular is true or false.
+    /**
+      * Fetches the cell at the parameter coordinate. Takes care of when _circular is true or false.
       * @param c is the coordinate which we wish to fetch the cell of.
       * @return the cell at coordinate c.
       */
@@ -124,7 +129,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // cellAt()
     
 
-    /** Retrieves the all neighbor Agent which are of the specified type.
+    /**
+      *  Retrieves the all neighbor Agent which are of the specified type.
       * @param agent the Agent which we wish to retrieve the neighbors of.
       * @param radius is the distance in the neighborhood in which we want to get the Agents of.
       * @return the list of Agents in the neighborhood
@@ -146,7 +152,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // getNeighbors()
     
     
-    /** Adds an Agent to the given projection at a designated coordinate.
+    /**
+      * Adds an Agent to the given projection at a designated coordinate.
       * @param agent the Agent which we wish to add to the projection.
       * @param c the coordinate which we wish to add the Agent to.
       */
@@ -163,7 +170,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // addAgent()
     
 
-    /** Adds a list of Agents to the given projection at a default coordinate.
+    /**
+      * Adds a list of Agents to the given projection at a default coordinate.
       * @param agents the list of Agents which we wish to add to the projection.
       */
     override def addAgents(agents : Array[Agent]) : Unit = {
@@ -173,7 +181,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // addAgents()
     
     
-    /** Removes an Agent from the projection.
+    /**
+      * Removes an Agent from the projection.
       * @param agent the Agent which we wish to remove.
       */
     override def removeAgent(agent : Agent) : Unit = {
@@ -185,7 +194,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // removeAgent
     
     
-    /** Removes all Agents form the Grid. */
+    /**
+      * Removes all Agents form the Grid. */
     override def removeAllAgents() : Unit = {
         // iterate over the grid and remove all AgentUIs from the cells
         for (x <- grid.indices; y <- grid(0).indices) cellAt(new Coordinate(x, y)).removeAllAgents()
@@ -193,7 +203,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // removeAllAgents()
 
     
-    /** Moves an Agent from its current cell to one in near proximity using directions
+    /**
+      * Moves an Agent from its current cell to one in near proximity using directions
       * Left, Right, Up, Down and a magnitude.
       * @param agent the Agent to move.
       * @param direction the direction which we want to move.
@@ -210,7 +221,8 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     } // move()
 
 
-    /** Moves an Agent from its current cell to one designated by the parameter coordinate.
+    /**
+      *  Moves an Agent from its current cell to one designated by the parameter coordinate.
       * @param agent the Agent which we wish to move.
       * @param c the coordinate which we wish to move the Agent to.
       */

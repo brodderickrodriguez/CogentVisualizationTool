@@ -1,24 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="4" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="bbe33078-65f5-425d-bbbb-3d29fe81a5bd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/grid/Cell.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/grid/Cell.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/network/Network.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/network/Network.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/uiobject/AgentUI.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/uiobject/AgentUI.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/uiobject/UIObject.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/uiobject/UIObject.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/CogentVisualizationTool$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/CogentVisualizationTool.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/Context.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/ContextController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/ContextController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/Direction$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/Direction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/grid/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/grid/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/network/AdjacencyList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/network/AdjacencyList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/network/AdjacencyMatrix.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/network/AdjacencyMatrix.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/network/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/network/Network.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/uiobject/AgentUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/uiobject/AgentUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/uiobject/UIObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/uiobject/UIObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/default/cogentvisualizationtool-build/scala_2.12/sbt_1.0/0.1.0-SNAPSHOT/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/default/cogentvisualizationtool-build/scala_2.12/sbt_1.0/0.1.0-SNAPSHOT/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/default/cogentvisualizationtool-build/scala_2.12/sbt_1.0/0.1.0-SNAPSHOT/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/default/cogentvisualizationtool-build/scala_2.12/sbt_1.0/0.1.0-SNAPSHOT/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/resolution-cache/reports/default-cogentvisualizationtool-build-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/Agent.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/Agent.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/CogentVisualizationTool.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/CogentVisualizationTool.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructureEdge.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructureEdge.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/.history" beforeDir="false" afterPath="$PROJECT_DIR$/target/.history" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/CogentVisualizationTool$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/CogentVisualizationTool$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/Context.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/Context.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AdjacencyStructure/AdjacencyList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AdjacencyStructure/AdjacencyList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AdjacencyStructure/AdjacencyMatrix.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AdjacencyStructure/AdjacencyMatrix.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AgentColorRandom.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/AgentColorRandom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/CellColorByAgentType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/CellColorByAgentType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/CellColorByPopulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/CellColorByPopulation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/ColorScheme.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/ColorScheme.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/ColorSchemes$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/ColorSchemes$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/Default.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/Default.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/DoNotPaintAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/cvt/context/projection/DoNotPaintAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool$sources/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool$sources/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool$sources/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool$sources/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool_2.12/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool_2.12/0.1/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool_2.12/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/default/cogentvisualizationtool_2.12/0.1/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool$sources-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/default-cogentvisualizationtool_2.12-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/$global/dumpStructure/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/$global/dumpStructure/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/ivyConfiguration/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/ivyConfiguration/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -37,14 +97,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AdjacencyStructure.scala" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.scala">
+      <file leaf-file-name="AgentUI.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="197" column="38" selection-start-line="197" selection-start-column="38" selection-end-line="197" selection-end-column="38" />
+            <state relative-caret-position="239">
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
               <folding>
-                <element signature="e#51#97#0" expanded="true" />
+                <element signature="e#40#80#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Agent.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/Agent.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+              <folding>
+                <element signature="e#12#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Network.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1006">
+              <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
+              <folding>
+                <element signature="e#31#70#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdjacencyStructureEdge.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructureEdge.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -88,10 +181,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GroovyConsoleState">
+    <option name="list">
+      <list>
+        <Entry>
+          <option name="url" value="file://$APPLICATION_CONFIG_DIR$/consoles/groovy/groovy_console.groovy" />
+          <option name="moduleName" value="cogentvisualizationtool" />
+          <option name="title" value="cogentvisualizationtool (Bundled Groovy 2.4.12)" />
+        </Entry>
+      </list>
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/AvailableColorSchemes.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/ColorSchemes.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/CogentUI.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/AdjacencyStructure.scala" />
@@ -127,21 +230,22 @@
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/network/AdjacencyStructure.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/network/AdjacencyStructure/AdjacencyStructure.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Coordinate.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/Agent.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/CogentVisualizationTool.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Space.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/groovy/groovy_console.groovy" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/CogentVisualizationTool.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructureEdge.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/Agent.scala" />
       </list>
     </option>
   </component>
@@ -158,6 +262,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -237,7 +342,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -382,14 +486,15 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.15595238" side_tool="true" weight="0.2914046" />
       <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8440476" visible="true" weight="0.2914046" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8440476" visible="true" weight="0.2914046" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19285715" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19285715" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" />
       <window_info anchor="bottom" id="Build" order="13" sideWeight="0.6020833" weight="0.32809225" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="3" />
@@ -400,7 +505,6 @@
       <window_info anchor="bottom" id="Dependency Viewer" order="9" weight="0.30136988" />
       <window_info anchor="right" id="Gradle" order="7" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -450,13 +554,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -672,33 +769,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/groovy/groovy_console.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/CogentVisualizationTool.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="435">
+          <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
           <folding>
             <element signature="e#12#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/Agent.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="65" column="45" lean-forward="true" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
+        <state relative-caret-position="-258">
+          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
           <folding>
-            <element signature="e#12#38#0" expanded="true" />
+            <element signature="e#20#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="53" lean-forward="true" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
-          <folding>
-            <element signature="e#20#36#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="135">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -712,17 +813,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        <state relative-caret-position="299">
+          <caret line="261" column="8" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="207" column="8" selection-start-line="207" selection-start-column="8" selection-end-line="207" selection-end-column="8" />
+          <folding>
+            <element signature="e#31#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="224" column="8" selection-start-line="224" selection-start-column="8" selection-end-line="224" selection-end-column="8" />
+          <folding>
+            <element signature="e#31#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="107" column="8" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="e#40#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="195" column="8" selection-start-line="195" selection-start-column="8" selection-end-line="195" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+          <folding>
+            <element signature="e#41#84#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="108" selection-start-line="39" selection-start-column="108" selection-end-line="39" selection-end-column="108" />
+        <state relative-caret-position="239">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding>
             <element signature="e#40#80#0" expanded="true" />
           </folding>
@@ -731,84 +886,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1366">
-          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+        <state relative-caret-position="1006">
+          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
           <folding>
             <element signature="e#31#70#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/Cell.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="4" lean-forward="true" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-          <folding>
-            <element signature="e#41#84#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/UIObject.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#40#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2025">
-          <caret line="135" column="20" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
-          <folding>
-            <element signature="e#31#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding>
-            <element signature="e#31#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructureEdge.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+        <state relative-caret-position="75">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/ColorScemes.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/Agent.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-970">
-          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/AdjacencyStructure/AdjacencyStructure.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="197" column="38" selection-start-line="197" selection-start-column="38" selection-end-line="197" selection-end-column="38" />
+        <state relative-caret-position="296">
+          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
           <folding>
-            <element signature="e#51#97#0" expanded="true" />
+            <element signature="e#12#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
