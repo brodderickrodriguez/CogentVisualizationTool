@@ -37,14 +37,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Context.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Context.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
+            <state relative-caret-position="-651">
               <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding>
                 <element signature="e#20#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Window.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -156,13 +165,13 @@
         <option value="$PROJECT_DIR$/src/main/scala/cvt/CogentVisualizationTool.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Network.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Space.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/Agent.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala" />
       </list>
     </option>
   </component>
@@ -738,13 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -805,11 +807,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="-651">
           <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
           <folding>
             <element signature="e#20#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
