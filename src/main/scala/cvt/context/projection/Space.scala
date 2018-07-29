@@ -8,6 +8,32 @@ import cvt.Agent
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   * @param _dimension the dimension of the 2D Space. Unit is in points.
+  *
+  * {{{
+  * val context = new Context()
+  * val space = new Space(new Dimension(500, 500))
+  *
+  * context.addProjection(space)
+  * //context.projectionsVisible(true)
+  * //space.setVisible(true)
+  *
+  * val a1 = new Agent(AgentType.exciting)
+  * val a2 = new Agent()
+  * val a3 = new Agent()
+  *
+  * val ar = Array(a1, a2)
+  *
+  * context.addAgents(ar)
+  * context.addAgent(a3)
+  *
+  * space.removeAgent(a2)
+  *
+  * space.move(a1, new Coordinate(50, 50))
+  * space.move(a2, new Coordinate(50, 100))
+  *
+  * val types = Array(AgentType.exciting)
+  * val neighbors = space.getNeighborsOfTypes(a2, 50, types)
+  * }}}
   */
 class Space(_dimension: Dimension) extends Projection(_dimension) {
     window.title = "2D Space Projection"

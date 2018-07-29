@@ -7,10 +7,27 @@ import cvt.Agent
 /** @constructor Extends Projection. A two dimensional grid Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 28 July 2018
-  * @param _dimension the dimension in cells.
-  * @param _cellSize the size of the cell in pixels.
+  * @param _dimension   the dimension in cells.
+  * @param _cellSize    the size of the cell in pixels.
   * @param _cellGapSize the size of the gap between cells in pixels.
-  * @param _circular represents the grid being circular. Meaning, an agent will can traverse off grid and appear on an opposing size.
+  * @param _circular    represents the grid being circular. Meaning, an agent will can traverse off grid and appear on an opposing size.
+  * {{{
+  * val context = new Context()
+  * val g1 = new Grid(new Dimension(10, 10), 20, 2, true)
+  * context.addProjection(g1)
+  * //context.projectionsVisible(false)
+  *
+  * context.applyColorScheme(ColorSchemes.agentColorRandom)
+  * g1.applyColorScheme(ColorSchemes.cellColorByPopulation)
+  *
+  * val a1 = new Agent()
+  * val a2 = new Agent()
+  *
+  * context.addAgent(a1)
+  * context.addAgent(a2)
+  *
+  * g1.move(a1, Direction.right, 2)
+  * }}}
   */
 class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true) extends Projection(new Dimension(0,0)) {
     window.title = "Grid Projection"
