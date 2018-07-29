@@ -7,7 +7,7 @@ import cvt.Agent
 /** @constructor A 2D Space Projection. Inherits from Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
-  * @param _dimension the dimension 2D Space. Unit is in points.
+  * @param _dimension the dimension of the 2D Space. Unit is in points.
   */
 class Space(_dimension: Dimension) extends Projection(_dimension) {
     window.title = "2D Space Projection"

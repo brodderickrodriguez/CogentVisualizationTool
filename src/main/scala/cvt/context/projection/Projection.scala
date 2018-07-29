@@ -148,7 +148,7 @@ abstract class Projection(_dimension: Dimension) extends Component {
       * Network projection overrides the default location by assigning a random location.
       * @param agent the agent to ass to all projections
       */
-    final def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
+    def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
 
 
     /** Adds an Agent to the given projection at a designated coordinate.
@@ -176,17 +176,21 @@ abstract class Projection(_dimension: Dimension) extends Component {
 
     /** Moves an Agent from its current cell to one in near proximity using directions
       * Left, Right, Up, Down and a magnitude.
+      * Projection implements move but does not use it. This is so classes which inherit
+      * from projection do not have to support a move operation.
       * @param agent the Agent to move.
       * @param direction the direction which we want to move.
       * @param magnitude the amount of cells we wish to move.
       */
-    def move(agent : Agent, direction : Direction.Value, magnitude : Int) : Unit
+    def move(agent : Agent, direction : Direction.Value, magnitude : Int) : Unit = { }
 
 
     /** Moves an Agent from its current cell to one designated by the parameter coordinate.
+      * Projection implements move but does not use it. This is so classes which inherit
+      * from projection do not have to support a move operation.
       * @param agent the Agent which we wish to move.
       * @param c the coordinate which we wish to move the AgentUI to.
       */
-    def move(agent : Agent, c : Coordinate) : Unit
+    def move(agent : Agent, c : Coordinate) : Unit = { }
     
 } // Projection
