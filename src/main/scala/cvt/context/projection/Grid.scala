@@ -1,9 +1,7 @@
 package cvt.context.projection
-
 import java.awt.{Dimension, Graphics2D}
-
 import cvt.context.projection.uiobject.{AgentUI, Cell, Coordinate}
-import cvt.{Agent, AgentType}
+import cvt.Agent
 
 
 /** @constructor Extends Projection. A two dimensional grid Projection.
@@ -27,7 +25,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     private var cellMap = Map[AgentUI, Cell]()
 
 
-    
     /** Shapes the window to fit all cells (called at initialization)
       * by the boarder, all cells and all gaps between cells to reshape window.
       */

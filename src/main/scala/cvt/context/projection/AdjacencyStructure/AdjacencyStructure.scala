@@ -1,7 +1,7 @@
 package cvt.context.projection.AdjacencyStructure
 
 import cvt.context.projection.uiobject.AgentUI
-import scala.collection.immutable.{List, Map, Vector}
+import scala.collection.immutable.{List, Map}
 
 
 /** An abstract class (acts like an interface) for the two Adjacency Structure types. */

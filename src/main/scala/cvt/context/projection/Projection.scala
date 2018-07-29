@@ -1,5 +1,4 @@
 package cvt.context.projection
-
 import scala.swing.{Component, Dimension}
 import java.awt.Color
 import cvt.context.Context
@@ -33,64 +32,65 @@ abstract class Projection(dimension: Dimension) extends Component {
     var context : Context = _
     protected var agentMap : Map[Agent, AgentUI] = Map[Agent, AgentUI]()
 
+
     protected def agentUIMap : Map[AgentUI, Agent] = agentMap.map(_.swap)
 
 
-    def setVisible(visible : Boolean) : Unit = {
+    final def setVisible(visible : Boolean) : Unit = {
         window.visible = visible
         this.visible = visible
     } // setVisible()
     
     
-    def applyColorScheme(c : ColorScheme) : Unit = {
+    final def applyColorScheme(c : ColorScheme) : Unit = {
         colorSchemes = colorSchemes :+ c
         repaint()
     } // applyColorScheme
     
     
-    def removeColorScheme(c : ColorScheme) : Unit = {
+    final def removeColorScheme(c : ColorScheme) : Unit = {
         colorSchemes = colorSchemes.drop(colorSchemes.indexOf(c) + 1)
         repaint()
     } // removeColorScheme
     
     
-    def getCellColor(cell : Cell) : Color = {
+    final def getCellColor(cell : Cell) : Color = {
         for (c <- colorSchemes if c.use == ColorSchemeUse.cellColorUse) return c.getCellColor(cell)
         ColorSchemes.default.getCellColor(cell)
     } // getCellColor
     
     
-    def paintAgent : Boolean = {
+    final def paintAgent : Boolean = {
         for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse && !c.paintAgent) return false
         true
     } // paintAgent
     
     
-    def getAgentColor(agent : AgentUI) : Color = {
+    final def getAgentColor(agent : AgentUI) : Color = {
         if (agent.color != null) return agent.color
         for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse) return c.getAgentColor(agent)
         ColorSchemes.default.getAgentColor(agent)
     } // getAgentColor
 
 
-    def getAgentsWithTypes(types: Array[AgentType.Value]) : Array[Agent] = context.agents.filter(a => types.contains(a.agentType))
-    
-
-    def getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
+    final def getAgentsWithTypes(types: Array[AgentType.Value]) : Array[Agent] = context.agents.filter(a => types.contains(a.agentType))
 
 
-    /** Retrieves the neighbor AgentUIs which are of the specified types.
+    /** Retrieves the neighbor Agents which are of the specified types.
       * Uses the intersection of getNeighbors() and getAgentsWithTypes().
-      * @param agent the agentUI which we wish to retrieve the neighbors of.
+      * @param agent the Agent which we wish to retrieve the neighbors of.
       * @param radius is the distance in the neighborhood in which we want to get the AgentUIs of.
       * @param types is an array of the types of agents we wish to retrieve.
       * @return the list of AgentUIs in the neighborhood
       */
-    def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]) : Array[Agent] =
+    final def getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType.Value]) : Array[Agent] =
         getNeighbors(agent, radius).intersect(getAgentsWithTypes(types))
 
 
-    def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
+    def getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
+
+
+    final def addAgent(agent : Agent) : Unit = addAgent(agent, new Coordinate(0, 0))
     
 
     def addAgent(agent : Agent, c : Coordinate) : Unit
@@ -99,7 +99,7 @@ abstract class Projection(dimension: Dimension) extends Component {
     def addAgents(agents : Array[Agent]) : Unit
     
 
-    def removeAgent(agent : Agent) : Unit = repaint()
+    def removeAgent(agent : Agent) : Unit
 
 
     def removeAllAgents() : Unit

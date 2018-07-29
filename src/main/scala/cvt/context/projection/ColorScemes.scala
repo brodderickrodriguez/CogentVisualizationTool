@@ -1,7 +1,5 @@
 package cvt.context.projection
-
 import java.awt.Color
-
 import cvt.context.projection.uiobject.{AgentUI, Cell}
 import cvt.AgentType
 

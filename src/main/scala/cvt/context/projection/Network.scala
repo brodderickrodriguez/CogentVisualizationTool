@@ -1,21 +1,8 @@
 package cvt.context.projection
-
 import java.awt.{Dimension, Graphics2D}
-
 import cvt.context.projection.AdjacencyStructure._
 import cvt.context.projection.uiobject.{AgentUI, Coordinate}
-import cvt.{Agent, AgentType}
-
-
-/**
-  * An Enumeration which makes it easy to select the type of data structure to implement in the Network projection.
-  * AdjacencyMatrix uses a two-dimensional Array of Edges.
-  * AdjacencyList uses a
-  */
-object AdjacencyStructures extends Enumeration {
-    val matrix : AdjacencyStructure = new AdjacencyMatrix
-    val list : AdjacencyStructure = new AdjacencyList
-} // AdjacencyStructures
+import cvt.Agent
 
 
 /**
@@ -44,11 +31,8 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure) extends
     } // paintComponent()
     
     
-    def addConnection(agent1 : Agent, agent2 : Agent, weight : Double, directed : Boolean) : Unit = {
-        if (!agentMap.contains(agent1) || !agentMap.contains(agent2)) {
-            println(agentMap.contains(agent1) + ", " + agentMap.contains(agent2))
-            return
-        }
+    def addConnection(agent1 : Agent, agent2 : Agent, weight : Double, directed : Boolean = false) : Unit = {
+        if (!agentMap.contains(agent1) || !agentMap.contains(agent2)) return
         val aui1 = agentMap(agent1)
         val aui2 = agentMap(agent2)
         dataStructure.addConnection(aui1, aui2, weight, directed)
@@ -63,23 +47,23 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure) extends
 
     
     override def getNeighbors(agent : Agent, radius : Integer) : Array[Agent] = {
+
+        def recursivelyGetNeighbors(agent : AgentUI, radius : Integer) : Array[Agent] = {
+            var results = Array[Agent]()
+            if (radius == 0) return results
+
+            for ((_, a2, _) <- dataStructure.connectionsOf(agent)) {
+                for (a3 <- getNeighbors(agentUIMap(a2), radius - 1)) results = results :+ a3
+                results = results :+ agentUIMap(a2)
+            } // for each connection in connections of agent
+
+            results.distinct
+        } // recursivelyGetNeighbors()
+
         val aui = agentMap(agent)
         val results = recursivelyGetNeighbors(aui, radius)
         results.drop(results.indexOf(agent) + 1)
     } // getNeighbors()
-
-
-    private def recursivelyGetNeighbors(agent : AgentUI, radius : Integer) : Array[Agent] = {
-        var results = Array[Agent]()
-        if (radius == 0) return results
-
-        for ((_, a2, _) <- dataStructure.connectionsOf(agent)) {
-            for (a3 <- getNeighbors(agentUIMap(a2), radius - 1)) results = results :+ a3
-            results = results :+ agentUIMap(a2)
-        } // for each connection in connections of agent
-
-        results.distinct
-    } // recursivelyGetNeighbors()
 
     
     override def addAgent(agent : Agent, c : Coordinate) : Unit = {
@@ -103,8 +87,6 @@ class Network(_dimension: Dimension, dataStructure : AdjacencyStructure) extends
         for ((a1, _, _) <- dataStructure.connections) dataStructure.remove(a1)
         repaint()
     } // removeAllAgents()
-
-
 
 
     override def move(agent : Agent, direction : Direction.Value, magnitude : Int) : Unit = {  }

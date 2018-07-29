@@ -1,5 +1,4 @@
 package cvt.context.projection
-
 import scala.swing.{BorderPanel, Dimension, MainFrame}
 
 /**

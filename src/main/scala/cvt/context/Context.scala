@@ -1,5 +1,4 @@
 package cvt.context
-
 import cvt.Agent
 import cvt.context.projection.uiobject.Coordinate
 import cvt.context.projection.{Projection, ColorScheme}
