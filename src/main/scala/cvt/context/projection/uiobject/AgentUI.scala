@@ -16,12 +16,10 @@ object AgentUINotification extends Enumeration {
 } // Direction
 
 
-/**
-  * @constructor Creates an AgentUI from an Agent object.
+/** @constructor Creates an AgentUI from an Agent object.
   *              AgentUI's are used to represent an Agent on a specific Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
-  *
   * @param agent The Agent we are creating an AgentUI for.
   */
 class AgentUI(val agent : Agent) extends UIObject {

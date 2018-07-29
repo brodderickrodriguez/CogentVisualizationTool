@@ -162,7 +162,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     override def removeAgent(agent : Agent) : Unit = {
         if (!agentMap.contains(agent)) return
         val aui = agentMap(agent)
-        // if the AgentUI has not been assigned a cell, no need to remove it.
         cellMap(aui).remove(aui)
         cellMap -= aui
         repaint()
@@ -173,7 +172,6 @@ class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int =
     override def removeAllAgents() : Unit = {
         // iterate over the grid and remove all AgentUIs from the cells
         for (x <- grid.indices; y <- grid(0).indices) cellAt(new Coordinate(x, y)).removeAllAgents()
-        // call super to empty allAgents and repaint
         repaint()
     } // removeAllAgents()
 

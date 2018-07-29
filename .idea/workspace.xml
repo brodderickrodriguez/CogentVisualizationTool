@@ -37,34 +37,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Context.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Context.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="5" selection-start-line="5" selection-end-line="9" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Agent.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/Agent.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="65" column="45" lean-forward="true" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
+            <state relative-caret-position="399">
+              <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding>
-                <element signature="e#12#38#0" expanded="true" />
+                <element signature="e#20#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgentUI.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AgentUI.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="555">
+              <caret line="39" column="108" selection-start-line="39" selection-start-column="108" selection-end-line="39" selection-end-column="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Grid.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2610">
+              <caret line="174" selection-start-line="174" selection-end-line="174" />
               <folding>
-                <element signature="e#41#81#0" expanded="true" />
+                <element signature="e#31#70#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,11 +158,11 @@
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Space.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Window.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Coordinate.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Projection.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/Agent.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala" />
       </list>
     </option>
   </component>
@@ -407,7 +407,7 @@
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1327381" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19285715" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" />
       <window_info anchor="bottom" id="Build" order="13" sideWeight="0.6020833" weight="0.32809225" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -776,13 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/Agent.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
@@ -793,19 +786,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/Grid.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" selection-start-line="5" selection-end-line="9" selection-end-column="4" />
+        <state relative-caret-position="2610">
+          <caret line="174" selection-start-line="174" selection-end-line="174" />
+          <folding>
+            <element signature="e#31#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/projection/uiobject/AgentUI.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="555">
+          <caret line="39" column="108" selection-start-line="39" selection-start-column="108" selection-end-line="39" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/cvt/context/Context.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
           <folding>
-            <element signature="e#41#81#0" expanded="true" />
+            <element signature="e#20#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
