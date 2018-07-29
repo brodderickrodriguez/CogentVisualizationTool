@@ -62,7 +62,6 @@ object CogentVisualizationTool {
 
         context.addProjection(space)
         context.addProjection(space2)
-
         //context.projectionsVisible(true)
         //space.setVisible(true)
 
