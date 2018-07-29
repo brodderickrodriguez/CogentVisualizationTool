@@ -1,6 +1,8 @@
 package cvt.context.projection
 
-/** A Coordinate is used by the Projections and UIObjects as reference points to actual points on the window.
+/** @constructor A Coordinate is used by the Projections and UIObjects as reference points to actual points on the window.
+  * @author Brodderick Rodriguez (bcr@brodderick.com)
+  * @since 29 July 2018
   * @param _x the x coordinate
   * @param _y the y coordinate
   */
@@ -11,6 +13,7 @@ class Coordinate(_x : Int, _y : Int) {
 
     /** A getter for the Y value of this Coordinate. */
     val Y : Int = _y
+
 
     /** An Alternative Constructor that creates another Coordinate object using the X and Y
       * values of the parameter Coordinate.
