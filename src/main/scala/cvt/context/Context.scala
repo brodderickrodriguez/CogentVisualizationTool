@@ -1,7 +1,6 @@
 package cvt.context
 import cvt.Agent
-import cvt.context.projection.uiobject.Coordinate
-import cvt.context.projection.{Projection, ColorScheme}
+import cvt.context.projection.{ColorScheme, Coordinate, Projection}
 
 
 class Context {

@@ -1,7 +1,7 @@
 package cvt.context.projection
 import java.awt.{Dimension, Graphics2D}
 import cvt.context.projection.AdjacencyStructure._
-import cvt.context.projection.uiobject.{AgentUI, Coordinate}
+import cvt.context.projection.uiobject.AgentUI
 import cvt.Agent
 
 
@@ -10,6 +10,7 @@ import cvt.Agent
   * @param _dimension the dimension of the context
   */
 class Network(_dimension: Dimension, dataStructure : AdjacencyStructure) extends Projection(_dimension) {
+    window.title = "Network Projection"
 
 
     /** Inherited from Component. Paints the window, grid, cells and all agents within the cells.

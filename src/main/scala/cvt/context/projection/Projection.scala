@@ -2,16 +2,25 @@ package cvt.context.projection
 import scala.swing.{Component, Dimension}
 import java.awt.Color
 import cvt.context.Context
-import cvt.context.projection.uiobject.{AgentUI, Cell, Coordinate}
+import cvt.context.projection.uiobject.{AgentUI, Cell}
 import cvt.{Agent, AgentType}
 
 
+/** An Object which makes it user-friendly to move AgentUIs within a projection.
+  * Directions translate to Coordinates: Up: (0, -1), Right: (1, 0),
+  * * Down: (0, 1), Left: (-1, 0)
+  */
 object Direction extends Enumeration {
     val up: Value = Value
     val right: Value = Value
     val down: Value = Value
     val left: Value  = Value
 
+    /** Converts a Direction to a Coordinate. The translation is as follows: Up: (0, -1), Right: (1, 0),
+      * Down: (0, 1), Left: (-1, 0)
+      * @param direction The Direction which we are translating.
+      * @return Returns the translated Coordinate
+      */
     def toCoordinate(direction: Direction.Value) : Coordinate = {
         var c : Coordinate = new Coordinate(0, 0)
         direction match {
@@ -22,50 +31,86 @@ object Direction extends Enumeration {
         } // match direction
         c
     } // toCoordinate()
+
 } // Direction
 
 
+/** @constructor Extends Projection. A two dimensional grid Projection.
+  * @author Brodderick Rodriguez (bcr@brodderick.com)
+  * @since 28 July 2018
+  * @param _dimension the dimension of the Projection.
+  */
+abstract class Projection(_dimension: Dimension) extends Component {
+    /** The window which contains the Projection. */
+    protected val window = new Window(_dimension, this)
 
-abstract class Projection(dimension: Dimension) extends Component {
-    protected val window = new Window(dimension, this)
-    protected var colorSchemes : Array[ColorScheme] = new Array[ColorScheme](0)
+    /** An Array of current ColorSchemes on this Projection. */
+    private var colorSchemes : Array[ColorScheme] = new Array[ColorScheme](0)
+
+    /** The Context which this projection is part of. Context can have multiple Projections. */
     var context : Context = _
+
+    /** Maps Agents to AgentUIs. Used for the Context to easily command projections. Projections are
+      * responsible for creating and maintaining the AgentUIs. */
     protected var agentMap : Map[Agent, AgentUI] = Map[Agent, AgentUI]()
 
 
+    /** An inverse of the 'agentMap'. Allows for mapping from AgentUI to Agent.
+      * @return Returns the inverted Map.
+      */
     protected def agentUIMap : Map[AgentUI, Agent] = agentMap.map(_.swap)
 
 
+    /** Sets the Projection visible or hidden.
+      * @param visible If true, the Projection will be visible, if false it will be hidden.
+      */
     final def setVisible(visible : Boolean) : Unit = {
         window.visible = visible
         this.visible = visible
     } // setVisible()
-    
-    
+
+
+    /** Adds a ColorScheme to the Projection.
+      * @param c The ColorScheme we wish to add.
+      */
     final def applyColorScheme(c : ColorScheme) : Unit = {
         colorSchemes = colorSchemes :+ c
         repaint()
     } // applyColorScheme
-    
-    
+
+
+    /** Removes an active ColorScheme
+      * @param c The ColorScheme which we want to remove
+      */
     final def removeColorScheme(c : ColorScheme) : Unit = {
         colorSchemes = colorSchemes.drop(colorSchemes.indexOf(c) + 1)
         repaint()
     } // removeColorScheme
-    
-    
+
+
+    /** Searches the active ColorSchemes for a ColorScheme which chooses the Cell color.
+      * @param cell The Cell which we wish to retrieve the color of.
+      * @return The color for the Cell.
+      */
     final def getCellColor(cell : Cell) : Color = {
         for (c <- colorSchemes if c.use == ColorSchemeUse.cellColorUse) return c.getCellColor(cell)
         ColorSchemes.default.getCellColor(cell)
     } // getCellColor
-    
-    
+
+
+    /** Searches the active ColorSchemes for a ColorScheme which chooses to not draw the AgentUI.
+      * @return Returns a boolean if we should paint the AgentUI.
+      */
     final def paintAgent : Boolean = {
         for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse && !c.paintAgent) return false
         true
     } // paintAgent
-    
-    
+
+
+    /** Gets the color for the agent. Called when we repaint the Projection
+      * @param agent The AgentUI which we are retrieving the color of.
+      * @return Color to represent the AgentUI. Color is decided based on which ColorSchemes are active.
+      */
     final def getAgentColor(agent : AgentUI) : Color = {
         if (agent.color != null) return agent.color
         for (c <- colorSchemes if c.use == ColorSchemeUse.agentColorUse) return c.getAgentColor(agent)

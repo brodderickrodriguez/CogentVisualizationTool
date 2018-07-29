@@ -1,6 +1,6 @@
 package cvt.context.projection
 import java.awt.{Dimension, Graphics2D}
-import cvt.context.projection.uiobject.{AgentUI, Coordinate}
+import cvt.context.projection.uiobject.AgentUI
 import cvt.Agent
 
 
@@ -8,6 +8,7 @@ import cvt.Agent
   * @param _dimension the dimension of the projection
   */
 class Space(_dimension: Dimension) extends Projection(_dimension) {
+    window.title = "2D Space Projection"
 
     private var tree = Array[AgentUI]()
 

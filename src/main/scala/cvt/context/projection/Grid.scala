@@ -1,24 +1,24 @@
 package cvt.context.projection
 import java.awt.{Dimension, Graphics2D}
-import cvt.context.projection.uiobject.{AgentUI, Cell, Coordinate}
+import cvt.context.projection.uiobject.{AgentUI, Cell}
 import cvt.Agent
 
 
 /** @constructor Extends Projection. A two dimensional grid Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
-  * @since 10 July 2018
-  *
+  * @since 28 July 2018
   * @param _dimension the dimension in cells.
   * @param _cellSize the size of the cell in pixels.
   * @param _cellGapSize the size of the gap between cells in pixels.
   * @param _circular represents the grid being circular. Meaning, an agent will can traverse off grid and appear on an opposing size.
   */
 class Grid(val _dimension: Dimension, _cellSize : Int = 50, _cellGapSize : Int = 2, _circular : Boolean = true) extends Projection(new Dimension(0,0)) {
-    // two dimensional representation of grid in cells
+    window.title = "Grid Projection"
+    /** Two-dimensional representation of grid in cells. */
     private val grid : Array[Array[Cell]] = Array.ofDim[Cell](_dimension.width, _dimension.height)
-    // maps AgentUIs to specific cells. This replaces the need for each AgentUI to have an attribute pointer to their current cell
+    /** Maps AgentUIs to specific cells. This replaces the need for each AgentUI to have an attribute (pointer) to their current cell. */
     private var cellMap = Map[AgentUI, Cell]()
-    // boolean variable to tack if grid was created. Used at initialization (required for large dimensions)
+    /** Boolean variable to tack if grid was created. Used at initialization (required for large dimensions) */
     private var createdGrid = false
     // create grid and resize window to fit all cells
     createGrid()

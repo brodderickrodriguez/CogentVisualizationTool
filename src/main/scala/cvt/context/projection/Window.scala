@@ -7,8 +7,6 @@ import scala.swing.{BorderPanel, Dimension, MainFrame}
   * @param projection the projection to add to the window
   */
 class Window(val dimension: Dimension, private val projection: Projection) extends MainFrame {
-    //println("[Window] initializing")
-    
     visible = true // default value
     resizable = false
     preferredSize = dimension

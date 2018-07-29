@@ -2,7 +2,7 @@ package cvt.context.projection.uiobject
 
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
-import cvt.context.projection.Grid
+import cvt.context.projection.{Coordinate, Grid}
 
 
 /** @constructor A cell User Interface Object. This is used in the Grid Projection.
