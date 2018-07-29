@@ -1,10 +1,8 @@
 package cvt
 import java.awt.Dimension
-
 import cvt.context.Context
 import cvt.context.projection.{ColorSchemes, Coordinate, Grid, _}
 import cvt.context.projection.AdjacencyStructure._
-
 
 object CogentVisualizationTool {
     
@@ -15,10 +13,10 @@ object CogentVisualizationTool {
         //createContextWithNetwork()
         //createContextWithGrid()
         //createContextWithSpace()
-
     } // main()
 
 
+    /** Demonstrates how to create multiple Projections. */
     def createContextWithMultipleProjections() : Unit = {
         val context = new Context()
         val graph1 = new Grid(new Dimension(10, 10), 20, 2, true)
@@ -54,6 +52,7 @@ object CogentVisualizationTool {
     } // createContextWithMultipleProjections()
 
 
+    /** Demonstrates how to create a 2D Space Projection. */
     def createContextWithSpace() : Unit = {
         val context = new Context()
         val space = new Space(new Dimension(500, 500))
@@ -87,6 +86,7 @@ object CogentVisualizationTool {
     } // createContextWithSpace
 
 
+    /** Demonstrates how to create a Network Projection. */
     def createContextWithNetwork() : Unit = {
         val context = new Context()
         val network1 = new Network(new Dimension(500, 500), new AdjacencyList())
@@ -111,6 +111,7 @@ object CogentVisualizationTool {
     } // createContextWithNetwork()
 
 
+    /** Demonstrates how to create a Grid Projection. */
     def createContextWithGrid() : Unit = {
         val context = new Context()
         val g1 = new Grid(new Dimension(10, 10), 20, 2, true)
