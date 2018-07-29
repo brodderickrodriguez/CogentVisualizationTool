@@ -35,7 +35,7 @@ object Direction extends Enumeration {
 } // Direction
 
 
-/** @constructor Extends Projection. A two dimensional grid Projection.
+/** @constructor An abstract class which is inherited by Grid, Network and 2D Space. Projection is used by the Context.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 28 July 2018
   * @param _dimension the dimension of the Projection.

@@ -3,6 +3,11 @@ import cvt.Agent
 import cvt.context.projection.{ColorScheme, Coordinate, Projection}
 
 
+/**
+  * @constructor
+  * @author Brodderick Rodriguez (bcr@brodderick.com)
+  * @since 28 July 2018
+  */
 class Context {
     
     private var projections : Array[Projection] = Array[Projection]()
