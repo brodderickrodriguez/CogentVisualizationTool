@@ -37,7 +37,7 @@ import cvt.Agent
   */
 class Space(_dimension: Dimension) extends Projection(_dimension) {
     window.title = "2D Space Projection"
-    /**  */
+    /**  The array of AgentUI objects in this 2D Space projection. */
     private var agentUIArray = Array[AgentUI]()
 
     /** Paints the 2D Space. Inherited from [[scala.swing.Component]].

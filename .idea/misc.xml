@@ -4,7 +4,7 @@
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
   <component name="ScaladocSettings">
-    <option name="outputDir" value="$USER_HOME$/Desktop/CVT_doc" />
+    <option name="outputDir" value="$USER_HOME$/Desktop/documentation" />
     <option name="additionalFlags" value="" />
     <option name="maxHeapSize" value="" />
     <option name="docTitle" value="CogentVisualizationTool documentation" />

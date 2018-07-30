@@ -12,7 +12,7 @@ class Window(_dimension: Dimension, _projection: Projection) extends MainFrame {
     visible = true // default value
     /** resizable is set to false. This means the window cannot be dragged to be enlarged. */
     resizable = false
-    /** Set the preferedSize to the parameter dimension. */
+    /** Set the preferred size to the parameter dimension. */
     preferredSize = _dimension
 
     // add all contents to the GUI (order matters!)

@@ -1,5 +1,4 @@
 package cvt.context.projection.uiobject
-
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.Dimension
 import cvt.context.projection.{Coordinate, Grid}
@@ -7,12 +6,13 @@ import cvt.context.projection.{Coordinate, Grid}
 
 /**
   * @constructor A cell User Interface Object. This is used in the Grid Projection.
-  * @param dimension the dimension of the cell in pixels.
+  * @param _dimension the dimension of the cell in pixels.
   * @param _coordinate the x,y coordinate of where the Cell is on the Grid.
+  * @param _grid the Grid this cell belongs to.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
   */
-class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends UIObject {
+class Cell(_dimension : Dimension, _coordinate: Coordinate, _grid : Grid) extends UIObject {
     /** A getter for the Cell's coordinates. */
     val coordinate : Coordinate = _coordinate
     /** an ArrayBuffer containing pointers to all the AgentUI's in the cell. */
@@ -61,7 +61,7 @@ class Cell(dimension : Dimension, _coordinate: Coordinate, grid : Grid) extends 
       */
     def sendNotificationToAgents(notification : AgentUINotification.Value) : Unit = {
         for (a <- agents if a != null)
-            a.receiveNotification(notification, grid)
+            a.receiveNotification(notification, _grid)
     } // sendNotificationToAgents()
     
     

@@ -40,7 +40,7 @@ object AgentType extends  Enumeration {
   */
 class Agent {
     /** A mock type for the Agent. */
-    var agentType : AgentType.Value = AgentType.boring
+    var agentType : AgentType.Value = AgentType.daring
     /** The Context which this Agent is a part of. */
     var context : Context = _
 

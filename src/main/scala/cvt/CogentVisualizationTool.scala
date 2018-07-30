@@ -1,7 +1,7 @@
 package cvt
 import java.awt.Dimension
 import cvt.context.Context
-import cvt.context.projection.{ColorSchemes, Coordinate, Grid, _}
+import cvt.context.projection._
 import cvt.context.projection.AdjacencyStructure._
 
 object CogentVisualizationTool {

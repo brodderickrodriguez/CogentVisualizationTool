@@ -1,0 +1,468 @@
+Id,Name,Shape Library,Page ID,Contained By,Line Source,Line Destination,Source Arrow,Destination Arrow,Text Area 1,Text Area 2,Text Area 3
+1,Page,,,,,,,,Page 1,,
+2,Class,UML,1,,,,,,Cell : UIObject,"- _dimension : Dimension
+- _coordinate : Coordinate 
+- _grid : Grid
++ coordinate : Coordinate = _coordinate 
++ agents : ArrayBuffer[AgentUI]","+ Cell(_dimension : Dimension, _coordinate : Coordinate, _grid : Grid) : Cell
++ add(agent : AgentUI) : void
++ remove(agent : AgentUI) : void
++ removeAllAgents() : void
++ toString() : String
++ sendNotificationToAgents(notification : AgentUINotification) : void"
+3,Class,UML,1,,,,,,Coordinate ,"- _x : Integer
++ X : Integer
+- _y : Integer
++ Y : Integer","+ Coordinate(x, y) : Coordinate
++ Coordinate(c : Coordinate) : Coordinate
++ toString() : String
++ equals(c : Coordinate) : Boolean
++ add(c : Coordinate) : Coordinate
++ add(m : Integer) : Coordinate
++ addX(m : Integer) : Coordinate
++ addY(m : Integer) : Coordinate
++ subtract(c : Coordinate) : Coordinate
++ subtract(m : Integer) : Coordinate
++ subX(m : Integer) : Coordinate
++ subY(m : Integer) : Coordinate
++ multiply(m : Integer) : Coordinate"
+4,Class,UML,1,,,,,,Network : Projection,"- _dimension : Dimension 
+- _dataStructure : AdjacencyStructure","+ Network(_dimension : Dimension, dataStructure : AdjacencyStructure) : Network
+- paintComponent(graphics : Graphics2D) : void
++ addConnection(agent1 : Agent, agent2 : Agent, weight : Double, directed : Boolean) : void
++ removeConnection(agent1 : Agent, agent2 : Agent) : void
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void"
+5,Class,UML,1,,,,,,AgentUI : UiObject,"- _agent : Agent
++ dimension : Dimension = (10, 10)","+ AgentUI(agent : Agent) : AgentUI 
++ agent : Agent = _agent
++ toString() : String
++ receiveNotification(notification : AgentUINotification, fromProjection : Projection) : void"
+6,Class,UML,1,,,,,,ColorScheme {Abstract},"+ use : ColorSchemeUse
++ paintAgent : Boolean =  true","+ ColorScheme(name : Stirng) : void
++ getAgentColor(agent : AgentUI) : awt.Color
++ getCellColor(cell : Cell): awt.Color
++ getBackgroundColor(context : Context) : awt.Color"
+7,Class,UML,1,,,,,,Projection : Component {Abstract},"- _dimension : awt.Dimension
+# window : Window
+- colorSchemes : Array[ColorScheme]
+# agentMap : Map[Agent, AgentUI]","+ Projection(_dimension : Dimension) : Projection
+# agentUIMap : Map[AgentUI, Agent]
++ setVisible(visible : Boolean) : void
++ applyColorScheme(c : ColorScheme) : void
++ removeColorScheme(c : ColorScheme) : void
++ getCellColor(cell : Cell) : Color
++ paintAgent() : Boolean
++ getAgentColor(agent : UIAgent) : Color
++ getAgentsWithTypes(types : Array[AgentType]) : Array[Agent]
++ getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType]) : Array[Agent]
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent) : void 
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void
+- move(agent : Agent, c : Coordinate) : void 
+- move(agent: Agent, direction : Direction, magnitude : Integer) : void"
+8,Class,UML,1,,,,,,Grid : Projection,"+ _dimension : Dimension
+- _cellSize: Integer = 50
+- _cellGapSize : Integer = 2
+- _circular : Boolean = true
+- cellMap : Map[AgentUI, Cell]
+- createdGrid : Boolean = false
+- grid : Array[Cell][Cell]","+ Grid(_dimension : Dimension, cellSize : Integer, cellGapSize : Integer, circular : Boolean, controller : ContextController) : Grid 
+- sizeWindowToGrid() : void
+- createGrid() : void
+- paintComponent(graphics : Graphics2D) : void
+- cellAt(c : Coordinate) : Cell
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void
+- move(agent : Agent, c : Coordinate) : void 
+- move(agent: Agent, direction : Direction, magnitude : Integer) : void"
+9,Class,UML,1,,,,,,Space : Projection,"- _dimension : Dimension
+- agentUIArray : Array[AgentUI]","+ Space(_dimension: Dimension) : Space
+- paintComponent(graphics : Graphics2D) : void
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void
+- move(agent: AgentUI, direction : Direction, magnitude : Integer) : void
+- move(agent : AgentUI, c : Coordinate) : void "
+10,Class,UML,1,,,,,,Window : MainFrame,"- _dimension : Dimension
+- _projection : Projection
++ visible : Boolean = true
++ resizable : Boolean = false","+ Window(_dimension : Dimension, _projection : Projection) : Window"
+11,Class,UML,1,,,,,,UIObject {Abstract},"+ color : awt.Color 
++ ID : Integer = -1
++ description : String = ""[UIObject]""
++ dimension : Dimension = (0, 0)
++ absoluteLocation : Coordinate = (0, 0)
+- idLabel : TextLabel",+ center() : Coordinate 
+12,Class,UML,1,,,,,,Agent,"+ agentType : AgentType
++ context : Context
+","+ Agent() : void
++ Agent(t : AgentType) : void
++ randomDirection() : Direction
++ receiveNotification(notification : AgentNotification, fromProjection : Projection) : void"
+13,Class,UML,1,,,,,,"<<Enumeration>>
+AgentUINotification","+ addedAgentToCell
++ removedAgentFromCell
++ removingAllAgentsFromCell",
+14,Class,UML,1,,,,,,"<<Enumeration>>
+ColorSchemeUse","+ defaultColorUse 
++ backgroundColorUse
++ agentColorUse
++ cellColorUse
++ connectionColorUse",
+15,Class,UML,1,,,,,,"<<Enumeration>>
+ColorSchemes","+ default
++ cellColorByPopulation
++ cellColorByAgentType
++ agentColorRandom
++ doNotPaintAgent",
+16,Class,UML,1,,,,,,Default : ColorScheme,+ use = defaultColorUse : ColorSchemeUse,+ Default() : Default
+17,Class,UML,1,,,,,,CellColorByPopulation: ColorScheme,+ use = cellColorUse : ColorSchemeUse,"+ CellColorByPopulation() : CellColorByPopultation
++ getCellColor(cell : Cell): awt.Color"
+18,Class,UML,1,,,,,,AdjacencyStructure { Abstract },,"+ agents : Array[AgentUI]
++ connections : Array[(AgentUI, AgentUI, Double]
++ connectionsOf(agent : AgentUI) : (AgentUI, AgentUI, Double)
++ add(agent : AgentUI) : void 
++ remove(agent : AgentUI) : void 
++ addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean) : Boolean
++ removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean"
+19,Class,UML,1,,,,,,AdjacencyMatrix : AdjacencyStructure,"- map : Map[AgentUI, Array[AdjacencyStructureEdge]]","+ AdjacencyMatrix() : AdjacencyMatrix
++ agents : Array[AgentUI]
++ connections : Array[(AgentUI, AgentUI, Double]
++ toString() : String
+- indexOf(agent : AgentUI) : Integer
++ add(agent : AgentUI) : void 
++ remove(agent : AgentUI) : void 
++ addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean) : Boolean
++ removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean"
+20,Class,UML,1,,,,,,AdjacencyList : AdjacencyStructure,"- map : Map[AgentUI, List[AdjacencyStructureEdge]]","+ AdjacencyList() : AdjacencyList
++ agents : Array[AgentUI]
++ connections : Array[(AgentUI, AgentUI, Double]
++ toString() : String
+- indexOf(agent : AgentUI) : Integer
++ add(agent : AgentUI) : void 
++ remove(agent : AgentUI) : void 
++ addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean) : Boolean
++ removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean"
+21,Class,UML,1,,,,,,Context,"- projections : Array[Projection]
++ agents : Array[Agent]","+ Context() : Context
++ projectionsVisible(visible : Boolean) : void
++ applyColorScheme(c : ColorScheme) : void
++ removeColorScheme(c : ColorScheme) : void
++ addAgents(agents : Array[Agent]) : void
++ addAgent(agent : Agent) : void 
++ addAgent(agent : Agent, c : Coordinate) : void 
++ removeAgent(agent : Agent) : void
++ removeAllAgents() : void
++ addProjection(p : Projection) : void"
+22,Class,UML,1,,,,,,AdjacencyStructureEdge { Abstract },"- _toAgent : AgentUI
+- _weight : Double","+ toAgent() : AgentUI
++ weight() : Double
++ weight_(value : Double) : void
++ toString() : String"
+23,Class,UML,1,,,,,,DefaultEdge : AdjacencyStructureEdge,,+ DefaultEdge() : DefaultEdge
+24,Class,UML,1,,,,,,"<<Enumeration>>
+AgentNotification",+ move,
+25,Class,UML,1,,,,,,"<<Enumeration>>
+AgentType","+ boring
++ exciting
++ daring",
+26,Class,UML,1,,,,,,CellColorByAgentType : ColorScheme,+ use = cellColorUse : ColorSchemeUse,"+ CellColorByAgentType() : CellColorByAgentType
++ getCellColor(cell : Cell): awt.Color"
+27,Class,UML,1,,,,,,AgentColorRandom : ColorScheme,+ use = agentColorUse : ColorSchemeUse,"+ AgentColorRandom() : AgentColorRandom
++ getAgentColor(agent : AgentUI) : awt.Color"
+28,Class,UML,1,,,,,,DoNotPaintAgent : ColorScheme,"+ use = agentColorUse : ColorSchemeUse
++ paintAgent : Boolean = false",+ DoNotPaintAgent() : DoNotPaintAgent
+29,Class,UML,1,,,,,,"<<Enumeration>>
+Direction","+ up
++ down
++ left
++ right",+ toCoordinate(d :Direction) : Coordinate
+30,Class,UML,1,,,,,,Cell : UIObject,"- _dimension : Dimension
+- _coordinate : Coordinate 
+- _grid : Grid
++ coordinate : Coordinate = _coordinate 
++ agents : ArrayBuffer[AgentUI]","+ Cell(_dimension : Dimension, _coordinate : Coordinate, _grid : Grid) : Cell
++ add(agent : AgentUI) : void
++ remove(agent : AgentUI) : void
++ removeAllAgents() : void
++ toString() : String
++ sendNotificationToAgents(notification : AgentUINotification) : void"
+31,Class,UML,1,,,,,,Coordinate ,"- _x : Integer
++ X : Integer
+- _y : Integer
++ Y : Integer","+ Coordinate(x, y) : Coordinate
++ Coordinate(c : Coordinate) : Coordinate
++ toString() : String
++ equals(c : Coordinate) : Boolean
++ add(c : Coordinate) : Coordinate
++ add(m : Integer) : Coordinate
++ addX(m : Integer) : Coordinate
++ addY(m : Integer) : Coordinate
++ subtract(c : Coordinate) : Coordinate
++ subtract(m : Integer) : Coordinate
++ subX(m : Integer) : Coordinate
++ subY(m : Integer) : Coordinate
++ multiply(m : Integer) : Coordinate"
+32,Class,UML,1,,,,,,Network : Projection,"- _dimension : Dimension 
+- _dataStructure : AdjacencyStructure","+ Network(_dimension : Dimension, dataStructure : AdjacencyStructure) : Network
+- paintComponent(graphics : Graphics2D) : void
++ addConnection(agent1 : Agent, agent2 : Agent, weight : Double, directed : Boolean) : void
++ removeConnection(agent1 : Agent, agent2 : Agent) : void
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void"
+33,Class,UML,1,,,,,,AgentUI : UiObject,"- _agent : Agent
++ dimension : Dimension = (10, 10)","+ AgentUI(agent : Agent) : AgentUI 
++ agent : Agent = _agent
++ toString() : String
++ receiveNotification(notification : AgentUINotification, fromProjection : Projection) : void"
+34,Class,UML,1,,,,,,ColorScheme {Abstract},"+ use : ColorSchemeUse
++ paintAgent : Boolean =  true","+ ColorScheme(name : Stirng) : void
++ getAgentColor(agent : AgentUI) : awt.Color
++ getCellColor(cell : Cell): awt.Color
++ getBackgroundColor(context : Context) : awt.Color"
+35,Class,UML,1,,,,,,Projection : Component {Abstract},"- _dimension : awt.Dimension
+# window : Window
+- colorSchemes : Array[ColorScheme]
+# agentMap : Map[Agent, AgentUI]","+ Projection(_dimension : Dimension) : Projection
+# agentUIMap : Map[AgentUI, Agent]
++ setVisible(visible : Boolean) : void
++ applyColorScheme(c : ColorScheme) : void
++ removeColorScheme(c : ColorScheme) : void
++ getCellColor(cell : Cell) : Color
++ paintAgent() : Boolean
++ getAgentColor(agent : UIAgent) : Color
++ getAgentsWithTypes(types : Array[AgentType]) : Array[Agent]
++ getNeighborsOfTypes(agent : Agent, radius : Integer, types : Array[AgentType]) : Array[Agent]
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent) : void 
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void
+- move(agent : Agent, c : Coordinate) : void 
+- move(agent: Agent, direction : Direction, magnitude : Integer) : void"
+36,Class,UML,1,,,,,,Grid : Projection,"+ _dimension : Dimension
+- _cellSize: Integer = 50
+- _cellGapSize : Integer = 2
+- _circular : Boolean = true
+- cellMap : Map[AgentUI, Cell]
+- createdGrid : Boolean = false
+- grid : Array[Cell][Cell]","+ Grid(_dimension : Dimension, cellSize : Integer, cellGapSize : Integer, circular : Boolean, controller : ContextController) : Grid 
+- sizeWindowToGrid() : void
+- createGrid() : void
+- paintComponent(graphics : Graphics2D) : void
+- cellAt(c : Coordinate) : Cell
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void
+- move(agent : Agent, c : Coordinate) : void 
+- move(agent: Agent, direction : Direction, magnitude : Integer) : void"
+37,Class,UML,1,,,,,,Space : Projection,"- _dimension : Dimension
+- agentUIArray : Array[AgentUI]","+ Space(_dimension: Dimension) : Space
+- paintComponent(graphics : Graphics2D) : void
++ getNeighbors(agent : Agent, radius : Integer) : Array[Agent]
++ addAgent(agent : Agent, c : Coordinate) : void 
++ addAgents(agents : Array[Agent]) : void
++ removeAgent(agent : Agent) : Boolean
++ removeAllAgents() : void
+- move(agent: AgentUI, direction : Direction, magnitude : Integer) : void
+- move(agent : AgentUI, c : Coordinate) : void "
+38,Class,UML,1,,,,,,Window : MainFrame,"- _dimension : Dimension
+- _projection : Projection
++ visible : Boolean = true
++ resizable : Boolean = false","+ Window(_dimension : Dimension, _projection : Projection) : Window"
+39,Class,UML,1,,,,,,UIObject {Abstract},"+ color : awt.Color 
++ ID : Integer = -1
++ description : String = ""[UIObject]""
++ dimension : Dimension = (0, 0)
++ absoluteLocation : Coordinate = (0, 0)
+- idLabel : TextLabel",+ center() : Coordinate 
+40,Class,UML,1,,,,,,Agent,"+ agentType : AgentType
++ context : Context
+","+ Agent() : void
++ Agent(t : AgentType) : void
++ randomDirection() : Direction
++ receiveNotification(notification : AgentNotification, fromProjection : Projection) : void"
+41,Class,UML,1,,,,,,"<<Enumeration>>
+AgentUINotification","+ addedAgentToCell
++ removedAgentFromCell
++ removingAllAgentsFromCell",
+42,Class,UML,1,,,,,,"<<Enumeration>>
+ColorSchemeUse","+ defaultColorUse 
++ backgroundColorUse
++ agentColorUse
++ cellColorUse
++ connectionColorUse",
+43,Class,UML,1,,,,,,"<<Enumeration>>
+ColorSchemes","+ default
++ cellColorByPopulation
++ cellColorByAgentType
++ agentColorRandom
++ doNotPaintAgent",
+44,Class,UML,1,,,,,,Default : ColorScheme,+ use = defaultColorUse : ColorSchemeUse,+ Default() : Default
+45,Class,UML,1,,,,,,CellColorByPopulation: ColorScheme,+ use = cellColorUse : ColorSchemeUse,"+ CellColorByPopulation() : CellColorByPopultation
++ getCellColor(cell : Cell): awt.Color"
+46,Class,UML,1,,,,,,AdjacencyStructure { Abstract },,"+ agents : Array[AgentUI]
++ connections : Array[(AgentUI, AgentUI, Double]
++ connectionsOf(agent : AgentUI) : (AgentUI, AgentUI, Double)
++ add(agent : AgentUI) : void 
++ remove(agent : AgentUI) : void 
++ addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean) : Boolean
++ removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean"
+47,Class,UML,1,,,,,,AdjacencyMatrix : AdjacencyStructure,"- map : Map[AgentUI, Array[AdjacencyStructureEdge]]","+ AdjacencyMatrix() : AdjacencyMatrix
++ agents : Array[AgentUI]
++ connections : Array[(AgentUI, AgentUI, Double]
++ toString() : String
+- indexOf(agent : AgentUI) : Integer
++ add(agent : AgentUI) : void 
++ remove(agent : AgentUI) : void 
++ addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean) : Boolean
++ removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean"
+48,Class,UML,1,,,,,,AdjacencyList : AdjacencyStructure,"- map : Map[AgentUI, List[AdjacencyStructureEdge]]","+ AdjacencyList() : AdjacencyList
++ agents : Array[AgentUI]
++ connections : Array[(AgentUI, AgentUI, Double]
++ toString() : String
+- indexOf(agent : AgentUI) : Integer
++ add(agent : AgentUI) : void 
++ remove(agent : AgentUI) : void 
++ addConnection(a1 : AgentUI, a2 : AgentUI, weight : Double, directed : Boolean) : Boolean
++ removeConnection(a1 : AgentUI, a2 : AgentUI) : Boolean"
+49,Class,UML,1,,,,,,Context,"- projections : Array[Projection]
++ agents : Array[Agent]","+ Context() : Context
++ projectionsVisible(visible : Boolean) : void
++ applyColorScheme(c : ColorScheme) : void
++ removeColorScheme(c : ColorScheme) : void
++ addAgents(agents : Array[Agent]) : void
++ addAgent(agent : Agent) : void 
++ addAgent(agent : Agent, c : Coordinate) : void 
++ removeAgent(agent : Agent) : void
++ removeAllAgents() : void
++ addProjection(p : Projection) : void"
+50,Class,UML,1,,,,,,AdjacencyStructureEdge { Abstract },"- _toAgent : AgentUI
+- _weight : Double","+ toAgent() : AgentUI
++ weight() : Double
++ weight_(value : Double) : void
++ toString() : String"
+51,Class,UML,1,,,,,,DefaultEdge : AdjacencyStructureEdge,,+ DefaultEdge() : DefaultEdge
+52,Class,UML,1,,,,,,"<<Enumeration>>
+AgentNotification",+ move,
+53,Class,UML,1,,,,,,"<<Enumeration>>
+AgentType","+ boring
++ exciting
++ daring",
+54,Class,UML,1,,,,,,CellColorByAgentType : ColorScheme,+ use = cellColorUse : ColorSchemeUse,"+ CellColorByAgentType() : CellColorByAgentType
++ getCellColor(cell : Cell): awt.Color"
+55,Class,UML,1,,,,,,AgentColorRandom : ColorScheme,+ use = agentColorUse : ColorSchemeUse,"+ AgentColorRandom() : AgentColorRandom
++ getAgentColor(agent : AgentUI) : awt.Color"
+56,Class,UML,1,,,,,,DoNotPaintAgent : ColorScheme,"+ use = agentColorUse : ColorSchemeUse
++ paintAgent : Boolean = false",+ DoNotPaintAgent() : DoNotPaintAgent
+57,Class,UML,1,,,,,,"<<Enumeration>>
+Direction","+ up
++ down
++ left
++ right",+ toCoordinate(d :Direction) : Coordinate
+58,Line,,1,,8,7,None,Generalization,,,
+59,Line,,1,,4,7,None,Generalization,,,
+60,Line,,1,,9,7,None,Generalization,,,
+61,Line,,1,,7,10,None,Composition,1,1,
+62,Line,,1,,10,7,None,None,1,1,
+63,Line,,1,,14,6,None,None,,,
+64,Line,,1,,6,15,None,None,,,
+65,Line,,1,,20,18,None,Generalization,,,
+66,Line,,1,,19,18,None,Generalization,,,
+67,Line,,1,,23,22,None,Generalization,,,
+68,Line,,1,,22,19,None,None,0..*,1,
+69,Line,,1,,22,20,None,None,0..*,1,
+70,Line,,1,,25,12,None,None,,,
+71,Line,,1,,24,12,None,None,,,
+72,Line,,1,,27,6,None,Generalization,,,
+73,Line,,1,,17,6,None,Generalization,,,
+74,Line,,1,,26,6,None,Generalization,,,
+75,Line,,1,,28,6,None,Generalization,,,
+76,Line,,1,,16,6,None,Generalization,,,
+77,Line,,1,,7,21,None,Composition,0..*,1,
+78,Line,,1,,7,29,None,None,,,
+79,Line,,1,,3,7,Arrow,None,0..*,1,
+80,Line,,1,,2,11,None,Generalization,,,
+81,Line,,1,,5,11,None,Generalization,,,
+82,Line,,1,,13,5,Arrow,None,,,
+83,Line,,1,,7,6,None,Arrow,1,0..*,
+84,Line,,1,,12,5,None,Arrow,,,
+85,Line,,1,,12,21,None,Arrow,1,1,
+86,Line,,1,,12,21,Arrow,None,0..*,1,
+87,Line,,1,,2,8,None,Arrow,,,
+88,Line,,1,,8,2,None,Composition,,,
+89,Line,,1,,5,7,Arrow,None,0..*,1,
+90,Line,,1,,2,5,None,None,1,0..*,
+91,Line,,1,,4,18,None,None,1,1,
+92,Line,,1,,5,18,None,None,0..*,1,
+93,Line,,1,,3,11,Arrow,None,1,1,
+94,Line,,1,,36,35,None,Generalization,,,
+95,Line,,1,,32,35,None,Generalization,,,
+96,Line,,1,,37,35,None,Generalization,,,
+97,Line,,1,,35,38,None,Composition,1,1,
+98,Line,,1,,38,35,None,None,1,1,
+99,Line,,1,,42,34,None,None,,,
+100,Line,,1,,34,43,None,None,,,
+101,Line,,1,,48,46,None,Generalization,,,
+102,Line,,1,,47,46,None,Generalization,,,
+103,Line,,1,,51,50,None,Generalization,,,
+104,Line,,1,,50,47,None,None,0..*,1,
+105,Line,,1,,50,48,None,None,0..*,1,
+106,Line,,1,,53,40,None,None,,,
+107,Line,,1,,52,40,None,None,,,
+108,Line,,1,,55,34,None,Generalization,,,
+109,Line,,1,,45,34,None,Generalization,,,
+110,Line,,1,,54,34,None,Generalization,,,
+111,Line,,1,,56,34,None,Generalization,,,
+112,Line,,1,,44,34,None,Generalization,,,
+113,Line,,1,,35,49,None,Composition,0..*,1,
+114,Line,,1,,35,57,None,None,,,
+115,Line,,1,,31,35,Arrow,None,0..*,1,
+116,Line,,1,,30,39,None,Generalization,,,
+117,Line,,1,,33,39,None,Generalization,,,
+118,Line,,1,,41,33,Arrow,None,,,
+119,Line,,1,,35,34,None,Arrow,1,0..*,
+120,Line,,1,,40,33,None,Arrow,,,
+121,Line,,1,,40,49,None,Arrow,1,1,
+122,Line,,1,,40,49,Arrow,None,0..*,1,
+123,Line,,1,,30,36,None,Arrow,,,
+124,Line,,1,,36,30,None,Composition,,,
+125,Line,,1,,33,35,Arrow,None,0..*,1,
+126,Line,,1,,30,33,None,None,1,0..*,
+127,Line,,1,,32,46,None,None,1,1,
+128,Line,,1,,33,46,None,None,0..*,1,
+129,Line,,1,,31,39,Arrow,None,1,1,
+130,Line,,1,,50,33,None,Arrow,,,
+131,Line,,1,,51,33,None,Arrow,,,
+132,Line,,1,,33,35,None,Arrow,,,
+133,Line,,1,,35,30,None,Arrow,,,
+134,Line,,1,,35,40,None,Arrow,,,
+135,Line,,1,,35,53,None,Arrow,,,
+136,Line,,1,,34,33,None,Arrow,,,
+137,Line,,1,,34,30,None,Arrow,,,
+138,Line,,1,,34,53,None,Arrow,,,
+139,Line,,1,,30,31,None,Arrow,,,
+140,Line,,1,,37,40,None,Arrow,,,
+141,Line,,1,,37,33,None,Arrow,,,
+142,Line,,1,,32,40,None,Arrow,,,
+143,Line,,1,,32,33,None,Arrow,,,
+144,Line,,1,,36,40,None,Arrow,,,
+145,Line,,1,,36,33,None,Arrow,,,

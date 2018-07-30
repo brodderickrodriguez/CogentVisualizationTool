@@ -9,7 +9,7 @@ import scala.swing.Dimension
   * They are used in each Projection to notify other nearby Agents of events such as
   * a new neighbor, removed a neighbor, etc.
   */
-object AgentUINotification extends Enumeration {
+private object AgentUINotification extends Enumeration {
     val addedAgentToCell : Value = Value
     val removedAgentFromCell : Value = Value
     val removingAllAgentsFromCell : Value = Value
@@ -18,21 +18,25 @@ object AgentUINotification extends Enumeration {
 
 /**
   *  @constructor Creates an AgentUI from an Agent object.
-  *              AgentUI's are used to represent an Agent on a specific Projection.
+  *              AgentUI'dis are used to represent an Agent on a specific Projection.
   * @author Brodderick Rodriguez (bcr@brodderick.com)
   * @since 29 July 2018
-  * @param agent The Agent we are creating an AgentUI for.
+  * @param _agent The Agent we are creating an AgentUI for.
   */
-class AgentUI(val agent : Agent) extends UIObject {
+class AgentUI(_agent : Agent) extends UIObject {
     /** The Dimension of the AgentUI (default is 10x10). */
     dimension = new Dimension(10, 10)
+
+
+    /** Retrieves the Agent object associated with this AgentUI. */
+    def agent : Agent = _agent
 
 
     /**
       * Creates a String representation of the AgentUI.
       * @return A String in the format of: "AgentUI(<ID> - t:  <AGENT_TYPE>)"
       */
-    override def toString : String = "AgentUI(" + ID + " - t:" + agent.agentType + ")"
+    override def toString : String = "AgentUI(" + ID + " - t:" + _agent.agentType + ")"
 
 
     /**
@@ -44,7 +48,7 @@ class AgentUI(val agent : Agent) extends UIObject {
         notification match {
             case AgentUINotification.addedAgentToCell =>
               //  println("got addedAgentToCell notification")
-                agent.receiveNotification(AgentNotification.move, fromProjection)
+                _agent.receiveNotification(AgentNotification.move, fromProjection)
 
             case AgentUINotification.removedAgentFromCell =>
                // println("got removedAgentFromCell notification")

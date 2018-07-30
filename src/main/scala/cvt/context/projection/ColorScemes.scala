@@ -193,7 +193,7 @@ abstract class ColorScheme {
 
 
     /**
-      * Retrieves the color for a Grid Cell.
+      * tRetrieves the color for a Grid Cell.
       * @param cell the Cell we wish to get the color of.
       * @return the color for the Cell.
       */

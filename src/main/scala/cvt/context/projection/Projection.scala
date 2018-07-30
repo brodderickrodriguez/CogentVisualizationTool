@@ -20,12 +20,12 @@ object Direction extends Enumeration {
     /**
       * Converts a Direction to a Coordinate. The translation is as follows: Up: (0, -1), Right: (1, 0),
       * Down: (0, 1), Left: (-1, 0)
-      * @param direction The Direction which we are translating.
+      * @param d The Direction which we are translating.
       * @return Returns the translated Coordinate
       */
-    def toCoordinate(direction: Direction.Value) : Coordinate = {
+    def toCoordinate(d: Direction.Value) : Coordinate = {
         var c : Coordinate = new Coordinate(0, 0)
-        direction match {
+        d match {
             case Direction.up => c = c.subY(1)
             case Direction.right => c = c.addX(1)
             case Direction.down => c = c.addY(1)
